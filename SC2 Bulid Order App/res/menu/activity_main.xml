@@ -3,4 +3,11 @@
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/Menu_debugDB"
+          android:title="@string/debugDBString" />
+    <item android:id="@+id/Menu_adddefaultdata"
+          android:title="@string/AddDefaultDataString" />
+    <item android:id="@+id/Menu_addinitaldata"
+          android:title="@string/AddInitialDataString" />
+    
 </menu>

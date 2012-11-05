@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildorderfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="buildorderxmlschema.xsd">
+    <buildorderfilename>initialbuildorderfile</buildorderfilename>
+    <author>andrew long</author>
+    <dbversion>1</dbversion>
+    <fileversion>1</fileversion>
+  <buildorder>
+    <buildname>initial build 1</buildname>
+    <race>terran</race>
+    <buildinstructions>123412341234123412341234</buildinstructions>
+  </buildorder>
+  <buildorder>
+    <buildname>intial build 2</buildname>
+    <race>protoss</race>
+    <buildinstructions>buildinstructions blah blah blah</buildinstructions>
+  </buildorder>
+</buildorderfile>

@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.ALC.sc2boa.DashboardLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+         <!--  Terran Button -->
+
+    <Button
+        android:id="@+id/btn_terran_builds"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/terran_eagle_icon"
+        android:onClick="listTerranBuilds"
+        android:text="@string/TerranBuildsString" />
+ 
+    <!--  protoss Button -->
+
+    <Button
+        android:id="@+id/btn_protoss_builds"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/protoss_icon"
+        android:onClick="listProtossBuilds"
+        android:text="@string/ProtossBuildsString" />
+ 
+    <!--  zerg Button -->
+
+    <Button
+        android:id="@+id/btn_zerg_builds"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/zerg_icon"
+        android:onClick="listZergBuilds"
+        android:text="@string/ZergBuildsString" />
+ 
+    <!--  all Button -->
+
+    <Button
+        android:id="@+id/btn_all_builds"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/random_icon"
+        android:onClick="listAllBuilds"
+        android:text="@string/AllBuildsString" />
+ 
+    <!--  add build Button -->
+
+    <Button
+        android:id="@+id/btn_add_build"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/hammer_icon"
+        android:onClick="addBuild"
+        android:text="@string/AddBuildString" />
+ 
+    <!--  donate Button -->
+
+    <Button
+        android:id="@+id/btn_donate"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/sc2_logo_icon"
+        android:text="@string/DonateString" />
+
+    </com.ALC.sc2boa.DashboardLayout>
+
+</RelativeLayout>

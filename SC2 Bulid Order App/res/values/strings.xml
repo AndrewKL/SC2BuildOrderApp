@@ -32,5 +32,7 @@
     <string name="title_activity_display_build_order">Display Build Order</string>
     <string name="AddInitialDataString">Add Initial Data</string>
     <string name="DeleteDBString">Delete DB</string>
+    <string name="title_activity_test_main">TestMainActivity</string>
+    <string name="DonateString">Donate</string>
 
 </resources>

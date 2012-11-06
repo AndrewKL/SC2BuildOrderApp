@@ -1,11 +1,11 @@
 package com.ALC.sc2boa;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+//import java.io.File;
+//import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
+//import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,14 +41,9 @@ public class XMLBuildOrderReader {
 	public List<BuildOrder> GetBuildOrders()
 	{
 		ArrayList<BuildOrder> list = new ArrayList<BuildOrder>();
-		BuildOrder bo;
-		
-		
 		int eventType;
 		try {
 			eventType = xpp.getEventType();
-			//bo = new BuildOrder();
-		
 	        while (eventType != XmlPullParser.END_DOCUMENT) {
 	        	
 	        	if(eventType == XmlPullParser.START_DOCUMENT) //case start of xml file
@@ -58,25 +53,14 @@ public class XMLBuildOrderReader {
 	        	else if(eventType == XmlPullParser.END_DOCUMENT) //case end of xml file
 	        	{
 	        		Log.d("XMLBOR","End document");
-	        	} else if(eventType == XmlPullParser.START_TAG) //case reading in a new tag
+	        	} 
+	        	else if(eventType == XmlPullParser.START_TAG) //case reading in a new tag
 	        	{
-	        		//Log.d("XMLBOR","Start tag "+xpp.getName());
-	        		
 	        		if(xpp.getName().matches("buildorder"))
 	        		{
-	        			//Log.d("XMLBOR","reading build order "+xpp.getName());
 	        			list.add(readBuildOrder(xpp));
 	        		}
-	        		//Log.d("XMLBOR","Start tag "+xpp.getName());
-	        		
-	        	} else if(eventType == XmlPullParser.END_TAG) //case end of tag
-	        	{
-	        		//Log.d("XMLBOR","End tag "+xpp.getName());
-	        	} else if(eventType == XmlPullParser.TEXT) 
-	        	{
-	        		//Log.d("XMLBOR","Text "+xpp.getText());
-	        	}
-	        	//list.add(bo);
+	        	} 
 	        	eventType = xpp.next();
 	        }
 		} catch (XmlPullParserException e) {
@@ -96,35 +80,24 @@ public class XMLBuildOrderReader {
         	
         	if(eventType == XmlPullParser.START_TAG) //case reading in a new tag
         	{
-        		//Log.d("XMLBOR","Start tag "+xpp.getName());
         		if(xpp.getName().matches("buildname"))
         		{
-        			//Log.d("XMLBOR","readBuildOrder buildname"+xpp.getName());
         			bo.setBuildName(safeNextText(xpp));
-        			
-        			
-        		} else if(xpp.getName().matches("race"))
+        		} 
+        		else if(xpp.getName().matches("race"))
         		{
-        			//Log.d("XMLBOR","readBuildOrder race"+xpp.getName());
         			bo.setRace(safeNextText(xpp));
         		}
         		else if(xpp.getName().matches("buildinstructions"))
         		{
-        			//Log.d("XMLBOR","readBuildOrder buildinstructions"+xpp.getName());
-        			bo.setRace(safeNextText(xpp));
-        			
-        		}else{
+        			bo.setBuildOrderInstructions(safeNextText(xpp));
+        		}
+        		else
+        		{
         			Log.d("XMLBOR","readBuildOrder ERROR"+xpp.nextText());
-        			
         		}
         		
-        		//Log.d("XMLBOR","Start tag "+xpp.getName());
-        		
-        	} else if(eventType == XmlPullParser.TEXT) 
-        	{
-        		//Log.d("XMLBOR","readBuildOrder Text "+xpp.getText());
-        	}
-        	//Log.d("XMLBOR","readBuildOrder current BO "+bo);
+        	} 
         	eventType = xpp.next();
         }
 		Log.d("XMLBOR","readBuildOrder finished bo: "+bo);

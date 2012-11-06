@@ -1,9 +1,9 @@
 package com.ALC.sc2boa;
 
-import java.io.IOException;
-import java.util.List;
+//import java.io.IOException;
+//import java.util.List;
 
-import org.xmlpull.v1.XmlPullParserException;
+//import org.xmlpull.v1.XmlPullParserException;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -81,37 +81,32 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-    	
+    	BuildOrderCollection boc;
         switch (item.getItemId()) {
             case R.id.menu_settings:
                 Log.d("MainActivity","menuselect: settings");
                 return true;
             case R.id.Menu_debugDB:
             	Log.d("MainActivity","menuselect: DebugDB");
-            	BuildOrderCollection boc = new BuildOrderCollection(this);
+            	boc = new BuildOrderCollection(this);
             	Utils.PrintBuildOrderDB(boc);
             	return true;
             case R.id.Menu_adddefaultdata:
             	Log.d("MainActivity","menuselect: Add Default Data");
-            	BuildOrderCollection boc2 = new BuildOrderCollection(this);
-            	boc2.addDefaultData();
+            	boc = new BuildOrderCollection(this);
+            	boc.addDefaultData();
             	return true;
             case R.id.Menu_addinitaldata:
             	Log.d("MainActivity","menuselect: Add Initial Data");
-				try {
-					XMLBuildOrderReader bor = new XMLBuildOrderReader(this.getAssets());
-					BuildOrderCollection bocollection = new BuildOrderCollection(this);
-					bocollection.addBuildOrderList(bor.GetBuildOrders());
-				} catch (XmlPullParserException e) {
-					Log.d("MainActivity: ","xml pull parser error");
-					e.printStackTrace();
-				} catch (IOException e) {
-					Log.d("MainActivity: ","missing file");
-					e.printStackTrace();
-				}
-            	return true;
-            	
-            
+            	boc = new BuildOrderCollection(this);
+            	boc.loadInitialBuildOrdersFromXML(this.getAssets());
+				return true;
+            case R.id.Menu_deletedb:
+            	Log.d("MainActivity","menuselect: Delete Database");
+            	boc = new BuildOrderCollection(this);
+            	boc.deleteAllBuildOrders();
+				return true;
+				
             default:
                 return super.onOptionsItemSelected(item);
         }

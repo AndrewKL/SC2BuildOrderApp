@@ -30,6 +30,7 @@ public final class R {
         public static final int Menu_adddefaultdata=0x7f090011;
         public static final int Menu_addinitaldata=0x7f090012;
         public static final int Menu_debugDB=0x7f090010;
+        public static final int Menu_deletedb=0x7f090013;
         public static final int ProtossBuildsButton=0x7f09000a;
         public static final int RaceLabel=0x7f090002;
         public static final int TerranBuildsButton=0x7f090009;
@@ -63,6 +64,7 @@ public final class R {
         public static final int AllBuildsString=0x7f050013;
         public static final int BuildOrderNameString=0x7f050011;
         public static final int BuildOrderString=0x7f05000f;
+        public static final int DeleteDBString=0x7f050018;
         public static final int ProtossBuildsString=0x7f050004;
         public static final int RaceString=0x7f050010;
         public static final int TerranBuildsString=0x7f050007;

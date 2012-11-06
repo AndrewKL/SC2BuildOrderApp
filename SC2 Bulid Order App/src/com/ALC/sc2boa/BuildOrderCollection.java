@@ -1,10 +1,14 @@
 package com.ALC.sc2boa;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -164,6 +168,25 @@ public class BuildOrderCollection {
 		BuildOrder bo = BuildOrderCollection.cursorToBuildOrder(cursor);
 		this.close();
 		return bo;
+	}
+	public void deleteAllBuildOrders(){
+		this.open();
+		String statement = "DELETE FROM "+BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS;
+		database.execSQL(statement);
+		this.close();
+	}
+	
+	public void loadInitialBuildOrdersFromXML(AssetManager assetManager){
+		try {
+			XMLBuildOrderReader bor = new XMLBuildOrderReader(assetManager);
+			this.addBuildOrderList(bor.GetBuildOrders());
+		} catch (XmlPullParserException e) {
+			Log.d("MainActivity: ","xml pull parser error");
+			e.printStackTrace();
+		} catch (IOException e) {
+			Log.d("MainActivity: ","missing file");
+			e.printStackTrace();
+		}
 	}
 	
 		

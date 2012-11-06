@@ -31,5 +31,6 @@
     <string name="AddDefaultDataString">Add Default Data</string>
     <string name="title_activity_display_build_order">Display Build Order</string>
     <string name="AddInitialDataString">Add Initial Data</string>
+    <string name="DeleteDBString">Delete DB</string>
 
 </resources>

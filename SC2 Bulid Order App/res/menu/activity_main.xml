@@ -9,5 +9,8 @@
           android:title="@string/AddDefaultDataString" />
     <item android:id="@+id/Menu_addinitaldata"
           android:title="@string/AddInitialDataString" />
+     <item android:id="@+id/Menu_deletedb"
+          android:title="@string/DeleteDBString" />
+   
     
 </menu>

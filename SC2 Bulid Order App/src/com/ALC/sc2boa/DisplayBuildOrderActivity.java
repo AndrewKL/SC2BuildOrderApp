@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 
 public class DisplayBuildOrderActivity extends Activity {
 
@@ -24,10 +26,13 @@ public class DisplayBuildOrderActivity extends Activity {
         BuildOrder bo = boc.GetBuildOderByName(buildname);
         
         String eol = System.getProperty("line.separator");
-        String text = "Build: "+bo.GetName()+eol+
-        "Race: "+bo.GetRace()+eol+
+        String text = "<p><b>Build:</b> "+bo.GetName()+"</p>"+eol+
+        "<p><b>Race:</b> "+bo.GetRaceHTML()+"</p>"+eol+
         		bo.GetOrderInstructions();
-        textview.setText(text);
+        textview.setText(Html.fromHtml(text));
+        //textview.setText(text);
+        textview.setMovementMethod(new ScrollingMovementMethod());
+        textview.setTextSize(20);
     }
 
     @Override

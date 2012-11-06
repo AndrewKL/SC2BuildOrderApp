@@ -26,18 +26,17 @@ public final class R {
         public static final int BuildOrderNameLabel=0x7f090000;
         public static final int BuildOrderNameTextField=0x7f090001;
         public static final int BuildOrderTextAreaTextView=0x7f090006;
-        public static final int BuildOrdersList=0x7f09000e;
-        public static final int Menu_adddefaultdata=0x7f090011;
-        public static final int Menu_addinitaldata=0x7f090012;
-        public static final int Menu_debugDB=0x7f090010;
-        public static final int Menu_deletedb=0x7f090013;
+        public static final int BuildOrdersList=0x7f09000d;
+        public static final int Menu_adddefaultdata=0x7f090010;
+        public static final int Menu_addinitaldata=0x7f090011;
+        public static final int Menu_debugDB=0x7f09000f;
+        public static final int Menu_deletedb=0x7f090012;
         public static final int ProtossBuildsButton=0x7f09000a;
         public static final int RaceLabel=0x7f090002;
         public static final int TerranBuildsButton=0x7f090009;
         public static final int ZergBuildsButton=0x7f090008;
-        public static final int edit_message=0x7f09000d;
         public static final int mainbox=0x7f090007;
-        public static final int menu_settings=0x7f09000f;
+        public static final int menu_settings=0x7f09000e;
         public static final int racespinner=0x7f090003;
     }
     public static final class layout {

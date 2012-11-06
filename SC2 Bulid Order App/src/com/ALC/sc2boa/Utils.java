@@ -96,5 +96,24 @@ public class Utils {
 		
 		
 	}
+	public static String convertTextToHTML(String string){
+		StringBuilder sb = new StringBuilder();
+		sb.append("<p>");
+		char eol = System.getProperty("line.separator").charAt(0);
+		for(int i =0;i<string.length();i++){
+			if(string.charAt(i)==eol){
+				sb.append("<br>");
+			}else {
+				sb.append(string.charAt(i));
+			}
+		}
+		sb.append("</p>");
+		return sb.toString();
+	}
+	public static void convertBuildOrderInstToHTML(List<BuildOrder> list){
+		for(int i =0;i<list.size();i++){
+			list.get(i).setBuildOrderInstructions(convertTextToHTML(list.get(i).GetOrderInstructions()));
+		}
+	}
 
 }

@@ -831,14 +831,82 @@ A typical adaptation of the cannon rush is to use Pylons to completely wall off 
 </buildinstructions>
   </buildorder>
   <buildorder>
-    <buildname>intial build 31</buildname>
-    <race>other</race>
-    <buildinstructions>buildinstructions blah blah blah</buildinstructions>
+    <buildname>1/1/1 All In 10 Minute Timing</buildname>
+    <race>terran</race>
+    <buildinstructions>2 versions
+        
+        10 - Supply Depot (1)
+12 - Barracks (1)
+13 - Refinery (1)
+15 - Orbital Command Upgrade
+15 - Marine (1)
+16 - Barracks (2)
+16 - Reactor (1) on Barracks (1)
+17 - Supply Depot (2)
+19 - Marines
+21 - Supply Depot (3)
+21 - Tech Lab on Barracks (2)
+22 - Marines
+25 - Concussive Shells
+25 - Marauders (to 2)
+28 - Supply Depot (4)
+33 - Factory
+36 - Refinery (2)
+36 - Reactor (2) on Barracks (2)
+41 - Starport
+41 - @22 SCVs > Cut SCV production
+45 - Supply Depot (5)
+47 - Tech Lab (2) on Factory
+52 - Supply Depot (6)
+52 - Banshee and Siege Tank production
+60ish - @100% Banshee (1) > Cut Marine Production until Vespene Gas spent to 0
+66 - Siege Tech
+
+
+
+or....
+
+10 - Supply Depot (1)
+12 - Barracks
+13 - Refinery
+15 - Orbital Command upgrade
+15 - Marine (to 4)
+16 - Supply Depot (2)
+18 - Factory
+19 - Refinery (2)
+@100% Marine (4) - Barracks (1) builds Reactor, make Marines with spare minerals, but spend gas first
+22 - Starport
+Factory builds Tech Lab (1) > Switch to Starport @100% > Tech Lab (2)
+25 - Banshees, harass Sentry numbers at completion
+Optional - Cloak upgrade
+Start Siege Tanks (to 2 or 3) + Siege Mode
+50 Barracks (2) (3)
+Start continual Marine and Banshee production
+With Siege Tank (3) or high Stalker numbers
+bring half SCV on mineral line
+Switch Starport to Reactor (1) > Medivacs (1) (2)
+Switch Barracks (2) (3) to Tech Labs (1) (2) > Marauders
+
+</buildinstructions>
   </buildorder>
   <buildorder>
-    <buildname>intial build 32</buildname>
-    <race>other</race>
-    <buildinstructions>buildinstructions blah blah blah</buildinstructions>
+    <buildname>Marine/Hellion/Banshee</buildname>
+    <race>terrran</race>
+    <buildinstructions>10 - Supply Depot (1)
+12 - Refinery (1)
+13 - Barracks
+16 - Factory
+16 - Orbital Command Upgrade
+16 - Marine (1)
+17 - Supply Depot (2)
+17 - Reactor on Barracks
+18 - Refinery (2), if going for Cloaking Field Upgrade
+19 - Hellion (1)
+22 - Starport
+22 - Supply Depot (3)
+23 - Tech Lab on Factory > Switch to Starport, if Banshees
+23 - Marines or Hellions, See first Note
+26 or 28 - Banshees or Medivac (1)</buildinstructions>
   </buildorder>
   <buildorder>
     <buildname>intial build 33</buildname>

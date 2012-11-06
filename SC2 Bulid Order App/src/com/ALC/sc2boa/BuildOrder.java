@@ -48,10 +48,16 @@ public class BuildOrder {
 	{
 		return race;
 	}
-	/*public int GetRaceInt()
-	{
-		return race;
-	}*/
+	public String GetRaceHTML(){
+		if(race.matches("zerg")){
+			return "<font color=\"red\">Zerg</font>";
+		}else if(race.matches("terran")){
+			return "<font color=\"blue\">Terran</font>";
+		}else{
+			return "<font color=\"#00FF00\">Protoss</font>";//green color
+		}
+	}
+	
 	public int compareTo(BuildOrder another) {
         if (another == null) return 1;
         // sort descending, most recent first

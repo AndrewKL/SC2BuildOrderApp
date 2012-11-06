@@ -179,7 +179,9 @@ public class BuildOrderCollection {
 	public void loadInitialBuildOrdersFromXML(AssetManager assetManager){
 		try {
 			XMLBuildOrderReader bor = new XMLBuildOrderReader(assetManager);
-			this.addBuildOrderList(bor.GetBuildOrders());
+			List<BuildOrder> list = bor.GetBuildOrders();
+			Utils.convertBuildOrderInstToHTML(list);
+			this.addBuildOrderList(list);
 		} catch (XmlPullParserException e) {
 			Log.d("MainActivity: ","xml pull parser error");
 			e.printStackTrace();

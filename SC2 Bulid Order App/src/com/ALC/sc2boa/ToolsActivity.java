@@ -52,9 +52,10 @@ public class ToolsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         
-        final Context context = this;
+        if(getActionBar()!=null)getActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        //final Context context = this;
         
         
         
@@ -65,7 +66,7 @@ public class ToolsActivity extends Activity {
  
 		public void onClick(View arg0) {
 			
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ToolsActivity.this);
  
 			// set title
 			alertDialogBuilder.setTitle("Delete Database");
@@ -109,7 +110,7 @@ public class ToolsActivity extends Activity {
 				ProgressDialog mProgressDialog;
 
 				// instantiate it within the onCreate method
-				mProgressDialog = new ProgressDialog(context);
+				mProgressDialog = new ProgressDialog(ToolsActivity.this);
 				mProgressDialog.setMessage("Downloading Builds");
 				mProgressDialog.setIndeterminate(false);
 				mProgressDialog.setMax(100);

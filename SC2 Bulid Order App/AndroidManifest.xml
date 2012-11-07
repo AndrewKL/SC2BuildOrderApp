@@ -69,13 +69,14 @@
         
         <activity
             android:name=".ToolsActivity"
-            android:theme="@android:style/Theme.Black"
+            android:theme="@android:style/Theme.Holo"
             android:label="@string/title_activity_tools" >
             
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ALC.sc2boa.MainActivity" />
         </activity>
+        <!-- android:theme="@android:style/Theme.Black" -->
     </application>
 
 </manifest>

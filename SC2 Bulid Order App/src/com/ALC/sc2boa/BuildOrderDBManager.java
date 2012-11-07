@@ -24,9 +24,9 @@ public class BuildOrderDBManager {
 	
 	public BuildOrderDBManager(Context context)
 	{
-		Log.d("BOC: ", "creating dbhelper");
+		Log.d("BODBM: ", "creating dbhelper");
 		dbHelper = new BuildOrderDBHelper(context);
-		Log.d("BOC: ", "done");
+		Log.d("BODBM: ", "done");
 		//allColumns=BuildOrderDataBaseOpenHelper.COLUMNS;
 		
 	
@@ -47,12 +47,12 @@ public class BuildOrderDBManager {
 	}
 	
 	private void close() {
-		Log.d("BOC: ", "close db connection");
+		//Log.d("BODBM: ", "close db connection");
 	    dbHelper.close();
 	}
 	
 	private void open() throws SQLException {
-		Log.d("BOC: ", "open db connection");
+		//Log.d("BODBM: ", "open db connection");
 	    database = dbHelper.getWritableDatabase();
 	}
 	
@@ -63,7 +63,7 @@ public class BuildOrderDBManager {
 	 * @param BO
 	 */
 	public void addBuildOrder(BuildOrder BO) {
-		Log.d("BOC: ", "addBuildOrder... "+BO);
+		Log.d("BODBM: ", "addBuildOrder... ");
 		this.open();
 		//database = dbHelper.getWritableDatabase();
 	    ContentValues values = new ContentValues();
@@ -77,7 +77,7 @@ public class BuildOrderDBManager {
 	    
 	}
 	public void addBuildOrderList(List<BuildOrder> bos) {
-		Log.d("BOC: ", "addBuildOrderList number of builds to add:"+bos.size());
+		Log.d("BODBM: ", "addBuildOrderList number of builds to add:"+bos.size());
 		for(int i =0;i<bos.size();i++){
 			this.addBuildOrder(bos.get(i));
 		}
@@ -183,8 +183,8 @@ public class BuildOrderDBManager {
 		Thread thread = new Thread(new Runnable() {
 	        public void run() {
 	        	Log.d("BuildOrderDBManager", "loadInitialBuilds: supposedly a new thread: ");
-	            BuildOrderDBManager boc = new BuildOrderDBManager(context);
-	            boc.loadInitialBuildOrdersFromXML(context.getAssets());
+	            BuildOrderDBManager BODBM = new BuildOrderDBManager(context);
+	            BODBM.loadInitialBuildOrdersFromXML(context.getAssets());
 	        }
 		});
 		thread.run();

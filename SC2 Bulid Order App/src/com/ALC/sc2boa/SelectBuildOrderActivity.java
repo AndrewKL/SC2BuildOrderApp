@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
@@ -64,7 +65,7 @@ public class SelectBuildOrderActivity extends Activity {
         Log.d("SelectBuildOrderActivity: ", "onCreate: setting up list view");
         ListView listView = (ListView) findViewById(R.id.BuildOrdersList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        		  android.R.layout.simple_list_item_single_choice, android.R.id.text1, buildnames);
+        		  R.layout.row, R.id.RowText, buildnames);
 
         		// Assign adapter to ListView
         listView.setAdapter(adapter); 
@@ -75,7 +76,9 @@ public class SelectBuildOrderActivity extends Activity {
                 int position, long id) {
    
                 // getting the selected build
-                String buildname = ((TextView) view).getText().toString();
+            	TextView tv = ((TextView)((LinearLayout) view).getChildAt(1));
+                //String buildname = ((TextView) view).getText().toString();
+                String buildname = tv.getText().toString();
                 Log.d("SelectBuildOrderActivity: ", "onCreate: onclick : "+buildname);
                 Intent i = new Intent(getApplicationContext(), DisplayBuildOrderActivity.class);
                 // sending data to new activity

@@ -1,49 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/ToolsLinearLayout"
+    <Button
+        android:id="@+id/AddBuildOrderButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:onClick="addBuildOrder"
+        android:text="@string/AddBuildString" />
 
-        <Button
-            android:id="@+id/AddBuildOrderButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="addBuildOrder"
-            android:text="@string/AddBuildString" />
+    <Button
+        android:id="@+id/AddInitialDataButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addInitialData"
+        android:text="@string/AddInitialDataString" />
 
-        <Button
-            android:id="@+id/AddInitialDataButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="addInitialData"
-            android:text="@string/AddInitialDataString" />
+    <Button
+        android:id="@+id/LoadDataFromWebButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="loadDataFromWeb"
+        android:text="@string/LoadDataFromWebString" />
 
-        <Button
-            android:id="@+id/LoadDataFromWebButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="loadDataFromWeb"
-            android:text="@string/LoadDataFromWebString" />
+    <Button
+        android:id="@+id/DatabaseInformationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="displayDatabaseInformation"
+        android:text="@string/DatabaseInformationString" />
 
-        <Button
-            android:id="@+id/DatabaseInformationButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="displayDatabaseInformation"
-            android:text="@string/DatabaseInformationString" />
+    <Button
+        android:id="@+id/DeleteDBButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="deleteDatabase"
+        android:text="@string/DeleteDBString" />
 
-        <Button
-            android:id="@+id/DeleteDBButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="deleteDatabase"
-            android:text="@string/DeleteDBString" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

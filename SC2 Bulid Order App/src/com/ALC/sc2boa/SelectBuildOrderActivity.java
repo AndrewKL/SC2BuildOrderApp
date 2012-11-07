@@ -58,17 +58,19 @@ public class SelectBuildOrderActivity extends Activity {
         //BOC.close();
         Log.d("SelectBuildOrderActivity: ", "onCreate: creating list of buildnames");
         //setup the list of builds
-        String[] buildnames = new String[builds.size()];
+        /*String[] buildnames = new String[builds.size()];
         for(int i = 0;i<builds.size();i++){
         	buildnames[i]=((BuildOrder)builds.get(i)).GetName();
-        }
+        }*/
         Log.d("SelectBuildOrderActivity: ", "onCreate: setting up list view");
         ListView listView = (ListView) findViewById(R.id.BuildOrdersList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        		  R.layout.row, R.id.RowText, buildnames);
+        BuildOrder[] buildsArray = (BuildOrder[])builds.toArray(new BuildOrder[builds.size()]);
+        BuildOrderAdapter boAdapter = new BuildOrderAdapter(this,R.layout.row,buildsArray);
+        
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, R.id.RowText, buildnames);
 
         		// Assign adapter to ListView
-        listView.setAdapter(adapter); 
+        listView.setAdapter(boAdapter); 
         Log.d("SelectBuildOrderActivity: ", "onCreate: done");
         
         listView.setOnItemClickListener(new OnItemClickListener() {

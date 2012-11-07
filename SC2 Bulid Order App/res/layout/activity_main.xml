@@ -16,7 +16,7 @@
     <Button
         android:id="@+id/btn_terran_builds"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/terran_eagle_icon"
+        android:drawableTop="@drawable/terran_icon"
         android:onClick="listTerranBuilds"
         android:text="@string/TerranBuildsString" />
  
@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/btn_donate"
         style="@style/DashboardButton"
-        android:drawableTop="@drawable/sc2_logo_icon"
+        android:drawableTop="@drawable/terran_eagle_icon"
         android:text="@string/DonateString" />
 
     </com.ALC.sc2boa.DashboardLayout>

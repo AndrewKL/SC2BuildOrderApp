@@ -53,8 +53,10 @@ public class BuildOrder {
 			return "<font color=\"red\">Zerg</font>";
 		}else if(race.matches("terran")){
 			return "<font color=\"blue\">Terran</font>";
-		}else{
+		}else if(race.matches("protoss")){
 			return "<font color=\"#00FF00\">Protoss</font>";//green color
+		}else{
+			return "<font color=\"#00FF00\">"+this.race+"</font>";//green color
 		}
 	}
 	
@@ -74,9 +76,18 @@ public class BuildOrder {
 	{
 		return "B: "+this.buildName+" id: "+this.id+" R: "+this.races.toString()+" instr: "+this.buildOrderInstructions;
 	}
-	/*public boolean isCompleted() {
-		return buildName!=null&&race!=null&&buildOrderInstructions!=null;
-	}*/
+	
+	public int getIcon() {
+		if(race.matches("zerg")){
+			return R.drawable.mini_zerg_icon;
+		}else if(race.matches("terran")){
+			return R.drawable.mini_terran_icon;
+		}else if(race.matches("protoss")){
+			return R.drawable.mini_protoss_icon;//green color
+		}else{
+			return R.drawable.mini_random_icon;
+		}
+	}
 	
 	
 

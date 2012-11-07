@@ -891,7 +891,7 @@ Switch Barracks (2) (3) to Tech Labs (1) (2) > Marauders
   </buildorder>
   <buildorder>
     <buildname>Marine/Hellion/Banshee</buildname>
-    <race>terrran</race>
+    <race>terran</race>
     <buildinstructions>10 - Supply Depot (1)
 12 - Refinery (1)
 13 - Barracks

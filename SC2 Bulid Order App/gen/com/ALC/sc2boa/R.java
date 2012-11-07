@@ -18,12 +18,16 @@ public final class R {
         public static final int ic_action_search=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int ic_menu_name=0x7f020003;
-        public static final int protoss_icon=0x7f020004;
-        public static final int random_icon=0x7f020005;
-        public static final int sc2_logo_icon=0x7f020006;
-        public static final int terran_eagle_icon=0x7f020007;
-        public static final int terran_icon=0x7f020008;
-        public static final int zerg_icon=0x7f020009;
+        public static final int mini_protoss_icon=0x7f020004;
+        public static final int mini_random_icon=0x7f020005;
+        public static final int mini_terran_icon=0x7f020006;
+        public static final int mini_zerg_icon=0x7f020007;
+        public static final int protoss_icon=0x7f020008;
+        public static final int random_icon=0x7f020009;
+        public static final int sc2_logo_icon=0x7f02000a;
+        public static final int terran_eagle_icon=0x7f02000b;
+        public static final int terran_icon=0x7f02000c;
+        public static final int zerg_icon=0x7f02000d;
     }
     public static final class id {
         public static final int AddBuildOrderButton=0x7f090005;

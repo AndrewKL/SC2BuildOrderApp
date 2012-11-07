@@ -1,5 +1,6 @@
 package com.ALC.sc2boa;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +15,17 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class BuildOrderCollection {
+public class BuildOrderDBManager {
 	
+	public static final String ACLwebsiteurl ="https://sites.google.com/a/andrewlongconsulting.com/www/sc2boa/initialbuildordersfile.xml?attredirects=0&d=1";
 	private SQLiteDatabase database;
-	private BuildOrderDataBaseOpenHelper dbHelper;
+	private BuildOrderDBHelper dbHelper;
 	//private String[] allColumns;
 	
-	public BuildOrderCollection(Context context)
+	public BuildOrderDBManager(Context context)
 	{
 		Log.d("BOC: ", "creating dbhelper");
-		dbHelper = new BuildOrderDataBaseOpenHelper(context);
+		dbHelper = new BuildOrderDBHelper(context);
 		Log.d("BOC: ", "done");
 		//allColumns=BuildOrderDataBaseOpenHelper.COLUMNS;
 		
@@ -65,11 +67,11 @@ public class BuildOrderCollection {
 		this.open();
 		//database = dbHelper.getWritableDatabase();
 	    ContentValues values = new ContentValues();
-	    values.put(BuildOrderDataBaseOpenHelper.COLUMN_BUILDNAME, BO.GetName());
-	    values.put(BuildOrderDataBaseOpenHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
-	    values.put(BuildOrderDataBaseOpenHelper.COLUMN_RACE, BO.GetRace());
+	    values.put(BuildOrderDBHelper.COLUMN_BUILDNAME, BO.GetName());
+	    values.put(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
+	    values.put(BuildOrderDBHelper.COLUMN_RACE, BO.GetRace());
 	    
-	    BO.setId(database.insert(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS, null,
+	    BO.setId(database.insert(BuildOrderDBHelper.TABLE_BUILDORDERS, null,
 	        values));
 	    this.close();
 	    
@@ -92,8 +94,8 @@ public class BuildOrderCollection {
 		
 		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
 		Log.d("BuildOrderCollection: ","GetAllBuildOrders: query");
-		Cursor cursor = database.query(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS,
-				BuildOrderDataBaseOpenHelper.COLUMNS, null, null, null, null, null);
+		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.COLUMNS, null, null, null, null, null);
 		Log.d("BuildOrderCollection: ","GetAllBuildOrders: query finished");
 
 	    cursor.moveToFirst();
@@ -102,7 +104,7 @@ public class BuildOrderCollection {
 	    	
 			cursor.moveToPosition(i);
 			
-			BuildOrder BO = BuildOrderCollection.cursorToBuildOrder(cursor);
+			BuildOrder BO = BuildOrderDBManager.cursorToBuildOrder(cursor);
 			Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
 		    buildOrders.add(BO);
 			
@@ -124,8 +126,8 @@ public class BuildOrderCollection {
 		
 		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query");
-		Cursor cursor = database.query(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS,
-				BuildOrderDataBaseOpenHelper.COLUMNS, BuildOrderDataBaseOpenHelper.COLUMN_RACE+"= '"+race+"' ", null, null, null, null);
+		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_RACE+"= '"+race+"' ", null, null, null, null);
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query finished");
 
 	    cursor.moveToFirst();
@@ -134,7 +136,7 @@ public class BuildOrderCollection {
 	    	
 			cursor.moveToPosition(i);
 			
-			BuildOrder BO = BuildOrderCollection.cursorToBuildOrder(cursor);
+			BuildOrder BO = BuildOrderDBManager.cursorToBuildOrder(cursor);
 			Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
 		    buildOrders.add(BO);
 			
@@ -148,32 +150,44 @@ public class BuildOrderCollection {
 	
 	public static BuildOrder cursorToBuildOrder(Cursor cursor) {
 	    BuildOrder BO = new BuildOrder();
-	    BO.setId(cursor.getLong(cursor.getColumnIndex(BuildOrderDataBaseOpenHelper.COLUMN_ID)));
-	    BO.setBuildName(cursor.getString(cursor.getColumnIndex(BuildOrderDataBaseOpenHelper.COLUMN_BUILDNAME)));
-	    BO.setBuildOrderInstructions(cursor.getString(cursor.getColumnIndex(BuildOrderDataBaseOpenHelper.COLUMN_BUILDORDERINSTRUCTIONS)));
-	    BO.setRace(cursor.getString(cursor.getColumnIndex(BuildOrderDataBaseOpenHelper.COLUMN_RACE)));
+	    BO.setId(cursor.getLong(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_ID)));
+	    BO.setBuildName(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILDNAME)));
+	    BO.setBuildOrderInstructions(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS)));
+	    BO.setRace(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_RACE)));
 	    return BO;
 	}
 	public void deleteBuildOrder(BuildOrder BO) {
 	    long id = BO.getId();
 	    System.out.println("BuildOrder deleted with id: " + id);
-	    database.delete(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS, BuildOrderDataBaseOpenHelper.COLUMN_ID
+	    database.delete(BuildOrderDBHelper.TABLE_BUILDORDERS, BuildOrderDBHelper.COLUMN_ID
 	        + " = " + id, null);
 	}
 	public BuildOrder GetBuildOderByName(String buildname) {
 		this.open();
-		Cursor cursor = database.query(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS,
-				BuildOrderDataBaseOpenHelper.COLUMNS, BuildOrderDataBaseOpenHelper.COLUMN_BUILDNAME+"= '"+buildname+"' ", null, null, null, null);
+		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_BUILDNAME+"= '"+buildname+"' ", null, null, null, null);
 		cursor.moveToFirst();
-		BuildOrder bo = BuildOrderCollection.cursorToBuildOrder(cursor);
+		BuildOrder bo = BuildOrderDBManager.cursorToBuildOrder(cursor);
 		this.close();
 		return bo;
 	}
 	public void deleteAllBuildOrders(){
 		this.open();
-		String statement = "DELETE FROM "+BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS;
+		String statement = "DELETE FROM "+BuildOrderDBHelper.TABLE_BUILDORDERS;
 		database.execSQL(statement);
 		this.close();
+	}
+	
+	public static void loadInitialBuilds(final Context context){
+		Log.d("BuildOrderDBManager", "loadInitialBuilds: supposedly old thread: ");
+		Thread thread = new Thread(new Runnable() {
+	        public void run() {
+	        	Log.d("BuildOrderDBManager", "loadInitialBuilds: supposedly a new thread: ");
+	            BuildOrderDBManager boc = new BuildOrderDBManager(context);
+	            boc.loadInitialBuildOrdersFromXML(context.getAssets());
+	        }
+		});
+		thread.run();
 	}
 	
 	public void loadInitialBuildOrdersFromXML(AssetManager assetManager){
@@ -189,6 +203,24 @@ public class BuildOrderCollection {
 			Log.d("MainActivity: ","missing file");
 			e.printStackTrace();
 		}
+	}
+	
+	public void loadBuildsXMLFile(String path){
+		File file = new File(path);
+		try {
+			XMLBuildOrderReader bor = new XMLBuildOrderReader(file);
+			List<BuildOrder> list = bor.GetBuildOrders();
+			Utils.convertBuildOrderInstToHTML(list);
+			this.addBuildOrderList(list);
+		} catch (XmlPullParserException e) {
+			Log.d("MainActivity: ","xml pull parser error");
+			e.printStackTrace();
+		} catch (IOException e) {
+			Log.d("MainActivity: ","missing file");
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 		

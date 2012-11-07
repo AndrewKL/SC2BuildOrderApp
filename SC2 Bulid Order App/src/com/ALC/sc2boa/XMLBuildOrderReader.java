@@ -3,7 +3,10 @@ package com.ALC.sc2boa;
 import java.io.BufferedReader;
 //import java.io.File;
 //import java.io.FileReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 //import java.io.StringReader;
 import java.util.ArrayList;
@@ -36,6 +39,20 @@ public class XMLBuildOrderReader {
 
         xpp.setInput(reader);
 	}
+	public XMLBuildOrderReader(File file) throws XmlPullParserException, IOException
+	{
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		
+		factory = XmlPullParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        xpp = factory.newPullParser();
+        
+        
+
+        xpp.setInput(reader);
+	}
+	
 	
 	
 	public List<BuildOrder> GetBuildOrders()

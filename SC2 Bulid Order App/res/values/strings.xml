@@ -34,5 +34,9 @@
     <string name="DeleteDBString">Delete DB</string>
     <string name="title_activity_test_main">TestMainActivity</string>
     <string name="DonateString">Donate</string>
+    <string name="title_activity_tools">ToolsActivity</string>
+    <string name="LoadDataFromWebString">Load Data From Web</string>
+    <string name="DatabaseInformationString">Database Information</string>
+    <string name="ToolsString">Tools</string>
 
 </resources>

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class Utils {
-	public static void PrintBuildOrderDB(BuildOrderCollection BOC)
+	public static void PrintBuildOrderDB(BuildOrderDBManager BOC)
 	{
 		/*BOC.open();
 		SQLiteDatabase db = BOC.GetDB();
@@ -38,8 +38,8 @@ public class Utils {
 		Log.d("Debug DB","printing full builds");*/
 		
 		SQLiteDatabase db = BOC.GetDB();
-		Cursor cursor = db.query(BuildOrderDataBaseOpenHelper.TABLE_BUILDORDERS,
-				BuildOrderDataBaseOpenHelper.COLUMNS, null, null, null, null, null);
+		Cursor cursor = db.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.COLUMNS, null, null, null, null, null);
 		Log.d("Debug DB","printing full builds number builds: "+cursor.getCount());
 		Log.d("Debug DB","printing full builds number of columns: "+cursor.getColumnCount());
 		for(int i =0;i<cursor.getColumnCount();i++){

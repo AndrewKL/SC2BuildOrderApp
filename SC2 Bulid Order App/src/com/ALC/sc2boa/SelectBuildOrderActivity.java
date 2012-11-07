@@ -34,12 +34,12 @@ public class SelectBuildOrderActivity extends Activity {
         String race = intent.getStringExtra(MainActivity.EXTRA_RACE);
         Log.d("SelectBuildOrderActivity: ","onCreate: acces db");
         //access db and get builds
-        BuildOrderCollection BOC;// = new BuildOrderCollection(this);
+        BuildOrderDBManager BOC;// = new BuildOrderCollection(this);
         //BOC.open();
         List<BuildOrder> builds;// = new ArrayList<BuildOrder>();
         if(race.matches("all"))
         {
-        	BOC = new BuildOrderCollection(this);
+        	BOC = new BuildOrderDBManager(this);
         	//BOC.open();
         	//Log.d("SelectBuildOrderActivity: ", "onCreate: displaying all builds v2");
         	Log.d("SelectBuildOrderActivity: ", "onCreate: displaying all builds");
@@ -48,7 +48,7 @@ public class SelectBuildOrderActivity extends Activity {
         	Log.d("SelectBuildOrderActivity: ", "onCreate: displaying all builds done");
         	
         }else{
-        	BOC = new BuildOrderCollection(this);
+        	BOC = new BuildOrderDBManager(this);
         	//BOC.open();
         	Log.d("SelectBuildOrderActivity: ", "onCreate: displaying "+race+" builds");
         	builds = BOC.GetBuildOrdersByRace(race);

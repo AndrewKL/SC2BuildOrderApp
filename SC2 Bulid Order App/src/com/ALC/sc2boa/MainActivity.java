@@ -38,9 +38,11 @@ public class MainActivity extends Activity {
     /** Called when the user clicks the add build button */
     public void addBuild(View view) {
     	Intent intent = new Intent(this, AddBuildOrderActivity.class);
-        //EditText editText = (EditText) findViewById(R.id.edit_message);
-        //String message = editText.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+    
+    public void displayTools(View view) {
+    	Intent intent = new Intent(this, ToolsActivity.class);
         startActivity(intent);
     }
     
@@ -74,29 +76,30 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-    	BuildOrderCollection boc;
+    	BuildOrderDBManager boc;
         switch (item.getItemId()) {
             case R.id.menu_settings:
                 Log.d("MainActivity","menuselect: settings");
                 return true;
             case R.id.Menu_debugDB:
             	Log.d("MainActivity","menuselect: DebugDB");
-            	boc = new BuildOrderCollection(this);
+            	boc = new BuildOrderDBManager(this);
             	Utils.PrintBuildOrderDB(boc);
             	return true;
             case R.id.Menu_adddefaultdata:
             	Log.d("MainActivity","menuselect: Add Default Data");
-            	boc = new BuildOrderCollection(this);
+            	boc = new BuildOrderDBManager(this);
             	boc.addDefaultData();
             	return true;
             case R.id.Menu_addinitaldata:
             	Log.d("MainActivity","menuselect: Add Initial Data");
-            	boc = new BuildOrderCollection(this);
-            	boc.loadInitialBuildOrdersFromXML(this.getAssets());
+            	BuildOrderDBManager.loadInitialBuilds(this);
+            	Log.d("MainActivity","menuselect: Add Initial Data finished");
+            	
 				return true;
             case R.id.Menu_deletedb:
             	Log.d("MainActivity","menuselect: Delete Database");
-            	boc = new BuildOrderCollection(this);
+            	boc = new BuildOrderDBManager(this);
             	boc.deleteAllBuildOrders();
 				return true;
 				

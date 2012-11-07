@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+
     <com.ALC.sc2boa.DashboardLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+        
         
          <!--  Terran Button -->
 
@@ -47,13 +48,13 @@
         android:text="@string/AllBuildsString" />
  
     <!--  add build Button -->
-
+
     <Button
         android:id="@+id/btn_add_build"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/hammer_icon"
-        android:onClick="addBuild"
-        android:text="@string/AddBuildString" />
+        android:onClick="displayTools"
+        android:text="@string/ToolsString" />
  
     <!--  donate Button -->
 

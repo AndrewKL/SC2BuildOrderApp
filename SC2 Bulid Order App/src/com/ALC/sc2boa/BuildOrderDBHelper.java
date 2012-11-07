@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-public class BuildOrderDataBaseOpenHelper extends SQLiteOpenHelper {
+public class BuildOrderDBHelper extends SQLiteOpenHelper {
 
 
 
@@ -33,7 +33,7 @@ public class BuildOrderDataBaseOpenHelper extends SQLiteOpenHelper {
       COLUMN_BUILDORDERINSTRUCTIONS+" text not null, "+
       COLUMN_RACE+" text not null);";
 
-  public BuildOrderDataBaseOpenHelper(Context context) {
+  public BuildOrderDBHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
   
@@ -47,7 +47,7 @@ public class BuildOrderDataBaseOpenHelper extends SQLiteOpenHelper {
 
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    Log.w(BuildOrderDataBaseOpenHelper.class.getName(),
+    Log.w(BuildOrderDBHelper.class.getName(),
         "Upgrading database from version " + oldVersion + " to "
             + newVersion + ", which will destroy all old data");
     db.execSQL("DROP TABLE IF EXISTS " + TABLE_BUILDORDERS);

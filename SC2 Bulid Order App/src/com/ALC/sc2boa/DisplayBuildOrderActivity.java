@@ -22,7 +22,7 @@ public class DisplayBuildOrderActivity extends Activity {
         //get the right build order
         Intent intent = getIntent();
         String buildname = intent.getStringExtra(SelectBuildOrderActivity.EXTRA_BuildName);
-        BuildOrderCollection boc = new BuildOrderCollection(this);
+        BuildOrderDBManager boc = new BuildOrderDBManager(this);
         BuildOrder bo = boc.GetBuildOderByName(buildname);
         
         String eol = System.getProperty("line.separator");

@@ -72,7 +72,7 @@ public class AddBuildOrderActivity extends Activity {
         
         Log.d("AddBuildOrderActivity: ", "Inserting... "+bo.toString());
         
-        BuildOrderCollection BOC = new BuildOrderCollection(this);
+        BuildOrderDBManager BOC = new BuildOrderDBManager(this);
         
         BOC.addBuildOrder(bo);
         

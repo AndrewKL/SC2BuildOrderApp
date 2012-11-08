@@ -74,7 +74,7 @@ public class BuildOrder {
 	
 	public String toString()
 	{
-		return "B: "+this.buildName+" id: "+this.id+" R: "+this.races.toString()+" instr: "+this.buildOrderInstructions;
+		return buildName;//"B: "+this.buildName+" id: "+this.id+" R: "+this.races.toString()+" instr: "+this.buildOrderInstructions;
 	}
 	
 	public int getIcon() {

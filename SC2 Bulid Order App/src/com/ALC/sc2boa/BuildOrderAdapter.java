@@ -1,28 +1,61 @@
 package com.ALC.sc2boa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
 	
-	Context context;
-    int layoutResourceId;   
-    BuildOrder data[] = null;
+	//Context context;
+    //int layoutResourceId;   
+    private ArrayList<BuildOrder> unfilteredBOs;
+    private ArrayList<BuildOrder> filteredBOs;
    
-    public BuildOrderAdapter(Context context, int layoutResourceId, BuildOrder[] data) {
+    
+	//@SuppressWarnings("unchecked")
+	public BuildOrderAdapter(Context context, int layoutResourceId, ArrayList<BuildOrder> data) {
         super(context, layoutResourceId, data);
-        this.layoutResourceId = layoutResourceId;
-        this.context = context;
-        this.data = data;
+        //this.layoutResourceId = layoutResourceId;
+        //this.context = context;
+        this.unfilteredBOs =new ArrayList<BuildOrder>(data);
+        this.filteredBOs=new ArrayList<BuildOrder>(data);//(ArrayList<BuildOrder>) data.clone();
+        //this.filter = new BuildOrderNameFilter();
     }
+	
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+	        View row = convertView;
+	        BuildOrderHolder holder = null;
+	        if (row == null) {
+	            LayoutInflater viewInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            row = viewInflater.inflate(R.layout.row, null);
+	            
+	            
+	        }
+	        holder = new BuildOrderHolder();
+            holder.imgIcon = (ImageView)row.findViewById(R.id.RowIcon);
+            holder.txtTitle = (TextView)row.findViewById(R.id.RowText);
+	        BuildOrder bo = filteredBOs.get(position);
+	        if(bo!=null){
+		        holder.txtTitle.setText(bo.GetName());
+		        holder.imgIcon.setImageResource(bo.getIcon());
+	        }
+	        
+	        
+	        return row;
+	}
 
-    @Override
+    /*@Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         BuildOrderHolder holder = null;
@@ -43,18 +76,82 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
             holder = (BuildOrderHolder)row.getTag();
         }
        
-        BuildOrder bo = data[position];//weather
+        BuildOrder bo = filteredBOs.get(position);//[position];//weather
         holder.txtTitle.setText(bo.GetName());
         holder.imgIcon.setImageResource(bo.getIcon());
        
         return row;
-    }
+    }*/
+    
+    
    
     static class BuildOrderHolder
     {
         ImageView imgIcon;
         TextView txtTitle;
         long id;
+    }
+    
+    private Filter filter;
+    
+    @Override
+    public Filter getFilter()
+    {
+        if(filter == null) filter = new BuildOrderNameFilter();
+        return filter;
+    }
+
+    private class BuildOrderNameFilter extends Filter
+    {
+
+    	@Override
+        protected FilterResults performFiltering(CharSequence constraint)
+        {   
+            FilterResults results = new FilterResults();
+            String searchString = constraint.toString().toLowerCase();
+
+            if (searchString == null || searchString.length() == 0)
+            {
+                ArrayList<BuildOrder> list = new ArrayList<BuildOrder>(unfilteredBOs);
+                results.values = list;
+                results.count = list.size();
+            }
+            else
+            {
+                final ArrayList<BuildOrder> list = new ArrayList<BuildOrder>(unfilteredBOs);
+                final ArrayList<BuildOrder> nlist = new ArrayList<BuildOrder>();
+                int count = list.size();
+
+                for (int i=0; i<count; i++)
+                {
+                    final BuildOrder buildorder = list.get(i);
+                    final String value = buildorder.GetName().toLowerCase();
+
+                    if (value.toLowerCase().contains(searchString))
+                    {
+                        nlist.add(buildorder);
+                    }
+                }
+                results.values = nlist;
+                results.count = nlist.size();
+            }
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredBOs = (ArrayList<BuildOrder>)results.values;
+
+            clear();
+            int count = filteredBOs.size();
+            for (int i=0; i<count; i++)
+            {
+                BuildOrder BuildOrder = (BuildOrder)filteredBOs.get(i);
+                add(BuildOrder);
+            }
+        }
+
     }
 
 }

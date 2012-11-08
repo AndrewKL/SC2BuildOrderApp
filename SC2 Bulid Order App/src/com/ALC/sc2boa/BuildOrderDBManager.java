@@ -84,13 +84,13 @@ public class BuildOrderDBManager {
 	
 	}
 	
-	public List<BuildOrder> GetAllBuildOrders()
+	public ArrayList<BuildOrder> GetAllBuildOrders()
 	{
 		Log.d("BuildOrderCollection: ","GetAllBuildOrders: opened db");
 		this.open();
 		
 		
-		List<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
+		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
 		
 		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
 		Log.d("BuildOrderCollection: ","GetAllBuildOrders: query");
@@ -105,7 +105,7 @@ public class BuildOrderDBManager {
 			cursor.moveToPosition(i);
 			
 			BuildOrder BO = BuildOrderDBManager.cursorToBuildOrder(cursor);
-			Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
+			//Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
 		    buildOrders.add(BO);
 			
 	    }
@@ -116,13 +116,13 @@ public class BuildOrderDBManager {
 	    return buildOrders;
 	}
 	
-	public List<BuildOrder> GetBuildOrdersByRace(String race)
+	public ArrayList<BuildOrder> GetBuildOrdersByRace(String race)
 	{
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: race: "+race);
 		this.open();
 		
 		
-		List<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
+		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
 		
 		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query");

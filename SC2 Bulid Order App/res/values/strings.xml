@@ -38,5 +38,6 @@
     <string name="LoadDataFromWebString">Load Data From Web</string>
     <string name="DatabaseInformationString">Database Information</string>
     <string name="ToolsString">Tools</string>
+    <string name="SearchByNameString">Search By Name</string>
 
 </resources>

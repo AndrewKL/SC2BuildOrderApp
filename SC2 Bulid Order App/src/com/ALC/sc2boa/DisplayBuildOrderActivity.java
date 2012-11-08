@@ -3,38 +3,50 @@ package com.ALC.sc2boa;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 
 public class DisplayBuildOrderActivity extends Activity {
+	BuildOrder buildorder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_build_order);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        //get the text box
-        TextView textview=(TextView)findViewById(R.id.BuildOrderTextAreaTextView); 
-        //get the right build order
+        setContentView(R.layout.activity_display_build_order);//set layout
+        getActionBar().setDisplayHomeAsUpEnabled(true);//add action bar
+        
+        //get the textview
+        TextView textview=(TextView)findViewById(R.id.BuildOrderTextAreaTextView);
+        
+        //get the right build order either by the build order name or the build order id
         Intent intent = getIntent();
         String buildname = intent.getStringExtra(SelectBuildOrderActivity.EXTRA_BuildName);
-        BuildOrderDBManager boc = new BuildOrderDBManager(this);
-        BuildOrder bo = boc.GetBuildOderByName(buildname);
+        if(buildname!=null){
+        	BuildOrderDBManager boc = new BuildOrderDBManager(this);
+            buildorder = boc.GetBuildOderByName(buildname);
+        } else{
+        	long buildid =  intent.getLongExtra(SelectBuildOrderActivity.EXTRA_Buildid, 1L);
+            BuildOrderDBManager BOC = new BuildOrderDBManager(this);
+            buildorder = BOC.GetBuildOderByid(buildid);
+        }
         
+        //format and display build order information
         String eol = System.getProperty("line.separator");
-        String text = "<p><b>Build:</b> "+bo.GetName()+"</p>"+eol+
-        "<p><b>Race:</b> "+bo.GetRaceHTML()+"</p>"+eol+
-        		bo.GetOrderInstructions();
+        String text = "<p><b>Build:</b> "+buildorder.GetName()+"</p>"+eol+
+        "<p><b>Race:</b> "+buildorder.GetRaceHTML()+"</p>"+eol+
+        		buildorder.GetOrderInstructions();
         textview.setText(Html.fromHtml(text));
-        //textview.setText(text);
         textview.setMovementMethod(new ScrollingMovementMethod());
         textview.setTextSize(20);
     }
-
+    
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_display_build_order, menu);
@@ -45,8 +57,13 @@ public class DisplayBuildOrderActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home://go back
                 NavUtils.navigateUpFromSameTask(this);
+                return true;
+            case R.id.menu_editBuildorder://edit the build will be displayed in the actionbar 
+            	Intent intent = new Intent(this, EditBuildOrderActivity.class);
+                intent.putExtra(SelectBuildOrderActivity.EXTRA_Buildid,buildorder.getId());
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

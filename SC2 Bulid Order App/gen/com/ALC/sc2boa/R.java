@@ -31,38 +31,40 @@ public final class R {
     }
     public static final class id {
         public static final int AddBuildOrderButton=0x7f090005;
-        public static final int AddInitialDataButton=0x7f090010;
+        public static final int AddInitialDataButton=0x7f090014;
         public static final int BuildOrderInstructionsTextArea=0x7f090004;
         public static final int BuildOrderNameLabel=0x7f090000;
         public static final int BuildOrderNameTextField=0x7f090001;
         public static final int BuildOrderTextAreaTextView=0x7f090006;
-        public static final int BuildOrdersList=0x7f09000f;
-        public static final int DatabaseInformationButton=0x7f090012;
-        public static final int DeleteDBButton=0x7f090013;
-        public static final int LoadDataFromWebButton=0x7f090011;
-        public static final int Menu_adddefaultdata=0x7f090018;
-        public static final int Menu_addinitaldata=0x7f090019;
-        public static final int Menu_debugDB=0x7f090017;
-        public static final int Menu_deletedb=0x7f09001a;
+        public static final int BuildOrdersList=0x7f090013;
+        public static final int DatabaseInformationButton=0x7f090016;
+        public static final int DeleteDBButton=0x7f090017;
+        public static final int EditBuildOrderInstructionsTextArea=0x7f090009;
+        public static final int EditBuildOrderNameTextField=0x7f090007;
+        public static final int EditRaceSpinner=0x7f090008;
+        public static final int FinishedEditBuildOrderButton=0x7f09000a;
+        public static final int LoadDataFromWebButton=0x7f090015;
         public static final int RaceLabel=0x7f090002;
-        public static final int RowIcon=0x7f090014;
-        public static final int RowText=0x7f090015;
-        public static final int SearchBox=0x7f09000e;
-        public static final int btn_add_build=0x7f09000c;
-        public static final int btn_all_builds=0x7f09000b;
-        public static final int btn_donate=0x7f09000d;
-        public static final int btn_protoss_builds=0x7f090009;
-        public static final int btn_terran_builds=0x7f090008;
-        public static final int btn_zerg_builds=0x7f09000a;
-        public static final int mainbox=0x7f090007;
-        public static final int menu_settings=0x7f090016;
+        public static final int RowIcon=0x7f090018;
+        public static final int RowText=0x7f090019;
+        public static final int SearchBox=0x7f090012;
+        public static final int btn_add_build=0x7f090010;
+        public static final int btn_all_builds=0x7f09000f;
+        public static final int btn_donate=0x7f090011;
+        public static final int btn_protoss_builds=0x7f09000d;
+        public static final int btn_terran_builds=0x7f09000c;
+        public static final int btn_zerg_builds=0x7f09000e;
+        public static final int mainbox=0x7f09000b;
+        public static final int menu_editBuildorder=0x7f09001b;
+        public static final int menu_finished_edit=0x7f09001c;
+        public static final int menu_settings=0x7f09001a;
         public static final int racespinner=0x7f090003;
     }
     public static final class layout {
         public static final int activity_add_build_order=0x7f030000;
         public static final int activity_debug=0x7f030001;
         public static final int activity_display_build_order=0x7f030002;
-        public static final int activity_display_message=0x7f030003;
+        public static final int activity_edit_build_order=0x7f030003;
         public static final int activity_main=0x7f030004;
         public static final int activity_select_build_order=0x7f030005;
         public static final int activity_test_main=0x7f030006;
@@ -73,7 +75,7 @@ public final class R {
         public static final int activity_add_build_order=0x7f080000;
         public static final int activity_debug=0x7f080001;
         public static final int activity_display_build_order=0x7f080002;
-        public static final int activity_display_message=0x7f080003;
+        public static final int activity_edit_build_order=0x7f080003;
         public static final int activity_main=0x7f080004;
         public static final int activity_select_build_order=0x7f080005;
         public static final int activity_tools=0x7f080006;
@@ -89,6 +91,8 @@ public final class R {
         public static final int DatabaseInformationString=0x7f05001d;
         public static final int DeleteDBString=0x7f050018;
         public static final int DonateString=0x7f05001a;
+        public static final int EditString=0x7f050020;
+        public static final int FinishedString=0x7f050022;
         public static final int LoadDataFromWebString=0x7f05001c;
         public static final int ProtossBuildsString=0x7f050004;
         public static final int RaceString=0x7f050010;
@@ -107,6 +111,7 @@ public final class R {
         public static final int title_activity_debug=0x7f05000e;
         public static final int title_activity_display_build_order=0x7f050016;
         public static final int title_activity_display_message=0x7f05000b;
+        public static final int title_activity_edit_build_order=0x7f050021;
         public static final int title_activity_main=0x7f050002;
         public static final int title_activity_select_build_order=0x7f05000c;
         public static final int title_activity_test_main=0x7f050019;

@@ -39,5 +39,8 @@
     <string name="DatabaseInformationString">Database Information</string>
     <string name="ToolsString">Tools</string>
     <string name="SearchByNameString">Search By Name</string>
+    <string name="EditString">Edit</string>
+    <string name="title_activity_edit_build_order">EditBuildOrderActivity</string>
+    <string name="FinishedString">Finished</string>
 
 </resources>

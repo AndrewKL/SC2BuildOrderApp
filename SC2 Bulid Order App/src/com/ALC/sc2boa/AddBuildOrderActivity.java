@@ -22,14 +22,12 @@ public class AddBuildOrderActivity extends Activity {
         setContentView(R.layout.activity_add_build_order);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
+        
+        //set up race selection spinner
         Spinner spinner = (Spinner) findViewById(R.id.racespinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-             R.array.races_array, android.R.layout.simple_spinner_item);
-	     // Specify the layout to use when the list of choices appears
-	     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	     // Apply the adapter to the spinner
-	     spinner.setAdapter(adapter);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.races_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class AddBuildOrderActivity extends Activity {
      *  
      *  */
     public void addBuildOrder(View view) {
-    	Log.d("AddBuildOrderActivity: ", "addBuildOrder: start");
+    	//Log.d("AddBuildOrderActivity: ", "addBuildOrder: start");
     	BuildOrder bo = new BuildOrder();
     	EditText editText = (EditText) findViewById(R.id.BuildOrderNameTextField);
         bo.setBuildName(editText.getText().toString());
@@ -65,21 +63,18 @@ public class AddBuildOrderActivity extends Activity {
         Spinner mySpinner = (Spinner)findViewById(R.id.racespinner);
         String race = mySpinner.getSelectedItem().toString();
         race = race.toLowerCase();//comes in with an uppercase first letter
-        Log.d("AddBuildOrderActivity: ", "addBuildOrder: racespinner v2: "+race);
+        //Log.d("AddBuildOrderActivity: ", "addBuildOrder: racespinner v2: "+race);
         bo.setRace(race);
         
         
         
         Log.d("AddBuildOrderActivity: ", "Inserting... "+bo.toString());
-        
         BuildOrderDBManager BOC = new BuildOrderDBManager(this);
-        
         BOC.addBuildOrder(bo);
         
         
         
     	Intent intent = new Intent(this, MainActivity.class);
-        
         startActivity(intent);
     }
     

@@ -48,7 +48,7 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
 	        BuildOrder bo = filteredBOs.get(position);
 	        if(bo!=null){
 		        holder.txtTitle.setText(bo.GetName());
-		        holder.imgIcon.setImageResource(bo.getIcon());
+		        holder.imgIcon.setImageResource(bo.getIconID());
 	        }
 	        
 	        

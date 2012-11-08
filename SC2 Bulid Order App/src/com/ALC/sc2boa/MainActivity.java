@@ -76,9 +76,9 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-    	BuildOrderDBManager boc;
+    	//BuildOrderDBManager boc;
         switch (item.getItemId()) {
-            case R.id.menu_settings:
+            /*case R.id.menu_settings:
                 Log.d("MainActivity","menuselect: settings");
                 return true;
             case R.id.Menu_debugDB:
@@ -101,7 +101,7 @@ public class MainActivity extends Activity {
             	Log.d("MainActivity","menuselect: Delete Database");
             	boc = new BuildOrderDBManager(this);
             	boc.deleteAllBuildOrders();
-				return true;
+				return true;*/
 				
             default:
                 return super.onOptionsItemSelected(item);

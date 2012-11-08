@@ -77,7 +77,7 @@ public class BuildOrder {
 		return buildName;//"B: "+this.buildName+" id: "+this.id+" R: "+this.races.toString()+" instr: "+this.buildOrderInstructions;
 	}
 	
-	public int getIcon() {
+	public int getIconID() {
 		if(race.matches("zerg")){
 			return R.drawable.mini_zerg_icon;
 		}else if(race.matches("terran")){
@@ -86,6 +86,20 @@ public class BuildOrder {
 			return R.drawable.mini_protoss_icon;//green color
 		}else{
 			return R.drawable.mini_random_icon;
+		}
+	}
+	
+	public int GetRaceInt() {
+		//R.array.races_array
+		//used for spinners
+		if(race.matches("zerg")){
+			return 2;
+		}else if(race.matches("terran")){
+			return 0;
+		}else if(race.matches("protoss")){
+			return 1;//green color
+		}else{
+			return 0;
 		}
 	}
 	

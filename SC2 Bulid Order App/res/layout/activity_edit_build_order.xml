@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/BuildOrderNameLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.91"
+                android:text="@string/BuildOrderNameString"
+                tools:context=".DebugActivity" />
+
+            <EditText
+                android:id="@+id/EditBuildOrderNameTextField"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/RaceLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/RaceString"
+                tools:context=".DebugActivity" />
+            <Spinner
+                android:id="@+id/EditRaceSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/races_array" />
+
+        </LinearLayout>
+
+	        <EditText
+	            android:id="@+id/EditBuildOrderInstructionsTextArea"
+	            android:layout_width="match_parent"
+	            android:layout_height="0dp"
+	            android:layout_weight="1"
+	            android:ems="10"
+	            android:inputType="textMultiLine" />
+
+	        <Button
+	            android:id="@+id/FinishedEditBuildOrderButton"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:onClick="acceptEdits"
+	            android:text="@string/FinishedString" />
+
+    </LinearLayout>

@@ -24,20 +24,13 @@ public class BuildOrderDBManager {
 	
 	public BuildOrderDBManager(Context context)
 	{
-		Log.d("BODBM: ", "creating dbhelper");
 		dbHelper = new BuildOrderDBHelper(context);
-		Log.d("BODBM: ", "done");
-		//allColumns=BuildOrderDataBaseOpenHelper.COLUMNS;
-		
-	
 	}
 	public void addDefaultData()
 	{
-		
 		this.addBuildOrder(BuildOrderResources.terranbuild);
 		this.addBuildOrder(BuildOrderResources.zergbuild);
 		this.addBuildOrder(BuildOrderResources.protossbuild);
-		
 	}
 	
 	public SQLiteDatabase GetDB()
@@ -47,7 +40,6 @@ public class BuildOrderDBManager {
 	}
 	
 	private void close() {
-		//Log.d("BODBM: ", "close db connection");
 	    dbHelper.close();
 	}
 	
@@ -59,55 +51,61 @@ public class BuildOrderDBManager {
 	/**
 	 * Adds Build Order.
 	 * 
-	 * must open db connection first via open() and then call close() afterwords
 	 * @param BO
 	 */
 	public void addBuildOrder(BuildOrder BO) {
 		Log.d("BODBM: ", "addBuildOrder... ");
 		this.open();
-		//database = dbHelper.getWritableDatabase();
+		
+		//create new row
 	    ContentValues values = new ContentValues();
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDNAME, BO.GetName());
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
 	    values.put(BuildOrderDBHelper.COLUMN_RACE, BO.GetRace());
 	    
-	    BO.setId(database.insert(BuildOrderDBHelper.TABLE_BUILDORDERS, null,
-	        values));
+	    //insert in to db plus set the id of the new BO
+	    BO.setId(database.insert(BuildOrderDBHelper.TABLE_BUILDORDERS, null, values));
 	    this.close();
-	    
 	}
+	
+	public void updateBuildOrder(BuildOrder BO) {
+		Log.d("BODBM: ", "addBuildOrder... ");
+		this.open();
+		
+		//create new updated row
+	    ContentValues values = new ContentValues();
+	    values.put(BuildOrderDBHelper.COLUMN_BUILDNAME, BO.GetName());
+	    values.put(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
+	    values.put(BuildOrderDBHelper.COLUMN_RACE, BO.GetRace());
+	    
+	    //update db
+	    database.update(BuildOrderDBHelper.TABLE_BUILDORDERS, values, BuildOrderDBHelper.COLUMN_ID+"="+BO.getId(), null);
+	    
+	    this.close();
+	}
+	
+	
 	public void addBuildOrderList(List<BuildOrder> bos) {
 		Log.d("BODBM: ", "addBuildOrderList number of builds to add:"+bos.size());
 		for(int i =0;i<bos.size();i++){
 			this.addBuildOrder(bos.get(i));
 		}
-	
 	}
 	
 	public ArrayList<BuildOrder> GetAllBuildOrders()
 	{
-		Log.d("BuildOrderCollection: ","GetAllBuildOrders: opened db");
 		this.open();
-		
-		
+		//query the db and get a list of all builds
 		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
-		
-		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
-		Log.d("BuildOrderCollection: ","GetAllBuildOrders: query");
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
 				BuildOrderDBHelper.COLUMNS, null, null, null, null, null);
-		Log.d("BuildOrderCollection: ","GetAllBuildOrders: query finished");
-
-	    cursor.moveToFirst();
-	    Log.d("BuildOrderCollection: ","GetAllBuildOrders: numberofbuilds: "+cursor.getCount());
-	    for(int i=0;i<cursor.getCount();i++){
-	    	
+		
+		//scan through the new list and add BOs to new array list
+		cursor.moveToFirst();
+		for(int i=0;i<cursor.getCount();i++){
 			cursor.moveToPosition(i);
-			
 			BuildOrder BO = BuildOrderDBManager.cursorToBuildOrder(cursor);
-			//Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
 		    buildOrders.add(BO);
-			
 	    }
 	    
 	    // Make sure to close the cursor
@@ -118,28 +116,19 @@ public class BuildOrderDBManager {
 	
 	public ArrayList<BuildOrder> GetBuildOrdersByRace(String race)
 	{
-		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: race: "+race);
 		this.open();
 		
-		
 		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
-		
-		//String[] namecolumn = BuildOrderDataBaseOpenHelper.COLUMNS;
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query");
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
 				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_RACE+"= '"+race+"' ", null, null, null, null);
-		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query finished");
-
+		
+		//query the db and get a list of a specific races builds
 	    cursor.moveToFirst();
-	    Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: numberofbuilds: "+cursor.getCount());
 	    for(int i=0;i<cursor.getCount();i++){
-	    	
 			cursor.moveToPosition(i);
-			
 			BuildOrder BO = BuildOrderDBManager.cursorToBuildOrder(cursor);
-			Log.d("BuildOrderCollection: ","getallbuilds: adding: "+BO);
 		    buildOrders.add(BO);
-			
 	    }
 	    
 	    // Make sure to close the cursor
@@ -166,6 +155,15 @@ public class BuildOrderDBManager {
 		this.open();
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
 				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_BUILDNAME+"= '"+buildname+"' ", null, null, null, null);
+		cursor.moveToFirst();
+		BuildOrder bo = BuildOrderDBManager.cursorToBuildOrder(cursor);
+		this.close();
+		return bo;
+	}
+	public BuildOrder GetBuildOderByid(long id) {
+		this.open();
+		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_ID+"= '"+id+"' ", null, null, null, null);
 		cursor.moveToFirst();
 		BuildOrder bo = BuildOrderDBManager.cursorToBuildOrder(cursor);
 		this.close();
@@ -219,10 +217,5 @@ public class BuildOrderDBManager {
 			Log.d("MainActivity: ","missing file");
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-		
-
 }

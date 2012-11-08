@@ -14,6 +14,8 @@ import android.text.method.ScrollingMovementMethod;
 
 public class DisplayBuildOrderActivity extends Activity {
 	BuildOrder buildorder;
+	
+	public static final String EXTRA_edited_build = "com.alc.sc2boa.edited_build";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

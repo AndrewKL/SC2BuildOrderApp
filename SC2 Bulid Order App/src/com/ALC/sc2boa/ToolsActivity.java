@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
 public class ToolsActivity extends Activity {
@@ -79,6 +80,11 @@ public class ToolsActivity extends Activity {
 					public void onClick(DialogInterface dialog,int id) {
 						//delete db if button pushed
 						ToolsActivity.this.deleteDatabase(getCurrentFocus());
+						Context context = getApplicationContext();
+						Toast toast = Toast.makeText(context,  "Database Deleted", Toast.LENGTH_SHORT);
+						toast.show();
+						//TODO			//fix string
+						
 					}
 				  })
 				.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -120,6 +126,7 @@ public class ToolsActivity extends Activity {
 				// execute this when the downloader must be fired
 				DownloadXMLBuildFile downloadFile = new DownloadXMLBuildFile(mProgressDialog,ToolsActivity.this);
 				downloadFile.execute(BuildOrderDBManager.ACLwebsiteurl);
+				
 			}
 		});
     

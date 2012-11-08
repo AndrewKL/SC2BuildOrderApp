@@ -12,6 +12,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 //based on code by cristian from stackexchange
 //slightly modified
 //usually, subclasses of AsyncTask are declared inside the activity class.
@@ -84,6 +85,10 @@ public class DownloadXMLBuildFile extends AsyncTask<String, Integer, String> {
     }
     
     protected void onPostExecute(String result) {
+    	
+		Toast toast = Toast.makeText(context,  "Database Downloaded", Toast.LENGTH_SHORT);
+		toast.show();
+		//TODO			//fix string
         mProgressDialog.dismiss();
     }
 	

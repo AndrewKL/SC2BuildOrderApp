@@ -3,10 +3,8 @@ package com.ALC.sc2boa;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.text.Html;
@@ -35,7 +33,7 @@ public class DisplayBuildOrderActivity extends Activity {
         } else{
         	long buildid =  intent.getLongExtra(SelectBuildOrderActivity.EXTRA_Buildid, 1L);
             BuildOrderDBManager BOC = new BuildOrderDBManager(this);
-            buildorder = BOC.GetBuildOderByid(buildid);
+            buildorder = BOC.GetBuildOrderByid(buildid);
         }
         
         //format and display build order information

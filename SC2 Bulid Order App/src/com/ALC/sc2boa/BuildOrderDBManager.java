@@ -63,6 +63,8 @@ public class BuildOrderDBManager {
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDNAME, BO.GetName());
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
 	    values.put(BuildOrderDBHelper.COLUMN_RACE, BO.GetRace());
+	    values.put(BuildOrderDBHelper.COLUMN_BUILD_RATING, BO.getRating());
+	    
 	    
 	    //insert in to db plus set the id of the new BO
 	    BO.setId(database.insert(BuildOrderDBHelper.TABLE_BUILDORDERS, null, values));
@@ -78,11 +80,49 @@ public class BuildOrderDBManager {
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDNAME, BO.GetName());
 	    values.put(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS, BO.GetOrderInstructions());
 	    values.put(BuildOrderDBHelper.COLUMN_RACE, BO.GetRace());
+	    values.put(BuildOrderDBHelper.COLUMN_BUILD_RATING, BO.getRating());
 	    
 	    //update db
 	    database.update(BuildOrderDBHelper.TABLE_BUILDORDERS, values, BuildOrderDBHelper.COLUMN_ID+"="+BO.getId(), null);
 	    
 	    this.close();
+	}
+	
+	/*public void updateBuildOrderRating(long id,float rating) {
+		Log.d("BODBM: ", "addBuildOrderrating... ");
+		this.open();
+		
+		//create new updated row
+	    ContentValues values = new ContentValues();
+	    values.put(BuildOrderDBHelper.COLUMN_BUILD_RATING, id);
+	    values.put(BuildOrderDBHelper.COLUMN_BUILD_RATING, rating);
+	    
+	    
+	    //update db
+	    database.insert(BuildOrderDBHelper.TABLE_BUILD_RATING, null, values);
+	    database.update(BuildOrderDBHelper.TABLE_BUILD_RATING, values, BuildOrderDBHelper.COLUMN_ID+"="+id, null);
+	    
+	    this.close();
+	}*/
+	
+	public float getBuildOrderRating(long id) {
+		Log.d("BODBM: ", "getBuildOrderrating. looking up id:"+id);
+		this.open();
+		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS,
+				BuildOrderDBHelper.COLUMN_ID+" = "+id+" ",
+				null, null, null, null);
+		cursor.moveToFirst();
+		Log.d("BODBM: ", "getBuildOrderrating... count:"+cursor.getCount());
+		if(cursor.getCount()==0){
+			return 0;
+		}
+		float rating = cursor.getFloat(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILD_RATING));
+		Log.d("BODBM: ", "getBuildOrderrating... rating:"+rating);
+		//create new updated row
+		this.close();
+		cursor.close();
+	    return rating;
 	}
 	
 	
@@ -99,7 +139,7 @@ public class BuildOrderDBManager {
 		//query the db and get a list of all builds
 		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
-				BuildOrderDBHelper.COLUMNS, null, null, null, null, null);
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS, null, null, null, null, null);
 		
 		//scan through the new list and add BOs to new array list
 		cursor.moveToFirst();
@@ -122,7 +162,7 @@ public class BuildOrderDBManager {
 		ArrayList<BuildOrder> buildOrders = new ArrayList<BuildOrder>();
 		Log.d("BuildOrderCollection: ","GetBuildOrdersByRace: query");
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
-				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_RACE+"= '"+race+"' ", null, null, null, null);
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS, BuildOrderDBHelper.COLUMN_RACE+"= '"+race+"' ", null, null, null, null);
 		
 		//query the db and get a list of a specific races builds
 	    cursor.moveToFirst();
@@ -144,6 +184,7 @@ public class BuildOrderDBManager {
 	    BO.setBuildName(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILDNAME)));
 	    BO.setBuildOrderInstructions(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILDORDERINSTRUCTIONS)));
 	    BO.setRace(cursor.getString(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_RACE)));
+	    BO.setRating(cursor.getFloat(cursor.getColumnIndex(BuildOrderDBHelper.COLUMN_BUILD_RATING)));
 	    return BO;
 	}
 	public void deleteBuildOrder(BuildOrder BO) {
@@ -155,18 +196,20 @@ public class BuildOrderDBManager {
 	public BuildOrder GetBuildOderByName(String buildname) {
 		this.open();
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
-				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_BUILDNAME+"= '"+buildname+"' ", null, null, null, null);
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS, BuildOrderDBHelper.COLUMN_BUILDNAME+"= '"+buildname+"' ", null, null, null, null);
 		cursor.moveToFirst();
 		BuildOrder bo = BuildOrderDBManager.cursorToBuildOrder(cursor);
+		cursor.close();
 		this.close();
 		return bo;
 	}
-	public BuildOrder GetBuildOderByid(long id) {
+	public BuildOrder GetBuildOrderByid(long id) {
 		this.open();
 		Cursor cursor = database.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
-				BuildOrderDBHelper.COLUMNS, BuildOrderDBHelper.COLUMN_ID+"= '"+id+"' ", null, null, null, null);
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS, BuildOrderDBHelper.COLUMN_ID+"= '"+id+"' ", null, null, null, null);
 		cursor.moveToFirst();
 		BuildOrder bo = BuildOrderDBManager.cursorToBuildOrder(cursor);
+		cursor.close();
 		this.close();
 		return bo;
 	}
@@ -218,5 +261,18 @@ public class BuildOrderDBManager {
 			Log.d("MainActivity: ","missing file");
 			e.printStackTrace();
 		}
+	}
+
+	public int getNumberOfBuilds() {
+		this.open();
+		String countquery = "SELECT COUNT(*) FROM "+BuildOrderDBHelper.TABLE_BUILDORDERS;
+    	Cursor cursor = database.rawQuery(countquery, null);
+    	int count=0;
+    	if(cursor.moveToFirst())count = cursor.getInt(0);
+    	cursor.close();
+    	this.close();
+		return count;
+		
+		
 	}
 }

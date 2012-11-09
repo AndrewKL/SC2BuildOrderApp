@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 
 public class EditBuildOrderActivity extends Activity {
@@ -16,6 +17,7 @@ public class EditBuildOrderActivity extends Activity {
 	private Spinner racespinner;
 	private EditText boNameField;
 	private EditText boInstructionsField;
+	RatingBar boRatingBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class EditBuildOrderActivity extends Activity {
         long buildid =  intent.getLongExtra(SelectBuildOrderActivity.EXTRA_Buildid, 1L);
         Log.d("EditBOActivity:","onCreate: buildid: "+buildid);
         BuildOrderDBManager BOC = new BuildOrderDBManager(this);
-        buildorder = BOC.GetBuildOderByid(buildid);
+        buildorder = BOC.GetBuildOrderByid(buildid);
         
         //get text fields and spinners
         boNameField=(EditText)findViewById(R.id.EditBuildOrderNameTextField);
@@ -37,6 +39,13 @@ public class EditBuildOrderActivity extends Activity {
         racespinner.setSelection(buildorder.GetRaceInt(), true);
         boInstructionsField=(EditText)findViewById(R.id.EditBuildOrderInstructionsTextArea);
         boInstructionsField.setText(buildorder.GetOrderInstructions());
+        boRatingBar = (RatingBar)findViewById(R.id.EditRatingBar);
+        //boRatingBar.setMax(5);
+        //Log.d("editBO: ","onCreate: "+BOC.getBuildOrderRating(buildorder.getId()));
+        boRatingBar.setRating(buildorder.getRating());
+        //boRatingBar.setNumStars(BOC.getBuildOrderRating(buildorder.getId()));
+        
+        
     }
 
     @Override
@@ -75,9 +84,15 @@ public class EditBuildOrderActivity extends Activity {
         Spinner mySpinner = (Spinner)findViewById(R.id.EditRaceSpinner);
         buildorder.setRace(mySpinner.getSelectedItem().toString().toLowerCase());
         
+        //setting rating
+        buildorder.setRating(boRatingBar.getRating());
+        
         Log.d("EditBuildOrderActivity: ", "Inserting... "+buildorder.toString());
         BuildOrderDBManager BOC = new BuildOrderDBManager(this);
         BOC.updateBuildOrder(buildorder);
+        
+        
+        
         
         // close up this activity
         Intent parentActivityIntent = new Intent(this, DisplayBuildOrderActivity.class);

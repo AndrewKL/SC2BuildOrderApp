@@ -39,7 +39,7 @@ public class Utils {
 		
 		SQLiteDatabase db = BOC.GetDB();
 		Cursor cursor = db.query(BuildOrderDBHelper.TABLE_BUILDORDERS,
-				BuildOrderDBHelper.COLUMNS, null, null, null, null, null);
+				BuildOrderDBHelper.BUILDORDER_TBL_COLUMNS, null, null, null, null, null);
 		Log.d("Debug DB","printing full builds number builds: "+cursor.getCount());
 		Log.d("Debug DB","printing full builds number of columns: "+cursor.getColumnCount());
 		for(int i =0;i<cursor.getColumnCount();i++){

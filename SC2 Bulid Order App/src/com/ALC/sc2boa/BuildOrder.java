@@ -23,6 +23,7 @@ public class BuildOrder {
 		this.race = setrace;
 		this.buildName=name;
 		this.buildOrderInstructions=order;
+		rating=0;
 	}
 	public void setBuildName(String name)
 	{
@@ -101,6 +102,14 @@ public class BuildOrder {
 		}else{
 			return 0;
 		}
+	}
+	private float rating;
+	public void setRating(float float1) {
+		this.rating=float1;
+		
+	}
+	public float getRating(){
+		return rating;
 	}
 	
 	

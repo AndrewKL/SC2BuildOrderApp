@@ -78,6 +78,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ALC.sc2boa.DisplayBuildOrderActivity" />
         </activity>
+        <activity
+            android:name=".DisplayDatabaseInformationActivity"
+            android:label="@string/title_activity_display_database_information" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ALC.sc2boa.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

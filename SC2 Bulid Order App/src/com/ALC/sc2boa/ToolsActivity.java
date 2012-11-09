@@ -19,34 +19,27 @@ import android.support.v4.app.NavUtils;
 
 public class ToolsActivity extends Activity {
 	
-	
-	
 	public void deleteDatabase(View view) {
 		Log.d("ToolsActivity","Delete Database");
-		
-		
     	BuildOrderDBManager boc = new BuildOrderDBManager(this);
     	boc.deleteAllBuildOrders();
-    	
     }
 	
 	public void addBuildOrder(View view) {
 		Intent intent = new Intent(this, AddBuildOrderActivity.class);
         startActivity(intent);
     }
+	
 	public void addInitialData(View view) {
 		Log.d("ToolsActivity","Add Initial Data");
     	BuildOrderDBManager boc = new BuildOrderDBManager(this);
     	boc.loadInitialBuildOrdersFromXML(this.getAssets());
-		
     }
-	public void loadDataFromWeb(View view) {
-		Log.d("ToolsActivity","Add Initial Data");
-		
-    }
+	
 	public void displayDatabaseInformation(View view) {
-		Log.d("ToolsActivity","Add Initial Data");
-		
+		Log.d("ToolsActivity","Display Database information");
+		Intent intent = new Intent(this, DisplayDatabaseInformationActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -126,7 +119,6 @@ public class ToolsActivity extends Activity {
 				// execute this when the downloader must be fired
 				DownloadXMLBuildFile downloadFile = new DownloadXMLBuildFile(mProgressDialog,ToolsActivity.this);
 				downloadFile.execute(BuildOrderDBManager.ACLwebsiteurl);
-				
 			}
 		});
     

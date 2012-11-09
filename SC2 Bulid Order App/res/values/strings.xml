@@ -42,5 +42,7 @@
     <string name="EditString">Edit</string>
     <string name="title_activity_edit_build_order">EditBuildOrderActivity</string>
     <string name="FinishedString">Finished</string>
+    <string name="title_activity_display_database_information">DisplayDatabaseInformationActivity</string>
+    <string name="RatingString">rating</string>
 
 </resources>

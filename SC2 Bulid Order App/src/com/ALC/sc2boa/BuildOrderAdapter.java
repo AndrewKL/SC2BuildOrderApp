@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
@@ -45,10 +46,15 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
 	        holder = new BuildOrderHolder();
             holder.imgIcon = (ImageView)row.findViewById(R.id.RowIcon);
             holder.txtTitle = (TextView)row.findViewById(R.id.RowText);
+            holder.rating=(RatingBar)row.findViewById(R.id.RowRatingBar);
 	        BuildOrder bo = filteredBOs.get(position);
 	        if(bo!=null){
 		        holder.txtTitle.setText(bo.GetName());
 		        holder.imgIcon.setImageResource(bo.getIconID());
+		        holder.rating.setStepSize((float) 0.1);//allow fractional stars
+		        holder.rating.setRating(bo.getRating());
+		        
+		        
 	        }
 	        
 	        
@@ -90,6 +96,7 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
         ImageView imgIcon;
         TextView txtTitle;
         long id;
+        RatingBar rating;
     }
     
     private Filter filter;

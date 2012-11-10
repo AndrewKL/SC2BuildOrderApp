@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
-import android.text.Html;
+//import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 
 public class DisplayDatabaseInformationActivity extends Activity {

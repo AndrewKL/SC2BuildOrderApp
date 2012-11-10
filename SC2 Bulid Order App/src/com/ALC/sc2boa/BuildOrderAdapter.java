@@ -1,11 +1,11 @@
 package com.ALC.sc2boa;
 
 import java.util.ArrayList;
-import java.util.List;
+//import java.util.List;
 
-import android.app.Activity;
+//import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,23 +36,23 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 	        View row = convertView;
-	        BuildOrderHolder holder = null;
+	        //BuildOrderHolder holder = null;
 	        if (row == null) {
 	            LayoutInflater viewInflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            row = viewInflater.inflate(R.layout.row, null);
 	            
 	            
 	        }
-	        holder = new BuildOrderHolder();
-            holder.imgIcon = (ImageView)row.findViewById(R.id.RowIcon);
-            holder.txtTitle = (TextView)row.findViewById(R.id.RowText);
-            holder.rating=(RatingBar)row.findViewById(R.id.RowRatingBar);
+	        //holder = new BuildOrderHolder();
+            //holder.imgIcon = (ImageView)row.findViewById(R.id.RowIcon);
+            //holder.txtTitle = (TextView)row.findViewById(R.id.RowText);
+            //holder.rating=(RatingBar)row.findViewById(R.id.RowRatingBar);
 	        BuildOrder bo = filteredBOs.get(position);
 	        if(bo!=null){
-		        holder.txtTitle.setText(bo.GetName());
-		        holder.imgIcon.setImageResource(bo.getIconID());
-		        holder.rating.setStepSize((float) 0.1);//allow fractional stars
-		        holder.rating.setRating(bo.getRating());
+		        ((TextView)row.findViewById(R.id.RowText)).setText(bo.GetName());
+		        ((ImageView)row.findViewById(R.id.RowIcon)).setImageResource(bo.getIconID());
+		        ((RatingBar)row.findViewById(R.id.RowRatingBar)).setStepSize((float) 0.1);//allow fractional stars
+		        ((RatingBar)row.findViewById(R.id.RowRatingBar)).setRating(bo.getRating());
 		        
 		        
 	        }
@@ -61,43 +61,17 @@ public class BuildOrderAdapter extends ArrayAdapter<BuildOrder>{
 	        return row;
 	}
 
-    /*@Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        BuildOrderHolder holder = null;
-       
-        if(row == null)
-        {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(layoutResourceId, parent, false);
-           
-            holder = new BuildOrderHolder();
-            holder.imgIcon = (ImageView)row.findViewById(R.id.RowIcon);
-            holder.txtTitle = (TextView)row.findViewById(R.id.RowText);
-           
-            row.setTag(holder);
-        }
-        else
-        {
-            holder = (BuildOrderHolder)row.getTag();
-        }
-       
-        BuildOrder bo = filteredBOs.get(position);//[position];//weather
-        holder.txtTitle.setText(bo.GetName());
-        holder.imgIcon.setImageResource(bo.getIcon());
-       
-        return row;
-    }*/
+    
     
     
    
-    static class BuildOrderHolder
+    /*static class BuildOrderHolder
     {
         ImageView imgIcon;
         TextView txtTitle;
         long id;
         RatingBar rating;
-    }
+    }*/
     
     private Filter filter;
     

@@ -24,7 +24,7 @@
                 android:maxHeight="5dp"
                 android:maxWidth="5dp"
                 android:scaleType="fitCenter" />
-
+
             <TextView
                 android:id="@+id/RowText"
                 android:layout_width="match_parent"

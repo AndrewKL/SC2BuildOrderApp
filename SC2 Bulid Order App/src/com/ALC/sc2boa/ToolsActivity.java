@@ -1,7 +1,7 @@
 package com.ALC.sc2boa;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+//import android.preference.PreferenceActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

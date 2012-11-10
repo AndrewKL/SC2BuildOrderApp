@@ -1,6 +1,6 @@
 package com.ALC.sc2boa;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 import android.database.Cursor;
@@ -90,7 +90,7 @@ public class Utils {
 	    cursor.close();
 	    BOC.close();*/
 		
-		List<BuildOrder> list = BOC.GetAllBuildOrders();
+		//List<BuildOrder> list = BOC.GetAllBuildOrders();
 		
 		
 		

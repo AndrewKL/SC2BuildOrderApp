@@ -28,6 +28,11 @@ Description (English) characters (4000 max)
 
 The SC2:Build Order App is the premier Android App for organizing and aquiring new StarCraft II: Wings of Liberty build orders.  Having a solid build order is key for top level play.  SC2:BOA allows you to download the latest and best builds right to your android phone.
 
+*No adds
+*Convenient Searching of Builds
+*Download Build Automatically
+*Easy Editing
+
 Recent Changes (English) characters (500 max)
 
 The App is Brand New, let us know what you think!

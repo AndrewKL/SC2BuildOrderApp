@@ -1,28 +1,36 @@
 package com.ALC.sc2boa;
 
-//import java.io.IOException;
-//import java.util.List;
+import java.math.BigDecimal;
 
-//import org.xmlpull.v1.XmlPullParserException;
-
+import android.os.AsyncTask;
 import android.os.Bundle;
+
+import com.paypal.android.MEP.CheckoutButton;
+import com.paypal.android.MEP.PayPal;
+import com.paypal.android.MEP.PayPalActivity;
+import com.paypal.android.MEP.PayPalPayment;
+import com.paypal.android.MEP.PayPalInvoiceData;
+import com.paypal.android.MEP.PayPalInvoiceItem;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-//import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-//import android.widget.EditText;
-//import android.widget.Toast;
+//import com.paypal.android.MECL.PayPal;
+
 
 public class MainActivity extends Activity {
 	class BuildOrderGenerator {
 
 	}
+	
+	private static final int server = PayPal.ENV_SANDBOX;//sandbox for now // The PayPal server to be used - can also be ENV_NONE and ENV_LIVE
+	private static final String appID = "APP-80W284485P519543T"; // The ID of your application that you received from PayPal//APP-80W284485P519543T == paypal sandbox id
 
 	public final static String EXTRA_MESSAGE = "com.alc.sc2boa.MESSAGE";
 	public final static String EXTRA_RACE = "com.alc.sc2boa.RACE";
@@ -134,6 +142,89 @@ public class MainActivity extends Activity {
         intent.putExtra(EXTRA_RACE, "protoss");
         startActivity(intent);
     }
+    
+    /** Called when the user clicks the donate button */
+    public void donateButtonClick(View view) {
+    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.HowMuchWouldYouLikeToDonateString);
+        builder.setItems(R.array.donation_ammounts_array, new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int which) {
+                	   Log.d("mainactivity: ","onclick");
+                   if(which==3){
+                	   //TODO add select ammount ticker
+                   }else{
+                	   
+                	   Resources res = getResources();
+                	   Donate((((String[])res.getStringArray(R.array.donation_ammounts_array))[which]).replace("$", ""));     
+                   }
+               }
+        });
+        
+        AlertDialog donateDialog = builder.create();
+        donateDialog.show();
+        
+    	/*Intent intent = new Intent(this, DonationActivity.class);
+        startActivity(intent);*/
+    }
+    private void Donate(String ammount){
+    	Log.d("mainactivity: ","donate(string)");
+    	ProgressDialog mDialog = new ProgressDialog(this);
+        mDialog.setMessage("Please wait...");
+        mDialog.setCancelable(false);
+        mDialog.show();
+        new Donate(ammount, mDialog).execute();
+        
+    }
+    private class Donate extends AsyncTask<Void,Void,Void>{
+    	String dollaramount;
+    	ProgressDialog progressdialog;
+    	
+    	public Donate(String dollars, final ProgressDialog progress){
+    		dollaramount=dollars;
+    		progressdialog=progress;
+    		
+    	}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			PayPal pp = PayPal.getInstance();
+
+		    if(pp == null) {
+		    	Log.d("mainactivity: ","doinbackground init paypal");
+		        pp = PayPal.initWithAppID(MainActivity.this, appID, server);
+		        pp.setLanguage("en_US"); // Sets the language for the library.
+		        pp.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER); 
+		        pp.setShippingEnabled(false);// Set to true if the transaction will require shipping.
+		        // Dynamic Amount Calculation allows you to set tax and shipping amounts based on the user's shipping address. Shipping must be
+		        // enabled for Dynamic Amount Calculation. This also requires you to create a class that implements PaymentAdjuster and Serializable.
+		        //pp.setDynamicAmountCalculationEnabled(false);
+		        
+		    }
+		    Log.d("mainactivity: ","doinbackground init finished");
+			return null;
+		}
+		
+		@Override
+	    protected void onPostExecute(final Void result) {
+			Log.d("mainactivity: ","onPostExecute PayPayis null:"+PayPal.getInstance());
+			progressdialog.dismiss();
+			
+	    	PayPalPayment payment = new PayPalPayment();
+	    	payment.setCurrencyType("USD"); // Sets the currency type for this payment.
+		    payment.setRecipient("ALC_1352600102_biz@gmail.com"); // Sets the recipient for the payment. This can also be a phone number.
+		    payment.setSubtotal(new BigDecimal(dollaramount));// Sets the amount of the payment, not including tax and shipping amounts.
+		    payment.setMemo("donation to SC2:BOA");
+		    payment.setPaymentType(PayPal.PAY_TYPE_SIMPLE);// Sets the payment type. This can be PAYMENT_TYPE_GOODS, PAYMENT_TYPE_SERVICE, PAYMENT_TYPE_PERSONAL, or PAYMENT_TYPE_NONE.
+		    
+		    Intent intent = PayPal.getInstance().checkout(payment, MainActivity.this, new ResultDelegate());
+	    	MainActivity.this.startActivityForResult(intent, 1);
+	    }
+
+		
+    	
+    }
+    
+    
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

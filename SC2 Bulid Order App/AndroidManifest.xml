@@ -3,10 +3,9 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.INTERNET" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -85,6 +84,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ALC.sc2boa.MainActivity" />
         </activity>
+        <activity
+            android:name=".DonationActivity"
+            android:label="@string/title_activity_donation" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ALC.sc2boa.MainActivity" />
+        </activity>
+        <activity android:name="com.paypal.android.MEP.PayPalActivity"
+				  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+				  
+				  android:configChanges="keyboardHidden|orientation"/>
     </application>
 
 </manifest>

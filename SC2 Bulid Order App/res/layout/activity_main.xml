@@ -62,6 +62,7 @@
         android:id="@+id/btn_donate"
         style="@style/DashboardButton"
         android:drawableTop="@drawable/terran_eagle_icon"
+        android:onClick="donateButtonClick"
         android:text="@string/DonateString" />
 
     </com.ALC.sc2boa.DashboardLayout>

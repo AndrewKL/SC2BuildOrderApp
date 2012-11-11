@@ -25,6 +25,14 @@
         <item>Protoss</item>
         <item>Zerg</item>
     </string-array>
+    
+    <string name="HowMuchWouldYouLikeToDonateString">How Much Would You Like To Donate</string>
+    <string-array name="donation_ammounts_array">
+        <item>$3.99</item>
+        <item>$7.99</item>
+        <item>$14.99</item>
+        
+    </string-array>
 
     <string name="AllBuildsString">All Builds</string>
     <string name="debugDBString">Debug DB</string>
@@ -44,5 +52,6 @@
     <string name="FinishedString">Finished</string>
     <string name="title_activity_display_database_information">DisplayDatabaseInformationActivity</string>
     <string name="RatingString">rating</string>
+    <string name="title_activity_donation">DonationActivity</string>
 
 </resources>

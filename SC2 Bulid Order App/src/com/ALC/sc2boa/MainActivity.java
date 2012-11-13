@@ -198,7 +198,6 @@ public class MainActivity extends Activity {
 		        // Dynamic Amount Calculation allows you to set tax and shipping amounts based on the user's shipping address. Shipping must be
 		        // enabled for Dynamic Amount Calculation. This also requires you to create a class that implements PaymentAdjuster and Serializable.
 		        //pp.setDynamicAmountCalculationEnabled(false);
-		        
 		    }
 		    Log.d("mainactivity: ","doinbackground init finished");
 			return null;
@@ -219,9 +218,6 @@ public class MainActivity extends Activity {
 		    Intent intent = PayPal.getInstance().checkout(payment, MainActivity.this, new ResultDelegate());
 	    	MainActivity.this.startActivityForResult(intent, 1);
 	    }
-
-		
-    	
     }
     
     

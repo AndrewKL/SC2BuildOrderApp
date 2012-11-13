@@ -1,0 +1,138 @@
+
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'build_orders_tbl'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `build_orders_tbl`;
+		
+CREATE TABLE `build_orders_tbl` (
+  `build_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `build_order_name` MEDIUMTEXT NOT NULL,
+  `build_order_Inst` MEDIUMTEXT NOT NULL,
+  `race` INTEGER NOT NULL COMMENT '0 terran, 1 protoss, 2 zerg',
+  `vs_race` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`build_id`)
+);
+
+-- ---
+-- Table 'user_tbl'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `user_tbl`;
+		
+CREATE TABLE `user_tbl` (
+  `user_id` INTEGER NOT NULL AUTO_INCREMENT ,
+  `user_email` VARCHAR(100) NULL,
+  `user_name` VARCHAR(100) NULL,
+  PRIMARY KEY (`user_id`)
+);
+
+-- ---
+-- Table 'messages_tbl'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `messages_tbl`;
+		
+CREATE TABLE `messages_tbl` (
+  `message_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `message_header` MEDIUMTEXT NOT NULL,
+  `message_body` MEDIUMTEXT NOT NULL,
+  `build_id_build_orders_tbl` INTEGER NOT NULL,
+  `sender_id_user_tbl` INTEGER NOT NULL,
+  `reciever_id_user_tbl` INTEGER NOT NULL,
+  PRIMARY KEY (`message_id`)
+);
+
+-- ---
+-- Table 'user_build_order_list'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `user_build_order_list`;
+		
+CREATE TABLE `user_build_order_list` (
+  `user_id_user_tbl` INTEGER NOT NULL,
+  `build_id_build_orders_tbl` INTEGER NOT NULL,
+  `rating` DOUBLE NULL  
+);
+
+-- ---
+-- Table 'suggested_updates_for_build_order_tbl'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `suggested_updates_for_build_order_tbl`;
+		
+CREATE TABLE `suggested_updates_for_build_order_tbl` (
+  `update_build_order_id` INTEGER NOT NULL AUTO_INCREMENT,
+  `build_order_name` VARCHAR(60) NULL DEFAULT NULL,
+  `build_order_race` INTEGER NULL DEFAULT NULL,
+  `build_order_vs_race` INTEGER NULL DEFAULT NULL,
+  `build_order_inst` MEDIUMTEXT NULL DEFAULT NULL,
+  `build_id_build_orders_tbl` INTEGER NOT NULL,
+  `user_id_user_tbl` INTEGER NOT NULL,
+  PRIMARY KEY (`update_build_order_id`)
+);
+
+-- ---
+-- Table 'properties'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `properties`;
+		
+CREATE TABLE `properties` (
+  `property id` VARCHAR(200) NOT NULL,
+  `property` VARCHAR(200) NULL,
+  PRIMARY KEY (`property id`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+ALTER TABLE `messages_tbl` ADD FOREIGN KEY (build_id_build_orders_tbl) REFERENCES `build_orders_tbl` (`build_id`);
+ALTER TABLE `messages_tbl` ADD FOREIGN KEY (sender_id_user_tbl) REFERENCES `user_tbl` (`user_id`);
+ALTER TABLE `messages_tbl` ADD FOREIGN KEY (reciever_id_user_tbl) REFERENCES `user_tbl` (`user_id`);
+ALTER TABLE `user_build_order_list` ADD FOREIGN KEY (user_id_user_tbl) REFERENCES `user_tbl` (`user_id`);
+ALTER TABLE `user_build_order_list` ADD FOREIGN KEY (build_id_build_orders_tbl) REFERENCES `build_orders_tbl` (`build_id`);
+ALTER TABLE `suggested_updates_for_build_order_tbl` ADD FOREIGN KEY (build_id_build_orders_tbl) REFERENCES `build_orders_tbl` (`build_id`);
+ALTER TABLE `suggested_updates_for_build_order_tbl` ADD FOREIGN KEY (user_id_user_tbl) REFERENCES `user_tbl` (`user_id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `build_orders_tbl` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `user_tbl` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `messages_tbl` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `user_build_order_list` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `suggested_updates_for_build_order_tbl` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `properties` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `build_orders_tbl` (`build_id`,`build_order_name`,`build_order_Inst`,`race`,`vs_race`) VALUES
+-- ('','','','','');
+-- INSERT INTO `user_tbl` (`user_id`,`user_email`,`user_name`) VALUES
+-- ('','','');
+-- INSERT INTO `messages_tbl` (`message_id`,`message_header`,`message_body`,`build_id_build_orders_tbl`,`sender_id_user_tbl`,`reciever_id_user_tbl`) VALUES
+-- ('','','','','','');
+-- INSERT INTO `user_build_order_list` (`user_id_user_tbl`,`build_id_build_orders_tbl`,`rating`) VALUES
+-- ('','','');
+-- INSERT INTO `suggested_updates_for_build_order_tbl` (`update_build_order_id`,`build_order_name`,`build_order_race`,`build_order_vs_race`,`build_order_inst`,`build_id_build_orders_tbl`,`user_id_user_tbl`) VALUES
+-- ('','','','','','','');
+-- INSERT INTO `properties` (`property id`,`property`) VALUES
+-- ('','');

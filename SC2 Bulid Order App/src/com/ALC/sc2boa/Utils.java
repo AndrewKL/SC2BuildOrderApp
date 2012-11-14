@@ -1,7 +1,16 @@
 package com.ALC.sc2boa;
 
 //import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+
+import com.ALC.sc2boa.buildordertools.BuildOrder;
+import com.ALC.sc2boa.buildordertools.BuildOrderDBHelper;
+import com.ALC.sc2boa.buildordertools.BuildOrderDBManager;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -115,5 +124,23 @@ public class Utils {
 			list.get(i).setBuildOrderInstructions(convertTextToHTML(list.get(i).GetOrderInstructions()));
 		}
 	}
+	
+	/*public static void downloadBuildOrderFromWeb(){
+		Builder endpointBuilder = new BuildOrderendpoint.Builder(
+				AndroidHttp.newCompatibleTransport(),
+				new JacksonFactory(),
+				new HttpRequestInitializer() {
+				public void initialize(HttpRequest httpRequest) { }
+				});
+				           
+		BuildOrderendpoint endpoint = CloudEndpointUtils.updateBuilder(
+				endpointBuilder).build();
+		try {
+			BuildOrder result = endpoint.insertNote(note).execute();
+		} catch (IOException e) {
+				//Handle exception
+		}
+		
+	}*/
 
 }

@@ -18,25 +18,25 @@ public class ResultDelegate implements PayPalResultDelegate, Serializable {
 
 	public void onPaymentSucceeded(String payKey, String paymentStatus) {
 
-        DonationActivity.resultTitle = "SUCCESS";
-        DonationActivity.resultInfo = "You have successfully completed your transaction.";
-        DonationActivity.resultExtra = "Key: " + payKey;
+        //DonationActivity.resultTitle = "SUCCESS";
+        //DonationActivity.resultInfo = "You have successfully completed your transaction.";
+        //DonationActivity.resultExtra = "Key: " + payKey;
     }
 
 
     public void onPaymentFailed(String paymentStatus, String correlationID,
                   String payKey, String errorID, String errorMessage) {
-        DonationActivity.resultTitle = "FAILURE";
-        DonationActivity.resultInfo = errorMessage;
-        DonationActivity.resultExtra = "Error ID: " + errorID + "\nCorrelation ID: "
-           + correlationID + "\nPay Key: " + payKey;
+        //DonationActivity.resultTitle = "FAILURE";
+        //DonationActivity.resultInfo = errorMessage;
+        //DonationActivity.resultExtra = "Error ID: " + errorID + "\nCorrelation ID: "
+        //   + correlationID + "\nPay Key: " + payKey;
     }
 
 
     public void onPaymentCanceled(String paymentStatus) {
-        DonationActivity.resultTitle = "CANCELED";
-        DonationActivity.resultInfo = "The transaction has been cancelled.";
-        DonationActivity.resultExtra = "";
+        //DonationActivity.resultTitle = "CANCELED";
+        //DonationActivity.resultInfo = "The transaction has been cancelled.";
+        //DonationActivity.resultExtra = "";
     }
 
 

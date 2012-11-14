@@ -5,18 +5,27 @@ import java.math.BigDecimal;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import com.ALC.sc2boa.buildordertools.BuildOrderDBManager;
+import com.ALC.sc2boa.buildordertools.DownloadXMLBuildFile;
+import com.ALC.sc2boa.ui.AddBuildOrderActivity;
+import com.ALC.sc2boa.ui.SelectBuildOrderActivity;
+import com.ALC.sc2boa.ui.ToolsActivity;
 import com.paypal.android.MEP.CheckoutButton;
 import com.paypal.android.MEP.PayPal;
 import com.paypal.android.MEP.PayPalActivity;
 import com.paypal.android.MEP.PayPalPayment;
 import com.paypal.android.MEP.PayPalInvoiceData;
 import com.paypal.android.MEP.PayPalInvoiceItem;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +48,8 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar bar = getActionBar();
+        if(bar!=null)bar.setBackgroundDrawable(new ColorDrawable(Color.rgb(41, 108, 184)));
     }
 
     @Override

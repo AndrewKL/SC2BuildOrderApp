@@ -3,6 +3,7 @@ import com.ALC.sc2boav2.R;
 //import com.appspot.api.services.buildorderendpoint.model.BuildOrderJSON;
 import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
 
+
 public class BuildOrder {
 	
 	private long id;

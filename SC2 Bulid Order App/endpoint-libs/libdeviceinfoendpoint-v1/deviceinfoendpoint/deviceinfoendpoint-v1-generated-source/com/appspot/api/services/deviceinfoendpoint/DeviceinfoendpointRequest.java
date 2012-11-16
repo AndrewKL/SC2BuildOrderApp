@@ -12,7 +12,7 @@
 /*
  * This file was generated.
  *  with google-apis-code-generator 1.2.0 (build: 2012-11-08 14:47:49 UTC)
- *  on 2012-11-14 at 03:42:27 UTC 
+ *  on 2012-11-16 at 05:02:48 UTC 
  */
 
 package com.appspot.api.services.deviceinfoendpoint;

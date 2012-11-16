@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.ALC.sc2boa">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="1.1" package="com.ALC.sc2boav2">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,14 +9,20 @@
     <instrumentation android:name="TestStuff" android:targetPackage="com.ALC.sc2boa">
     </instrumentation>
 
-    <permission android:name="com.ALC.sc2boa.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <permission android:name="com.ALC.sc2boav2.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
 
-   <uses-permission android:name="com.ALC.sc2boa.permission.C2D_MESSAGE"/>
+   <uses-permission android:name="com.ALC.sc2boav2.permission.C2D_MESSAGE"/>
    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
-   <permission android:name="com.ALC.sc2boa.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+   
+
+   <permission android:name="com.ALC.sc2boav2.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+
+   <permission android:name="com.ALC.sc2boav2.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+
+   <permission android:name="com.ALC.sc2boav2.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
 
    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:killAfterRestore="false" android:label="@string/app_name" android:theme="@style/AppTheme">
         <uses-library android:name="android.test.runner"/>
@@ -29,29 +35,29 @@
             </intent-filter>
         </activity>
         <activity android:label="@string/title_activity_select_build_order" android:name=".SelectBuildOrderActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:label="@string/title_activity_add_build_order" android:name=".AddBuildOrderActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:label="@string/title_activity_debug" android:name=".DebugActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:label="@string/title_activity_display_build_order" android:name=".DisplayBuildOrderActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:label="@string/title_activity_tools" android:name=".ToolsActivity" android:theme="@android:style/Theme.Holo">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <!-- android:theme="@android:style/Theme.Black" -->
         <activity android:label="@string/title_activity_edit_build_order" android:name=".EditBuildOrderActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.DisplayBuildOrderActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.DisplayBuildOrderActivity"/>
         </activity>
         <activity android:label="@string/title_activity_display_database_information" android:name=".DisplayDatabaseInformationActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:label="@string/title_activity_donation" android:name=".DonationActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boa.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.ALC.sc2boav2.MainActivity"/>
         </activity>
         <activity android:configChanges="keyboardHidden|orientation" android:name="com.paypal.android.MEP.PayPalActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
         <service android:name=".GCMIntentService"/>
@@ -74,6 +80,39 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
                 <category android:name="com.ALC.sc2boa"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".GCMIntentService"/>
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.ALC.sc2boav2"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.ALC.sc2boav2"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".GCMIntentService"/>
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.ALC.sc2boav2"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.ALC.sc2boav2"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".GCMIntentService"/>
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.ALC.sc2boav2"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+                <category android:name="com.ALC.sc2boav2"/>
             </intent-filter>
         </receiver>
     </application>

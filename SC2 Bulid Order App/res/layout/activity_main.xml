@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <com.ALC.sc2boa.DashboardLayout
+
+
+    <com.ALC.sc2boav2.DashboardLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         
@@ -48,7 +49,8 @@
         android:text="@string/AllBuildsString" />
  
     <!--  add build Button -->
-
+
+
     <Button
         android:id="@+id/btn_add_build"
         style="@style/DashboardButton"
@@ -65,10 +67,11 @@
         android:onClick="donateButtonClick"
         android:text="@string/DonateString" />
 
-    </com.ALC.sc2boa.DashboardLayout>
+    </com.ALC.sc2boav2.DashboardLayout>
 
     
-
+
+
     
 
 </LinearLayout>

@@ -39,4 +39,17 @@
         android:onClick="deleteDatabase"
         android:text="@string/DeleteDBString" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="uploadBuildsToGAE"
+        android:text="@string/uploadtoGAEString" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/downloadallbuildsfromGAE" />
+
 </LinearLayout>

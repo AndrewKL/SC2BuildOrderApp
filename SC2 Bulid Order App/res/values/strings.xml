@@ -53,5 +53,7 @@
     <string name="title_activity_display_database_information">DisplayDatabaseInformationActivity</string>
     <string name="RatingString">rating</string>
     <string name="title_activity_donation">DonationActivity</string>
+    <string name="uploadtoGAEString">Upload All Builds To GAE</string>
+    <string name="downloadallbuildsfromGAE">Download All Builds from GAE</string>
 
 </resources>

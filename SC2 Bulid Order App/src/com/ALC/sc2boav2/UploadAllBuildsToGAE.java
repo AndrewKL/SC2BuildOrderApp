@@ -2,6 +2,10 @@ package com.ALC.sc2boav2;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
+import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.Builder;
+import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.InsertOnlineBuildOrder;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -11,7 +15,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-/*
+
 public class UploadAllBuildsToGAE extends AsyncTask<Object, Object, Object> {
 	ProgressDialog dialog;
 	BuildOrderDBManager localBOs;
@@ -34,42 +38,40 @@ public class UploadAllBuildsToGAE extends AsyncTask<Object, Object, Object> {
 	}
 	
 	
-	//BuildOrderCollection list;
 	
 
 	
 	@Override
 	protected Object doInBackground(Object... arg0) {
 		Log.d("UploadAllBuildsToGAE","doinbackground");
-		Builder endpointBuilder = new Buildorderendpoint.Builder(
+		Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
 				AndroidHttp.newCompatibleTransport(),
 				new JacksonFactory(),
 				new HttpRequestInitializer() {
 					public void initialize(HttpRequest httpRequest) { }});
 		
-		Buildorderendpoint endpoint = CloudEndpointUtils.updateBuilder(endpointBuilder).build();
+		Onlinebuildorderendpoint endpoint = CloudEndpointUtils.updateBuilder(endpointBuilder).build();
 		Log.d("uploading BO ","endpointBuilder built");
 		ArrayList<BuildOrder> list = localBOs.GetAllBuildOrders();
 		for(int i=0;i<list.size();i++){
 			BuildOrder bo = list.get(i);
 			try {
 				Log.d("uploading BO ","trying to insert a BO");
-				endpoint.insertBuildOrder(bo.getJSON());
+				
+				InsertOnlineBuildOrder results = endpoint.insertOnlineBuildOrder(bo.getOnlineBuildOrder());
+				
+				Log.d("uploading BO ","inserted BO : "+results.getLastStatusCode()+"  "+results.getLastStatusMessage());
 			} catch (IOException e) {
 				Log.d("uploading BO shit happened",e.getLocalizedMessage());
 				e.printStackTrace();
 			}
 		}
 		Log.d("uploading BO ","do in background finished");
-		
+		dialog.dismiss();
 		return null;
 	}
-	protected void onPostExecute(Long result) {
-		Log.d("uploadallbuildorders: ","onPostExecute PayPayis null:");
-		dialog.dismiss();
-        
-    }
+	
 
 
 
-}*/
+}

@@ -45,7 +45,7 @@ public class ToolsActivity extends Activity {
     }
 	
 	public void uploadBuildsToGAE(View view){
-		//UploadAllBuildsToGAE.uploadAllBuilds(this);
+		UploadAllBuildsToGAE.uploadAllBuilds(this);
 	}
 	
 

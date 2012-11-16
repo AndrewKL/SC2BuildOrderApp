@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class CloudEndpointUtils {
 
-  public static final boolean LOCAL_ANDROID_RUN = false;
+  public static final boolean LOCAL_ANDROID_RUN = true;
   private static final String LOCAL_APP_ENGINE_SERVER_URL = "http://10.0.2.2:8888";
 
   /**

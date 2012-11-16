@@ -1,0 +1,170 @@
+{
+  "extends" : "thirdParty.api",
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "onlinebuildorderendpoint",
+  "version" : "v1",
+  "adapter" : {
+    "bns" : "http://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+  },
+  "frontendLimits" : {
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+  },
+  "methods" : {
+    "onlinebuildorderendpoint.removeOnlineBuildOrder" : {
+      "path" : "onlinebuildorder/{id}",
+      "httpMethod" : "DELETE",
+      "rosyMethod" : "OnlineBuildOrderEndpoint.removeOnlineBuildOrder",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "required" : true,
+            "type" : "int64"
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "onlinebuildorderendpoint.insertOnlineBuildOrder" : {
+      "path" : "onlinebuildorder",
+      "httpMethod" : "POST",
+      "rosyMethod" : "OnlineBuildOrderEndpoint.insertOnlineBuildOrder",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "onlinebuildorderendpoint.getOnlineBuildOrder" : {
+      "path" : "onlinebuildorder/{id}",
+      "httpMethod" : "GET",
+      "rosyMethod" : "OnlineBuildOrderEndpoint.getOnlineBuildOrder",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "required" : true,
+            "type" : "int64"
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "onlinebuildorderendpoint.listOnlineBuildOrder" : {
+      "path" : "onlinebuildorder",
+      "httpMethod" : "GET",
+      "rosyMethod" : "OnlineBuildOrderEndpoint.listOnlineBuildOrder",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "onlinebuildorderendpoint.updateOnlineBuildOrder" : {
+      "path" : "onlinebuildorder",
+      "httpMethod" : "PUT",
+      "rosyMethod" : "OnlineBuildOrderEndpoint.updateOnlineBuildOrder",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "OnlineBuildOrder" : {
+        "id" : "OnlineBuildOrder",
+        "type" : "object",
+        "properties" : {
+          "buildName" : {
+            "type" : "string"
+          },
+          "buildOrderInstructions" : {
+            "$ref" : "Text"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "race" : {
+            "type" : "string"
+          },
+          "rating" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "OnlineBuildOrderCollection" : {
+        "id" : "OnlineBuildOrderCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "OnlineBuildOrder"
+            }
+          }
+        }
+      }
+    },
+    "methods" : {
+      "OnlineBuildOrderEndpoint.removeOnlineBuildOrder" : {
+        "response" : {
+          "$ref" : "OnlineBuildOrder"
+        }
+      },
+      "OnlineBuildOrderEndpoint.insertOnlineBuildOrder" : {
+        "request" : {
+          "$ref" : "OnlineBuildOrder"
+        },
+        "response" : {
+          "$ref" : "OnlineBuildOrder"
+        }
+      },
+      "OnlineBuildOrderEndpoint.getOnlineBuildOrder" : {
+        "response" : {
+          "$ref" : "OnlineBuildOrder"
+        }
+      },
+      "OnlineBuildOrderEndpoint.listOnlineBuildOrder" : {
+        "response" : {
+          "$ref" : "OnlineBuildOrderCollection"
+        }
+      },
+      "OnlineBuildOrderEndpoint.updateOnlineBuildOrder" : {
+        "request" : {
+          "$ref" : "OnlineBuildOrder"
+        },
+        "response" : {
+          "$ref" : "OnlineBuildOrder"
+        }
+      }
+    }
+  }
+}

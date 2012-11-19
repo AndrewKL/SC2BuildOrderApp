@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.Builder;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.InsertOnlineBuildOrder;
+import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -56,10 +57,12 @@ public class UploadAllBuildsToGAE extends AsyncTask<Object, Object, Object> {
 		for(int i=0;i<list.size();i++){
 			BuildOrder bo = list.get(i);
 			try {
-				Log.d("uploading BO ","trying to insert a BO");
+				//Log.d("uploading BO ","trying to insert a BO"+bo.toString());
+				OnlineBuildOrder obo = bo.getOnlineBuildOrder();
+				Log.d("uploading oBO ","obo name: "+obo.getBuildName());
 				
-				InsertOnlineBuildOrder results = endpoint.insertOnlineBuildOrder(bo.getOnlineBuildOrder());
-				
+				InsertOnlineBuildOrder results = endpoint.insertOnlineBuildOrder(obo);
+				results.execute();
 				Log.d("uploading BO ","inserted BO : "+results.getLastStatusCode()+"  "+results.getLastStatusMessage());
 			} catch (IOException e) {
 				Log.d("uploading BO shit happened",e.getLocalizedMessage());

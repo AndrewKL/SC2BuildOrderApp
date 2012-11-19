@@ -42,6 +42,7 @@ public final class R {
         public static final int DatabaseInformationButton=0x7f09001e;
         public static final int DatabaseInformationTextAreaTextView=0x7f090007;
         public static final int DeleteDBButton=0x7f09001f;
+        public static final int DownloadAllBuildsFromGAEButton=0x7f090021;
         public static final int EditBuildOrderInstructionsTextArea=0x7f09000e;
         public static final int EditBuildOrderNameTextField=0x7f09000a;
         public static final int EditRaceSpinner=0x7f09000b;
@@ -53,14 +54,13 @@ public final class R {
         public static final int RowRatingBar=0x7f09001b;
         public static final int RowText=0x7f09001a;
         public static final int SearchBox=0x7f090017;
+        public static final int UploadAllBuildsToGAE=0x7f090020;
         public static final int btn_add_build=0x7f090015;
         public static final int btn_all_builds=0x7f090014;
         public static final int btn_donate=0x7f090016;
         public static final int btn_protoss_builds=0x7f090012;
         public static final int btn_terran_builds=0x7f090011;
         public static final int btn_zerg_builds=0x7f090013;
-        public static final int button1=0x7f090020;
-        public static final int button2=0x7f090021;
         public static final int donationrelativelayout=0x7f090008;
         public static final int mainbox=0x7f090010;
         public static final int menu_editBuildorder=0x7f090023;

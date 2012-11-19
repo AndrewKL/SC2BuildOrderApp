@@ -139,12 +139,16 @@ public class BuildOrder {
 		
 	}
 	public static BuildOrder convertOnlineBuildOrderToBuildOrder(OnlineBuildOrder onlineBuildOrder) {
-		BuildOrder buildorder = new BuildOrder(
-				onlineBuildOrder.getBuildName(), 
-				onlineBuildOrder.getBuildOrderInstructions().toString(),
-				onlineBuildOrder.getRace());
-		
-		
+		BuildOrder buildorder = new BuildOrder();
+		if(onlineBuildOrder.getBuildName()!=null){
+			buildorder.setBuildName(onlineBuildOrder.getBuildName());
+		}
+		if(onlineBuildOrder.getBuildOrderInstructions()!=null){
+			buildorder.setBuildOrderInstructions(onlineBuildOrder.getBuildOrderInstructions().toString());
+		}
+		if(onlineBuildOrder.getRace()!=null){
+			buildorder.setRace(onlineBuildOrder.getRace());
+		}
 		return buildorder;
 	}
 	

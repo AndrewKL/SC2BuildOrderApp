@@ -25,14 +25,14 @@ public class downloadAllBuildOrdersFromGAE extends AsyncTask<Object, Object, Obj
 	BuildOrderDBManager localBOs;
 	
 	
-	//starts the download
+	//starts the download and produces prompt
 	public static void uploadAllBuilds(Context context){
     	Log.d("downloadallbuildsfromGAE: ","instantiate");
     	ProgressDialog mDialog = new ProgressDialog(context);
         mDialog.setMessage("Please wait...");
         mDialog.setCancelable(false);
         mDialog.show();
-        new UploadAllBuildsToGAE(mDialog, context).execute();
+        new downloadAllBuildOrdersFromGAE(mDialog, context).execute();
         
     }
 	
@@ -47,6 +47,8 @@ public class downloadAllBuildOrdersFromGAE extends AsyncTask<Object, Object, Obj
 	
 	@Override
 	protected Object doInBackground(Object... arg0) {
+		
+		//connection to GAE and downloading builds
 		Log.d("downloadAllBuildsFromGAE","doinbackground");
 		Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
 				AndroidHttp.newCompatibleTransport(),
@@ -55,41 +57,26 @@ public class downloadAllBuildOrdersFromGAE extends AsyncTask<Object, Object, Obj
 					public void initialize(HttpRequest httpRequest) { }});
 		
 		Onlinebuildorderendpoint endpoint = CloudEndpointUtils.updateBuilder(endpointBuilder).build();
-		Log.d("uploading BO ","endpointBuilder built");
+		Log.d("downloadAllBuildsFromGAE","endpointBuilder built");
 		
-		List<OnlineBuildOrder> collection = new ArrayList();
+		List<OnlineBuildOrder> collection = new ArrayList<OnlineBuildOrder>();
 		try {
-			;
 			collection = endpoint.listOnlineBuildOrder().execute().getItems();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//inserting all builds one at a time
+		Log.d("downloadAllBuildsFromGAE","number of BOs: "+collection.size());
 		for(int i = 0;i<collection.size();i++){
-			localBOs.addBuildOrder(BuildOrder.convertOnlineBuildOrderToBuildOrder(collection.get(i)));
-		}
-		
-		
-		
-		
-		
-		
-		/*for(int i=0;i<list.size();i++){
-			BuildOrder bo = list.get(i);
-			try {
-				//Log.d("uploading BO ","trying to insert a BO"+bo.toString());
-				OnlineBuildOrder obo = bo.getOnlineBuildOrder();
-				Log.d("uploading oBO ","obo name: "+obo.getBuildName());
-				
-				InsertOnlineBuildOrder results = endpoint.insertOnlineBuildOrder(obo);
-				results.execute();
-				Log.d("uploading BO ","inserted BO : "+results.getLastStatusCode()+"  "+results.getLastStatusMessage());
-			} catch (IOException e) {
-				Log.d("uploading BO shit happened",e.getLocalizedMessage());
-				e.printStackTrace();
-			}
-		}*/
+			BuildOrder buildorder = BuildOrder.convertOnlineBuildOrderToBuildOrder(collection.get(i));
+			Log.d("downloadAllBuildsFromGAE","adding BO: "+buildorder);
+			localBOs.addBuildOrder(buildorder);
+		}		
 		Log.d("uploading BO ","do in background finished");
+		
+		//close spinning wheel of doom
 		dialog.dismiss();
 		return null;
 	}

@@ -40,16 +40,17 @@
         android:text="@string/DeleteDBString" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/UploadAllBuildsToGAE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="uploadBuildsToGAE"
         android:text="@string/uploadtoGAEString" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/DownloadAllBuildsFromGAEButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="downloadBuildsFromGAE"
         android:text="@string/downloadallbuildsfromGAE" />
 
 </LinearLayout>

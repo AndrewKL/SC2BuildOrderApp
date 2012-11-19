@@ -25,6 +25,13 @@ public class BuildOrder {
 		
 	 
 	}
+	public BuildOrder(String name, String order,String setrace)
+	{
+		this.race = setrace;
+		this.buildName=name;
+		this.buildOrderInstructions=order;
+		rating=0;
+	}
 	public BuildOrder(String name, String order,String setrace,long setid)
 	{
 		this.id=setid;
@@ -130,6 +137,15 @@ public class BuildOrder {
 		
 		return buildorder;
 		
+	}
+	public static BuildOrder convertOnlineBuildOrderToBuildOrder(OnlineBuildOrder onlineBuildOrder) {
+		BuildOrder buildorder = new BuildOrder(
+				onlineBuildOrder.getBuildName(), 
+				onlineBuildOrder.getBuildOrderInstructions().toString(),
+				onlineBuildOrder.getRace());
+		
+		
+		return buildorder;
 	}
 	
 	

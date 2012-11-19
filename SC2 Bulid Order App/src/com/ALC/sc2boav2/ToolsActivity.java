@@ -47,6 +47,9 @@ public class ToolsActivity extends Activity {
 	public void uploadBuildsToGAE(View view){
 		UploadAllBuildsToGAE.uploadAllBuilds(this);
 	}
+	public void downloadBuildsFromGAE(View view){
+		downloadAllBuildOrdersFromGAE.uploadAllBuilds(this);
+	}
 	
 
     @Override

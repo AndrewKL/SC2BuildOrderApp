@@ -49,6 +49,7 @@ public final class R {
         public static final int EditRatingBar=0x7f09000d;
         public static final int FinishedEditBuildOrderButton=0x7f09000f;
         public static final int LoadDataFromWebButton=0x7f09001d;
+        public static final int LoginButton=0x7f090022;
         public static final int RaceLabel=0x7f090002;
         public static final int RowIcon=0x7f090019;
         public static final int RowRatingBar=0x7f09001b;
@@ -63,9 +64,9 @@ public final class R {
         public static final int btn_zerg_builds=0x7f090013;
         public static final int donationrelativelayout=0x7f090008;
         public static final int mainbox=0x7f090010;
-        public static final int menu_editBuildorder=0x7f090023;
-        public static final int menu_finished_edit=0x7f090024;
-        public static final int menu_settings=0x7f090022;
+        public static final int menu_editBuildorder=0x7f090024;
+        public static final int menu_finished_edit=0x7f090025;
+        public static final int menu_settings=0x7f090023;
         public static final int racespinner=0x7f090003;
         public static final int textView1=0x7f09000c;
     }
@@ -108,6 +109,7 @@ public final class R {
         public static final int FinishedString=0x7f050023;
         public static final int HowMuchWouldYouLikeToDonateString=0x7f050013;
         public static final int LoadDataFromWebString=0x7f05001d;
+        public static final int LoginString=0x7f050029;
         public static final int ProtossBuildsString=0x7f050004;
         public static final int RaceString=0x7f050010;
         public static final int RatingString=0x7f050025;

@@ -237,7 +237,7 @@ public class BuildOrderDBManager {
 		try {
 			XMLBuildOrderReader bor = new XMLBuildOrderReader(assetManager);
 			List<BuildOrder> list = bor.GetBuildOrders();
-			Utils.convertBuildOrderInstToHTML(list);
+			//Utils.convertBuildOrderInstToHTML(list);
 			this.addBuildOrderList(list);
 		} catch (XmlPullParserException e) {
 			Log.d("MainActivity: ","xml pull parser error");
@@ -253,7 +253,7 @@ public class BuildOrderDBManager {
 		try {
 			XMLBuildOrderReader bor = new XMLBuildOrderReader(file);
 			List<BuildOrder> list = bor.GetBuildOrders();
-			Utils.convertBuildOrderInstToHTML(list);
+			//Utils.convertBuildOrderInstToHTML(list);
 			this.addBuildOrderList(list);
 		} catch (XmlPullParserException e) {
 			Log.d("MainActivity: ","xml pull parser error");

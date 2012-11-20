@@ -18,6 +18,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 //import android.content.Context;
 import android.content.res.AssetManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 public class XMLBuildOrderReader {
@@ -107,7 +108,8 @@ public class XMLBuildOrderReader {
         		}
         		else if(xpp.getName().matches("buildinstructions"))
         		{
-        			bo.setBuildOrderInstructions(safeNextText(xpp));
+        			//TextUtils.htmlEncode(String)
+        			bo.setBuildOrderInstructions(TextUtils.htmlEncode(safeNextText(xpp)));
         		}
         		else
         		{

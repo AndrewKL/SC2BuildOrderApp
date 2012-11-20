@@ -53,4 +53,11 @@
         android:onClick="downloadBuildsFromGAE"
         android:text="@string/downloadallbuildsfromGAE" />
 
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="logIn"
+        android:text="@string/LoginString" />
+
 </LinearLayout>

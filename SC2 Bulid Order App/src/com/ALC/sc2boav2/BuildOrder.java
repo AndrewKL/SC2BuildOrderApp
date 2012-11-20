@@ -1,4 +1,8 @@
 package com.ALC.sc2boav2;
+import java.io.IOException;
+
+import android.util.Log;
+
 import com.ALC.sc2boav2.R;
 //import com.appspot.api.services.buildorderendpoint.model.BuildOrderJSON;
 import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
@@ -144,8 +148,10 @@ public class BuildOrder {
 			buildorder.setBuildName(onlineBuildOrder.getBuildName());
 		}
 		if(onlineBuildOrder.getBuildOrderInstructions()!=null){
-			buildorder.setBuildOrderInstructions(onlineBuildOrder.getBuildOrderInstructions().toString());
+			buildorder.setBuildOrderInstructions(onlineBuildOrder.getBuildOrderInstructions().getValue());
 		}
+		
+		Log.d("encoding Build Order"," bo instruction : "+onlineBuildOrder.getBuildOrderInstructions().getValue());
 		if(onlineBuildOrder.getRace()!=null){
 			buildorder.setRace(onlineBuildOrder.getRace());
 		}

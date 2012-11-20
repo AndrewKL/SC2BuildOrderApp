@@ -4,17 +4,21 @@ import com.ALC.sc2boav2.R;
 import com.ALC.sc2boav2.BuildOrderDBManager;
 import com.ALC.sc2boav2.DownloadXMLBuildFile;
 import android.os.Bundle;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
@@ -49,6 +53,24 @@ public class ToolsActivity extends Activity {
 	}
 	public void downloadBuildsFromGAE(View view){
 		downloadAllBuildOrdersFromGAE.uploadAllBuilds(this);
+	}
+	
+	public void logIn(View view){
+		AccountManager accountManager = AccountManager.get(getApplicationContext());
+        Account[] accounts = accountManager.getAccountsByType("com.google");
+        
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Log on to a Google Account");
+        ArrayAdapter<Account> arrayadapter = new ArrayAdapter<Account>(this,android.R.layout.simple_expandable_list_item_1, accounts);
+        
+        builder.setAdapter(arrayadapter, 
+        		new DialogInterface.OnClickListener() {
+            		public void onClick(DialogInterface dialog, int which) {
+            			Log.d("toolactivity: ","login click");
+            		}});
+
+        AlertDialog loginDialog = builder.create();
+        loginDialog.show();
 	}
 	
 

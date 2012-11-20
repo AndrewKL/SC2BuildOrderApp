@@ -1,10 +1,10 @@
 {
   "extends" : "thirdParty.api",
-  "root" : "https://myapp.appspot.com/_ah/api",
+  "root" : "https://sc2boa.appspot.com/_ah/api",
   "name" : "deviceinfoendpoint",
   "version" : "v1",
   "adapter" : {
-    "bns" : "http://myapp.appspot.com/_ah/spi",
+    "bns" : "http://sc2boa.appspot.com/_ah/spi",
     "deadline" : 10.0,
     "type" : "lily"
   },
@@ -31,7 +31,9 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
+      },
+      "audiences" : [ "sc2boa.appspot.com" ],
+      "clientIds" : [ "sc2boa-online.apps.googleusercontent.com" ]
     },
     "deviceinfoendpoint.insertDeviceInfo" : {
       "path" : "deviceinfo",
@@ -43,7 +45,9 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
+      },
+      "audiences" : [ "sc2boa.appspot.com" ],
+      "clientIds" : [ "sc2boa-online.apps.googleusercontent.com" ]
     },
     "deviceinfoendpoint.listDeviceInfo" : {
       "path" : "deviceinfo",
@@ -54,7 +58,9 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
+      },
+      "audiences" : [ "sc2boa.appspot.com" ],
+      "clientIds" : [ "sc2boa-online.apps.googleusercontent.com" ]
     },
     "deviceinfoendpoint.getDeviceInfo" : {
       "path" : "deviceinfo/{id}",
@@ -71,7 +77,9 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
+      },
+      "audiences" : [ "sc2boa.appspot.com" ],
+      "clientIds" : [ "sc2boa-online.apps.googleusercontent.com" ]
     },
     "deviceinfoendpoint.updateDeviceInfo" : {
       "path" : "deviceinfo",
@@ -83,7 +91,9 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
+      },
+      "audiences" : [ "sc2boa.appspot.com" ],
+      "clientIds" : [ "sc2boa-online.apps.googleusercontent.com" ]
     }
   },
   "descriptor" : {

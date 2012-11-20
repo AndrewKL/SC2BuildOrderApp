@@ -11,7 +11,9 @@ import javax.inject.Named;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-@Api(name = "onlinebuildorderendpoint")
+@Api(name = "onlinebuildorderendpoint",
+clientIds = {"sc2boa-online.apps.googleusercontent.com"},
+audiences = {"sc2boa.appspot.com"})
 public class OnlineBuildOrderEndpoint {
 
 	/**
@@ -105,6 +107,19 @@ public class OnlineBuildOrderEndpoint {
 			mgr.close();
 		}
 		return onlinebuildorder;
+	}
+	
+	/**
+	 * This method removes all online build orders.
+	 * It uses HTTP DELETE method.
+	 *
+	 * @param id the primary key of the entity to be deleted.
+	 * @return The deleted entity.
+	 */
+	public OnlineBuildOrder removeAllOnlineBuildOrders() {
+		PersistenceManager mgr = getPersistenceManager();
+		mgr.deletePersistentAll(OnlineBuildOrder.class);
+		return null;
 	}
 
 	private static PersistenceManager getPersistenceManager() {

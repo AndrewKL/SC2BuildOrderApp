@@ -97,7 +97,7 @@ public class Utils {
 		
 		
 	}
-	public static String convertTextToHTML(String string){
+	/*public static String convertTextToHTML(String string){
 		StringBuilder sb = new StringBuilder();
 		sb.append("<p>");
 		char eol = System.getProperty("line.separator").charAt(0);
@@ -115,7 +115,7 @@ public class Utils {
 		for(int i =0;i<list.size();i++){
 			list.get(i).setBuildOrderInstructions(convertTextToHTML(list.get(i).GetOrderInstructions()));
 		}
-	}
+	}*/
 	
 	/*public static void downloadBuildOrderFromWeb(){
 		Builder endpointBuilder = new BuildOrderendpoint.Builder(

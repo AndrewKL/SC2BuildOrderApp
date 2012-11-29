@@ -56,17 +56,19 @@ public class ToolsActivity extends Activity {
 	}
 	
 	public void logIn(View view){
-		AccountManager accountManager = AccountManager.get(getApplicationContext());
-        Account[] accounts = accountManager.getAccountsByType("com.google");
+		//AccountManager accountManager = AccountManager.get(getApplicationContext());
+        //Account[] accounts = accountManager.getAccountsByType("com.google");
+        final String[] accountEmails = AccountUtils.getAccountNames(this);
         
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Log on to a Google Account");
-        ArrayAdapter<Account> arrayadapter = new ArrayAdapter<Account>(this,android.R.layout.simple_expandable_list_item_1, accounts);
+        ArrayAdapter<String> arrayadapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1 , accountEmails);
         
         builder.setAdapter(arrayadapter, 
         		new DialogInterface.OnClickListener() {
             		public void onClick(DialogInterface dialog, int which) {
             			Log.d("toolactivity: ","login click");
+            			AccountUtils.setToken(ToolsActivity.this, accountEmails[which], AccountUtils.scope);
             		}});
 
         AlertDialog loginDialog = builder.create();

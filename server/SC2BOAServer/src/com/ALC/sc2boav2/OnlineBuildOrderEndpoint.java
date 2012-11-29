@@ -118,7 +118,9 @@ public class OnlineBuildOrderEndpoint {
 	 */
 	public OnlineBuildOrder removeAllOnlineBuildOrders() {
 		PersistenceManager mgr = getPersistenceManager();
-		mgr.deletePersistentAll(OnlineBuildOrder.class);
+		Query query = mgr.newQuery(OnlineBuildOrder.class);
+		query.deletePersistentAll();
+		
 		return null;
 	}
 

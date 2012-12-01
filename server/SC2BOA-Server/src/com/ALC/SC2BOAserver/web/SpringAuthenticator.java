@@ -21,7 +21,7 @@ public class SpringAuthenticator implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-		UserDetails details = dao.getUser(username);
+		UserDetails details = dao.getUserByUsername(username);
 		if (details == null) {
 			throw new UsernameNotFoundException("Unknown user: "+username);
 		}

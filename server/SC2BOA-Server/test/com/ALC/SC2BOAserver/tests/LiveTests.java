@@ -45,22 +45,38 @@ public class LiveTests {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void populateDB(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		
-		OnlineBuildOrder buildorder = new OnlineBuildOrder();
-		buildorder.setBuildName("testbuild ");
-		buildorder.setBuildOrderInstructions("1 2 3 4 5 6");
-		buildorder.setRace("terran");
+		for(int i =0;i<10;i++){
+			OnlineBuildOrder buildorder = new OnlineBuildOrder();
+			buildorder.setBuildName("testbuild "+i);
+			buildorder.setBuildOrderInstructions("1 2 3 4 5 622");
+			buildorder.setRace("zerg");
+			
+			doa.addOnlineBuildOrder(buildorder);
+			
+		}
+		for(int i =0;i<10;i++){
+			User user = new User();
+			user.setPassword("12345");
+			user.setUsername("testuser"+i);
+			user.setEmail("testuser2@google.com");
+			doa.saveUser(user);
+			
+		}
 		
-		doa.addOnlineBuildOrder(buildorder);
-		User user = new User();
-		user.setPassword("12345");
-		user.setUsername("testuser");
-		user.setEmail("testuser@google.com");
-		doa.saveUser(user);
 		
+	}
+	
+	//@Test
+	public void deleteEverthing(){
+		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
+		
+		doa.deleteAllOnlineBuildOrders();
+		doa.deleteAllUsers();
+		System.out.println("deleted everything");
 	}
 	
 	

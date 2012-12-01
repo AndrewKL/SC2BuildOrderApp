@@ -1,16 +1,23 @@
 package com.ALC.SC2BOAserver.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class OnlineBuildOrder {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
+	@Column(unique=true, nullable=false)
 	private String buildName;
+	@Lob
 	private String buildOrderInstructions;
 	private String race;
 	private float rating;
@@ -28,6 +35,7 @@ public class OnlineBuildOrder {
 	public void setRace(String race) {
 		this.race = race;
 	}
+	@Lob
 	public String getBuildOrderInstructions() {
 		return buildOrderInstructions;
 	}
@@ -40,6 +48,8 @@ public class OnlineBuildOrder {
 	public void setBuildName(String buildName) {
 		this.buildName = buildName;
 	}
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
 	public String getId() {
 		return id;
 	}
@@ -57,5 +67,11 @@ public class OnlineBuildOrder {
 			 old.setBuildOrderInstructions(newbuild.getBuildOrderInstructions());
 		 return old;
 		
+	}
+	
+	public static List<String> convertBuildsToIds(List<OnlineBuildOrder> builds){
+		ArrayList<String> list = new ArrayList<String>(builds.size());
+		for(int i =0;i<builds.size();i++)list.add(builds.get(i).getId());
+		return list;
 	}
 }

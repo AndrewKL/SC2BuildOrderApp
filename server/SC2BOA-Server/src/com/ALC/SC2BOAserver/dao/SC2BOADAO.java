@@ -31,11 +31,13 @@ public interface SC2BOADAO {
 	public OnlineBuildOrder getOnlineBuildOrder(String id);
 	public void addOnlineBuildOrder(OnlineBuildOrder buildorder);
 	public void deleteOnlineBuildOrder(OnlineBuildOrder buildorder);
+	public void deleteOnlineBuildOrder(String buildorderId);
 	public void deleteAllOnlineBuildOrders();
 	public List<OnlineBuildOrder> getAllOnlineBuildOrders();
 	
 	//User related methods
-	public User getUser (String username);
+	public User getUserByID(String id);
+	public User getUserByUsername (String username);
 	public User getUserByEmail(String email);
 	public List<User> getUsers ();
 	public void saveUser (User user);
@@ -44,7 +46,10 @@ public interface SC2BOADAO {
 	
 	//default builds
 	public void setDefaultBuilds(List<OnlineBuildOrder> list);
+	public List<String> getIdsOfDefaultBuilds();
 	public List<OnlineBuildOrder> getDefaultBuilds();
+	
+	
 	
 	
 	

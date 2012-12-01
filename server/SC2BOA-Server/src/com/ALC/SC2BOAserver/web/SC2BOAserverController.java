@@ -96,35 +96,7 @@ public class SC2BOAserverController {
 
 
 
-    //===========================onlinebuildorderfunctions========================
     
-    @RequestMapping("/deleteOnlineBuildOrder.do")
-    @Secured("ROLE_ADMIN")
-    public ModelAndView doDeleteOnlineBuildOrder (@RequestParam("entryId") String buildorderId, ModelMap map) {
-        OnlineBuildOrder buildorder = dao.getOnlineBuildOrder(buildorderId);
-        dao.deleteOnlineBuildOrder(buildorder);
-        doHome(map);
-        return new ModelAndView("redirect:home.do");
-        //TODO check this
-    }
-    
-    @RequestMapping("/addOnlineBuildOrder.do")
-    //@Secured("ROLE_ADMIN")
-    public ModelAndView addOnlineBuildOrder (@RequestParam("buildname") String buildname,
-    		@RequestParam("buildinstructions") String buildinstructions,
-    		@RequestParam("race") String race,
-    		ModelMap map) {
-        OnlineBuildOrder buildorder = new OnlineBuildOrder();
-        buildorder.setBuildName(buildname);
-        buildorder.setBuildOrderInstructions(buildinstructions);
-        buildorder.setRace(race);
-        
-        dao.addOnlineBuildOrder(buildorder);
-    	
-        doHome(map);
-        return new ModelAndView("redirect:home.do");
-        //TODO check this
-    }
     
     
     //=====================UserFunctions=====================

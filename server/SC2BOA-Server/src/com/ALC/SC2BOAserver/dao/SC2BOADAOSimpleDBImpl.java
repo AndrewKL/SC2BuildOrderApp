@@ -14,12 +14,14 @@
  */
 package com.ALC.SC2BOAserver.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import com.ALC.SC2BOAserver.aws.S3StorageManager;
@@ -27,6 +29,7 @@ import com.ALC.SC2BOAserver.dao.SC2BOADAO;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.User;
 import com.ALC.SC2BOAserver.util.Configuration;
+import com.ALC.SC2BOAserver.util.DEBUG;
 import com.ALC.SC2BOAserver.util.StageUtils;
 
 import com.spaceprogram.simplejpa.EntityManagerFactoryImpl;
@@ -54,6 +57,8 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 	private static void init(Boolean isatest) {
 		String testingarea = "";
 		if(isatest)testingarea="test";
+		
+		//setup properties
 		properties = new HashMap<String, String>();
 		properties.put(
                 "lobBucketName",
@@ -67,8 +72,11 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
             properties.put("sdbEndpoint", config.getServiceEndpoint(Configuration.SIMPLE_DB_ENDPOINT_KEY));
         }
         
-        factory = new EntityManagerFactoryImpl("sc2boa"
-                + StageUtils.getResourceSuffixForCurrentStage(), properties);
+        //setup persistance unit string
+        String persistanceunit = "sc2boa"+ StageUtils.getResourceSuffixForCurrentStage();
+        
+        //setupfactory
+        factory = new EntityManagerFactoryImpl(persistanceunit, properties);
 	}
 
 
@@ -80,7 +88,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
             em = factory.createEntityManager();
             Query query = em.createQuery("select onlinebuildorder from com.ALC.SC2BOAserver.entities.OnlineBuildOrder u where u.id=:id");
             query.setParameter("id", id);
-            //TODO check query
             return (OnlineBuildOrder)query.getSingleResult();
         }
         catch (NoResultException e) {
@@ -108,8 +115,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
                 em.close();
             }
         }
-		// TODO check this
-		
 	}
 
 	@Override
@@ -126,7 +131,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
             }
         }
 		// TODO check this
-		
 	}
 	
 	@Override
@@ -135,8 +139,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 		for(int i =0;i<list.size();i++){
 			this.deleteOnlineBuildOrder(list.get(i));
 		}
-		// TODO check this
-		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -147,8 +149,28 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
         try {
             em = factory.createEntityManager();
             Query query = em.createQuery("select all from com.ALC.SC2BOAserver.entities.OnlineBuildOrder");
-            //TODO check this query
             return (List<OnlineBuildOrder>)query.getResultList();
+        }
+        finally {
+            if (em!=null) {
+                em.close();
+            }
+        }
+	}
+	
+	@Override
+	public User getUserByID(String id) {
+		EntityManager em = null;
+
+        try {
+            em = factory.createEntityManager();
+            Query query = em.createQuery("select user from com.ALC.SC2BOAserver.entities.User u where u.id=:id");
+            query.setParameter("id", id);
+            return (User)query.getSingleResult();
+        }
+        catch (NoResultException e) {
+            //No matching result so return null
+            return null;
         }
         finally {
             if (em!=null) {
@@ -158,7 +180,7 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 	}
 
 	@Override
-	public User getUser(String username) {
+	public User getUserByUsername(String username) {
         EntityManager em = null;
 
         try {
@@ -241,7 +263,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
         try {
             em = factory.createEntityManager();
             Query query = em.createQuery("select j from com.ALC.SC2BOAserver.entities.User j");
-            //TODO check this query
             return (List<User>)query.getResultList();
         }
         finally {
@@ -264,31 +285,51 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 		//stores the default builds by storing the list with a user
 		EntityManager em = null;
 		User defaultBuildsUser;
-		
+		DEBUG.d("settingdefault builds list");
 
         try {
         	em = factory.createEntityManager();
             Query query = em.createQuery("select user from com.ALC.SC2BOAserver.entities.User u where u.username=:username");
             query.setParameter("username", SC2BOADAOSimpleDBImpl.DefaultBuildsListUser);
             defaultBuildsUser = (User)query.getSingleResult();
-            if(defaultBuildsUser==null){//test to see if no build exists
-            	defaultBuildsUser=new User();
-            	defaultBuildsUser.setUsername(SC2BOADAOSimpleDBImpl.DefaultBuildsListUser);
-            }
-            defaultBuildsUser.setBuilds(list);
+            
+            defaultBuildsUser.setBuilds(OnlineBuildOrder.convertBuildsToIds(list));
             em = factory.createEntityManager();
             em.persist(defaultBuildsUser);
+        }catch (NoResultException e) {
+        	DEBUG.d("noResultsException creating a user to place the default list");
+        	defaultBuildsUser=new User();
+        	defaultBuildsUser.setUsername(SC2BOADAOSimpleDBImpl.DefaultBuildsListUser);
+        	defaultBuildsUser.setBuilds(OnlineBuildOrder.convertBuildsToIds(list));
+        	
+        	em = factory.createEntityManager();
+            em.persist(defaultBuildsUser);
+        	
         }
         finally {
             if (em!=null) {
                 em.close();
             }
         }
-		// TODO need to test this
-		
 	}
+	
 	@Override
 	public List<OnlineBuildOrder> getDefaultBuilds() {
+		List<String> idsofbuildstoreturn = getIdsOfDefaultBuilds();
+		DEBUG.d("idsofbuildstoreturn size: "+idsofbuildstoreturn.size());
+		List<OnlineBuildOrder> list = new ArrayList<OnlineBuildOrder>();
+		
+		if(idsofbuildstoreturn==null)return null;
+		
+		for(int i = 0;i<idsofbuildstoreturn.size();i++){
+			list.add(this.getOnlineBuildOrder(idsofbuildstoreturn.get(i)));
+		}
+		return list;
+		
+	}
+		
+	@Override
+	public List<String> getIdsOfDefaultBuilds() {
 		EntityManager em = null;
 		User user =null;
 		try {
@@ -298,8 +339,8 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
             user = (User)query.getSingleResult();
         }
         catch (NoResultException e) {
-            
-            return null;
+            DEBUG.d("no results exception");
+            return new ArrayList<String>();
         }
         finally {
             if (em!=null) {
@@ -307,11 +348,24 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
             }
         }
 		return user.getBuilds();
-		
-		
-		// TODO check this
 	}
-
 	
-    
+	@Override
+	public void deleteOnlineBuildOrder(String buildorderId) {
+		EntityManager em = null;
+
+        try {
+            em = factory.createEntityManager();
+            Query query = em.createQuery("delete onlinebuildorder from com.ALC.SC2BOAserver.entities.OnlineBuildOrder u where u.id=:id");
+            query.setParameter("id", buildorderId);
+            query.executeUpdate();
+            //TODO check query
+        }
+        finally {
+            if (em!=null) {
+                em.close();
+            }
+        }
+		
+	}
 }

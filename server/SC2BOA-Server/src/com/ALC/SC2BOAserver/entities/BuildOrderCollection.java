@@ -4,16 +4,17 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-public class OnlineBuildOrderCollection {
+public class BuildOrderCollection {
+	
 	@JsonProperty("builds")
-	private List<OnlineBuildOrder> onlineBuildOrderCollection;
+	private List<OnlineBuildOrder> builds;
 	
 	public List<OnlineBuildOrder> getBuilds(){
-		return onlineBuildOrderCollection;
+		return builds;
 	}
 	
 	public void setBuilds(List<OnlineBuildOrder> list){
-		this.onlineBuildOrderCollection=list;
+		this.builds=list;
 	}
 
 }

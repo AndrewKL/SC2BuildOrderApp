@@ -45,7 +45,7 @@ public class LiveTests {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void populateDB(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		
@@ -71,7 +71,7 @@ public class LiveTests {
 		
 	}
 	
-	//@Test
+	@Test
 	public void deleteEverthing(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		

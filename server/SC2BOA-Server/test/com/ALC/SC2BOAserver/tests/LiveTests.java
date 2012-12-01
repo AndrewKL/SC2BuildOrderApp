@@ -66,6 +66,7 @@ public class LiveTests {
 			doa.saveUser(user);
 			
 		}
+		System.out.println("finished");
 		
 		
 	}

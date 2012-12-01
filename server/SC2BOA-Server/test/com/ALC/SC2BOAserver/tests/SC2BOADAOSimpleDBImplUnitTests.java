@@ -46,6 +46,7 @@ public class SC2BOADAOSimpleDBImplUnitTests {
 		
 		//delete all build orders
 		doa.deleteAllOnlineBuildOrders();
+		list = doa.getAllOnlineBuildOrders();
 		size = list.size();
 		
 		assertTrue(size==0);

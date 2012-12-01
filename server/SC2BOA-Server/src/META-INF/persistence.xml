@@ -3,6 +3,7 @@
 	<persistence-unit name="SC2BOA">
 		<class>com.ALC.SC2BOAserver.entities.User</class>
 		<class>com.ALC.SC2BOAserver.entities.OnlineBuidOrder</class>
+		<class>com.ALC.SC2BOAserver.entities.BuidOrderCollection</class>
 		<class>com.ALC.SC2BOAserver.entities.Message</class>
 	</persistence-unit>
 </persistence>

@@ -14,15 +14,23 @@
  */
 package com.ALC.SC2BOAserver.dao;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
+
+import org.scannotation.AnnotationDB;
+import org.scannotation.ClasspathUrlFinder;
 
 import com.ALC.SC2BOAserver.aws.S3StorageManager;
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
@@ -36,7 +44,12 @@ import com.spaceprogram.simplejpa.EntityManagerFactoryImpl;
 
 public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 	private static final String DefaultBuildsListUser = "DefaultBuildsUser-012344322341234123412344";//this user holds the list of default builds
-	
+	private static Set<String> setOfClassNames = new HashSet<String>();
+	static{
+		setOfClassNames.add("com.ALC.SC2BOAserver.entities.OnlineBuildOrder");
+		setOfClassNames.add("com.ALC.SC2BOAserver.entities.User");
+		setOfClassNames.add("com.ALC.SC2BOAserver.entities.Message");
+	}
 	
 
     private static Map<String, String> properties;// = new HashMap<String, String>();
@@ -73,10 +86,40 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
         }
         
         //setup persistance unit string
-        String persistanceunit = "sc2boa"+ StageUtils.getResourceSuffixForCurrentStage();
+        String persistenceUnit = "sc2boa"+ StageUtils.getResourceSuffixForCurrentStage();
         
         //setupfactory
-        factory = new EntityManagerFactoryImpl(persistanceunit, properties);
+        //factory = new EntityManagerFactoryImpl(persistanceunit, properties);
+        //factory = new EntityManagerFactoryImpl(persistenceUnit, properties, null, null);
+        //factory = new EntityManagerFactoryImpl(persistenceUnit, null, null, null);
+        OnlineBuildOrder build = new OnlineBuildOrder();
+        User user = new User();
+        URL[] ClassPathURLs = ClasspathUrlFinder.findClassPaths(); // scan java.class.path
+        URL[] resourceBaseURLs = ClasspathUrlFinder.findResourceBases("META-INF/persistence.xml");
+        DEBUG.d("size of classpathurls="+ClassPathURLs.length);
+        for (URL url : ClassPathURLs) {
+            DEBUG.d("url=" + url);
+        }
+        DEBUG.d("size of resourceBaseURLs="+resourceBaseURLs.length);
+        for (URL url : resourceBaseURLs) {
+            DEBUG.d("url=" + url);
+        }
+        
+        //
+        AnnotationDB db = new AnnotationDB();
+        
+        try {
+			db.scanArchives(ClassPathURLs);
+			db.scanArchives(resourceBaseURLs);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Set<String> entities = db.getAnnotationIndex().get(Entity.class.getName());
+        for (String entity : entities) {
+            DEBUG.d("entity=" + entity);
+        }
+        factory = new EntityManagerFactoryImpl(persistenceUnit, properties, null, entities);
 	}
 
 

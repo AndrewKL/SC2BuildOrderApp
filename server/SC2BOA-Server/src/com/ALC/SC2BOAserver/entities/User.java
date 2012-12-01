@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
-public class User implements Serializable {
+public class User implements Serializable, UserDetails {
 	/**
 	 * 
 	 */
@@ -68,6 +68,33 @@ public class User implements Serializable {
 	
 	public List<String> getBuilds(){
 		return this.builds;
+	}
+	
+	@Override
+	@Transient
+	public Collection<GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;//hardwire to true  for now
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;//hardwire to true  for now
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;//hardwire to true  for now
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;//hardwire to true  for now
 	}
 }
 

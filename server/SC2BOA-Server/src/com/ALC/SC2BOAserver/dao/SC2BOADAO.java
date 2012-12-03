@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.ALC.SC2BOAserver.entities.BuildOrderCollection;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.User;
 
@@ -34,6 +35,7 @@ public interface SC2BOADAO {
 	public void deleteOnlineBuildOrder(String buildorderId);
 	public void deleteAllOnlineBuildOrders();
 	public List<OnlineBuildOrder> getAllOnlineBuildOrders();
+	public List<OnlineBuildOrder> searchOnlineBuildOrderByName(String name);
 	
 	//User related methods
 	public User getUserByID(String id);
@@ -48,6 +50,8 @@ public interface SC2BOADAO {
 	public void setDefaultBuilds(List<OnlineBuildOrder> list);
 	public List<String> getIdsOfDefaultBuilds();
 	public List<OnlineBuildOrder> getDefaultBuilds();
+	
+	
 	
 	
 	

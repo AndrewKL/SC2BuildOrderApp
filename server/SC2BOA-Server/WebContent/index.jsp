@@ -84,8 +84,7 @@
 			
 			
 		</div>
-			
-	
+		
 		 <div class="slider grid col-one-half mq2-col-full">
 		   <div class="flexslider">
 		     <div class="slides">
@@ -107,7 +106,7 @@
 		                     <figcaption>
 		                     	<div>
 		                     	<h5>SC2:BOA</h5>
-		                     	<p>Timing is key to winning and to have good timing you need a good build to build off of.</p>
+		                     	<p> Timing is key to winning. Good timing begins with a good build to start.</p>
 		                     	</div>
 		                     </figcaption>
 		                 	</figure>
@@ -119,7 +118,7 @@
 		 </section>
 	
 	
-	</div> <!--main-->
+</div> <!--main-->
 
 <div class="divide-top">
 	<footer class="grid-wrap">
@@ -163,12 +162,6 @@
 <script src="js/jquery.flexslider-min.js"></script>
 <script src="js/scripts.js"></script>
 
-<!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID. -->
-<!-- <script>
-  var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
-</script> -->
+
 </body>
 </html>

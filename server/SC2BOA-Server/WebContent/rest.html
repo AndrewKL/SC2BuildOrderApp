@@ -67,11 +67,39 @@
 			<hr>
 			<p class="fleft">RESTful Framework</p>
 		</header>
+		<br>
 		<h1>Beta Test: RESTful Framework</h1>
 		
-		The restful framework is a generic framework with which to access the database.  The file is sent in a json like syntax and is easily parsable via opensource tools.
-		
+		At the heart of SC2:BOA is a RESTful framework. The restful framework is a generic framework 
+		with which to access the database.  requests to the framework are transfered in json syntax 
+		and is easily parsable via opensource tools and is human readable with any text editor.
+		<br>
+		<h2>Get All Builds</h2>
 		<a href="../rest/buildorder/getall.json">Download all builds via RESTful framework.</a>
+		<br>
+		<h2>Get Build By ID</h2>
+		<form name="getBuildByIDForm">
+   			<input name="idstring" value="fe6c24fa-133e-4087-8f32-7cdfc34cbc11">
+   			<input type="button" value="Download Build" OnClick="getBuildByID(idstring.value)">
+		</form>
+		<script type="text/javascript">
+		function getBuildByID(id)
+		{
+		    window.open("../rest/buildorder/get/"+id+".json");    
+		}
+		</script>
+		<br>
+		<h2>Search Build By ID</h2>
+		<form name="getBuildByName">
+   			<input name="namestring" value="testbuild1">
+   			<input type="button" value="Download Build" OnClick="searchBuildByName(namestring.value)">
+		</form>
+		<script type="text/javascript">
+		function searchBuildByName(name)
+		{
+		    window.open("../rest/buildorder/searchbyname/"+name+".json");    
+		}
+		</script>
 		
 		More Coming Soon!<br>
 		

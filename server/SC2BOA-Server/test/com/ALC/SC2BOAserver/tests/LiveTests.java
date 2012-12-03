@@ -61,7 +61,7 @@ public class LiveTests {
 		
 		for(int i =0;i<10;i++){
 			OnlineBuildOrder buildorder = new OnlineBuildOrder();
-			buildorder.setBuildName("testbuild "+i);
+			buildorder.setBuildName("testbuild"+i);
 			buildorder.setBuildOrderInstructions("1 2 3 4 5 622");
 			buildorder.setRace("zerg");
 			
@@ -81,7 +81,7 @@ public class LiveTests {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void populateDBWithXMLData(){
 		//SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		File xmlfile = new File("src/META-INF/initialbuildordersfile.xml");
@@ -130,7 +130,7 @@ public class LiveTests {
 		
 		
 		return null;
-	}
+	}*/
 	
 	
 	

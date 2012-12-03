@@ -26,7 +26,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
 import org.scannotation.AnnotationDB;
@@ -34,6 +33,7 @@ import org.scannotation.ClasspathUrlFinder;
 
 import com.ALC.SC2BOAserver.aws.S3StorageManager;
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
+import com.ALC.SC2BOAserver.entities.BuildOrderCollection;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.User;
 import com.ALC.SC2BOAserver.util.Configuration;
@@ -92,8 +92,6 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
         //factory = new EntityManagerFactoryImpl(persistanceunit, properties);
         //factory = new EntityManagerFactoryImpl(persistenceUnit, properties, null, null);
         //factory = new EntityManagerFactoryImpl(persistenceUnit, null, null, null);
-        OnlineBuildOrder build = new OnlineBuildOrder();
-        User user = new User();
         URL[] ClassPathURLs = ClasspathUrlFinder.findClassPaths(); // scan java.class.path
         URL[] resourceBaseURLs = ClasspathUrlFinder.findResourceBases("META-INF/persistence.xml");
         DEBUG.d("size of classpathurls="+ClassPathURLs.length);
@@ -409,6 +407,27 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
                 em.close();
             }
         }
-		
+	}
+	@Override
+	public List<OnlineBuildOrder> searchOnlineBuildOrderByName(String name) {
+		EntityManager em = null;
+		DEBUG.d("searching for builds that start with: "+name);
+        try {
+            em = factory.createEntityManager();
+            Query query = em.createQuery("select onlinebuildorder from com.ALC.SC2BOAserver.entities.OnlineBuildOrder u where u.buildName = :name");
+            query.setParameter("name", name);
+            return (List<OnlineBuildOrder>)query.getResultList();
+        }
+        catch (NoResultException e) {
+            //No matching result so return null
+            return null;
+        }
+        finally {
+            if (em!=null) {
+                em.close();
+            }
+        }
+        
+        //TODO check this
 	}
 }

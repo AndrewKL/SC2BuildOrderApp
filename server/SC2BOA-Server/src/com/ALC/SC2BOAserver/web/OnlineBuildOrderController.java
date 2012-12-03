@@ -47,6 +47,12 @@ public class OnlineBuildOrderController {
 		return dao.getOnlineBuildOrder(buildid);
 		//TODO check this
 	}
+	@RequestMapping(value="/searchbyname/{name}", method=RequestMethod.GET)
+	public List<OnlineBuildOrder> searchByName(@PathVariable String name) {
+		DEBUG.d("searchbyname called: "+name);
+		return dao.searchOnlineBuildOrderByName(name);
+		//TODO check this
+	}
 	
     
 	@RequestMapping(value="/delete/{buildid}", method=RequestMethod.GET)

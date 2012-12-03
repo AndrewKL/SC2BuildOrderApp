@@ -5,13 +5,23 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
 import com.ALC.SC2BOAserver.dao.SC2BOADAOSimpleDBImpl;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.User;
+import com.ALC.SC2BOAserver.util.DEBUG;
 
 
 public class LiveTests {
@@ -45,8 +55,8 @@ public class LiveTests {
 		}
 	}
 	
-	@Test
-	public void populateDB(){
+	//@Test
+	public void populateDBWithRandomData(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		
 		for(int i =0;i<10;i++){
@@ -72,6 +82,60 @@ public class LiveTests {
 	}
 	
 	@Test
+	public void populateDBWithXMLData(){
+		//SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
+		File xmlfile = new File("src/META-INF/initialbuildordersfile.xml");
+		System.out.println("xmlfile: "+xmlfile.getAbsolutePath());
+		System.out.println("xmlfile can read"+xmlfile.canRead());
+		
+		List<OnlineBuildOrder> list =new ArrayList<OnlineBuildOrder>();
+		try {
+			list = getBuildsFromFile(xmlfile);
+		} catch (XmlPullParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("list: "+list.size());
+		System.out.println("finished");
+		
+		
+	}
+	
+	public static List<OnlineBuildOrder> getBuildsFromFile(File file) throws XmlPullParserException, IOException{
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        XmlPullParser xpp = factory.newPullParser();
+        System.out.println("parser implementation class is "+xpp.getClass());
+        List<OnlineBuildOrder> list = new ArrayList<OnlineBuildOrder>();
+        
+        
+        int eventType = xpp.getEventType();
+        while (eventType != xpp.END_DOCUMENT) {
+            if(eventType == xpp.START_DOCUMENT) {
+                System.out.println("Start document");
+            } else if(eventType == xpp.END_DOCUMENT) {
+                System.out.println("End document");
+            } else if(eventType == xpp.START_TAG) {
+                System.out.println("Start tag "+xpp.getName());
+            } else if(eventType == xpp.END_TAG) {
+                System.out.println("End tag "+xpp.getName());
+            } else if(eventType == xpp.TEXT) {
+                System.out.println("Text "+xpp.getText());
+            }
+            eventType = xpp.next();
+        }
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	//@Test
 	public void deleteEverthing(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		

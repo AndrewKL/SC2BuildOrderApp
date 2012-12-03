@@ -38,7 +38,7 @@
 <div class="container">
 
 	<header id="navtop">
-		<a href="index.html" class="logo fleft">
+		<a href="../" class="logo fleft">
 			<img src="img/logo.png" alt="SC2:BOA">
 		</a>
 		
@@ -74,10 +74,12 @@
 			<h1>Welcome To <br>
 			SC2:BOA <br>
 			The Build Order App</h1>
-			<p>The SC2:Build Order App is the premier Android App for organizing and aquiring 
-			new StarCraft II: Wings of Liberty build orders.  Having a solid build order is key for 
-			top level play.  SC2:BOA allows you to download the latest and best builds right to
-			the internet and your android phone.
+			<p>The SC2:Build Order App is an Android App for organizing and 
+			aquiring new StarCraft II: Wings of Liberty build orders. 
+			Having a solid build order is one of the essential keys for 
+			advancing your skill and competing with tougher opponents. 
+			SC2:BOA allows you to download the latest and best builds right 
+			to your android phone.
 			</p>
 			
 			
@@ -135,7 +137,7 @@
 		
 		<nav class="grid col-one-third ">
 			<ul>
-				<!-- <li><a href="index.html" class="navactive">Home</a></li>
+				<!-- <li><a href="../" class="navactive">Home</a></li>
 				<li><a href="register.html">Register</a></li>
 			
 				<li><a href="login.html">Login</a></li>

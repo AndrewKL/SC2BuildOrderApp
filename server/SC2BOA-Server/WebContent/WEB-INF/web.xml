@@ -8,8 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-    <welcome-file>login.jsp</welcome-file>
-    <welcome-file>rest.html</welcome-file>
+    <welcome-file>/WEB-INF/jsp/login.jsp</welcome-file>
     
   </welcome-file-list>
   <!-- ==============LISTENER============= -->
@@ -37,6 +36,8 @@
 	</context-param>
 	
 	<!-- ==============servlet============= -->
+	
+	
   
   
 	<servlet>
@@ -95,7 +96,7 @@
   </filter-mapping>
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
-    <location>/home.do</location>
+    <location>/index</location>
   </error-page>
   
   

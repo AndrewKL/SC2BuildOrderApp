@@ -25,6 +25,33 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 	
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('#loaddata').click(function(){
+			//document.getElementById('#buildlocationdiv').innerHTML = "<br>";
+			$('#buildlocationdiv').append("...button clicked<br>");
+			$.getJSON("./rest/buildorder/getall.json",function(result){
+				$('#buildlocationdiv').append("...json retrieved<br>");
+				$('#buildlocationdiv').append(JSON.stringify(result)+"<br>");
+			});
+		});
+	});
+	</script>
+	
+	<script>
+	$(document).ready(function(){
+		$('#downloadBuildByIDButton').click(function(){
+			$('#getBuildByIDdiv').append("...download by id button clicked<br>");
+			$.getJSON("./rest/buildorder/get/"+document.getElementById('idstring').value+".json",function(result){
+				$('#getBuildByIDdiv').append("...json retrieved<br>");
+				$('#getBuildByIDdiv').append(JSON.stringify(result)+"<br>");
+			});
+		});
+	});
+	</script>
+	
+	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -43,7 +70,7 @@
 		
 		<nav class="fright">
 			<ul>
-				<li><a href="../" class="navactive">Home</a></li>
+				<li><a href="./" class="navactive">Home</a></li>
 				<!--<li><a id="go" rel="leanModal" name="signup" href="#signup">register</a></li>-->
 				
 			</ul>
@@ -54,7 +81,7 @@
 			</ul>
 			<ul>
 				<li><a href="about.html">About</a></li>
-				<li><a href="rest.html">RESTful</a></li>
+				<li><a href="restfulframework.html">RESTful</a></li>
 				<!-- <li><a href="contact.html">Contact</a></li> -->
 			</ul>
 		</nav>
@@ -75,19 +102,32 @@
 		and is easily parsable via opensource tools and is human readable with any text editor.
 		<br>
 		<h2>Get All Builds</h2>
-		<a href="../rest/buildorder/getall.json">Download all builds via RESTful framework.</a>
 		<br>
+		<a href="./rest/buildorder/getall.json">Download all builds via RESTful framework.</a>
+		<br>
+		<br>
+		...or<br>
+		<br>
+		<input type="button" id="loaddata" value="Load All Builds Via JQuery" />
+		<div id = "buildlocationdiv"></div>
+		<br>
+		<br>
+		
+		
 		<h2>Get Build By ID</h2>
 		<form name="getBuildByIDForm">
-   			<input name="idstring" value="fe6c24fa-133e-4087-8f32-7cdfc34cbc11">
-   			<input type="button" value="Download Build" OnClick="getBuildByID(idstring.value)">
+   			<input id='idstring' name="idstring" value="024d8367-679d-42aa-95f4-593055f69100">
+   			<input id="downloadBuildByIDButton" name="downloadBuildByIDButton" type="button" value="Download Build Via Jquery" >
 		</form>
-		<script type="text/javascript">
+		<div id = "getBuildByIDdiv"></div>
+		
+		
+		<!-- <script type="text/javascript">
 		function getBuildByID(id)
 		{
-		    window.open("../rest/buildorder/get/"+id+".json");    
+		    window.open("./rest/buildorder/get/"+id+".json");    
 		}
-		</script>
+		</script> -->
 		<br>
 		<h2>Search Build By ID</h2>
 		<form name="getBuildByName">
@@ -97,14 +137,11 @@
 		<script type="text/javascript">
 		function searchBuildByName(name)
 		{
-		    window.open("../rest/buildorder/searchbyname/"+name+".json");    
+		    window.open("./rest/buildorder/searchbyname/"+name+".json");    
 		}
 		</script>
 		
 		More Coming Soon!<br>
-		
-
-		
 		
 		
 	</div> <!--main-->

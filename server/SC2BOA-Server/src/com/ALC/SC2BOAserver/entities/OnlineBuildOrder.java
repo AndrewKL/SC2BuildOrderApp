@@ -57,6 +57,10 @@ public class OnlineBuildOrder {
 		this.id=Id;
 	}
 	
+	public String toString(){
+		return "Name: "+this.buildName+" race: "+this.race;
+	}
+	
 	//======================================================
 	
 	

@@ -21,8 +21,8 @@
 		<security:anonymous granted-authority="IS_AUTHENTICATED_ANONYMOUSLY"/>
 
 		<!-- Override default login and logout pages -->
-		<security:form-login login-page="/home.do"
-			default-target-url="/home.do" authentication-failure-url="/loginFailure.do" />
+		<security:form-login login-page="/index"
+			default-target-url="/index" authentication-failure-url="/loginFailure.do" />
 		<security:logout logout-success-url="/logout.do" />
 			
 			

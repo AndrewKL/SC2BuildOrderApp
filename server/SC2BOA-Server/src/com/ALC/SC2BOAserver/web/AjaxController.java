@@ -25,6 +25,8 @@ import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
  * This class is a controller to handle the Ajax requests from the TravelLog UI.  
  * It leverages Direct Web Remoting (DWR) to simplify the Ajax coding.
  */
+
+//TODO get rid of this
 @Service
 @RemoteProxy(name="AjaxController")
 public class AjaxController {

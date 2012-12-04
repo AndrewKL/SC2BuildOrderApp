@@ -8,6 +8,8 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>rest.html</welcome-file>
     
   </welcome-file-list>
   <!-- ==============LISTENER============= -->
@@ -25,6 +27,7 @@
 	        /WEB-INF/applicationContext.xml, 
 	        /WEB-INF/spring-dwr.xml, 
 	        /WEB-INF/spring-security.xml
+	        
         </param-value>
 	</context-param>
   
@@ -43,6 +46,10 @@
 	<servlet-mapping>
 		<servlet-name>sc2boaserver</servlet-name>
 		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>sc2boaserver</servlet-name>
+		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
 	<!-- <servlet-mapping>
 		<servlet-name>sc2boaserver</servlet-name>

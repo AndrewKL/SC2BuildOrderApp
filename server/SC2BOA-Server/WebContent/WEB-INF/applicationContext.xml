@@ -13,19 +13,19 @@
 	<bean class="com.ALC.SC2BOAserver.entities.OnlineBuildOrder"/>
 	<bean class="com.ALC.SC2BOAserver.entities.User"/>
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<!-- <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" /> -->
 
 	
-	<!-- <bean
+	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
-	</bean> -->
+	</bean>
 
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
 		<property name="order" value="2" />
-	</bean>
+	</bean> -->
 	
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	        <property name="basename"><value>messages</value></property>

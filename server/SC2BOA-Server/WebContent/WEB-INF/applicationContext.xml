@@ -17,10 +17,10 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 	
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
-	</bean>
+	</bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">

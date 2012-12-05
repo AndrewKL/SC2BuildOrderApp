@@ -29,15 +29,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
-/*
-import com.amazon.aws.samplecode.travellog.aws.S3PhotoUtil;
-import com.amazon.aws.samplecode.travellog.aws.S3StorageManager;
-import com.amazon.aws.samplecode.travellog.aws.TravelLogStorageObject;
-import com.amazon.aws.samplecode.travellog.dao.TravelLogDAO;
-import com.amazon.aws.samplecode.travellog.entity.Comment;
-import com.amazon.aws.samplecode.travellog.entity.Entry;
-import com.amazon.aws.samplecode.travellog.entity.Journal;
-import com.amazon.aws.samplecode.travellog.entity.Photo;*/
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 
 /**

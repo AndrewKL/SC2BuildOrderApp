@@ -32,16 +32,6 @@ import org.apache.commons.io.FileUtils;
 
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
-/*
-import com.amazon.aws.samplecode.travellog.aws.S3PhotoUtil;
-import com.amazon.aws.samplecode.travellog.aws.S3StorageManager;
-import com.amazon.aws.samplecode.travellog.aws.TravelLogStorageObject;
-import com.amazon.aws.samplecode.travellog.dao.TravelLogDAO;
-import com.amazon.aws.samplecode.travellog.entity.Comment;
-import com.amazon.aws.samplecode.travellog.entity.Commenter;
-import com.amazon.aws.samplecode.travellog.entity.Entry;
-import com.amazon.aws.samplecode.travellog.entity.Journal;
-import com.amazon.aws.samplecode.travellog.entity.Photo;*/
 /**
  * This class is responsible for calling out to S3 and downloading prepackaged data
  * for loading into the travellog system.  The zip bundles that are downloaded are

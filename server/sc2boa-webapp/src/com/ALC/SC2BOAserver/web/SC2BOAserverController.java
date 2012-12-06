@@ -12,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
+import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.User;
 import com.ALC.SC2BOAserver.util.DEBUG;
 
@@ -56,6 +58,24 @@ public class SC2BOAserverController {
 		return new ModelAndView("about");
     }
     
+    /**
+     * sets up the about page
+     */
+    @RequestMapping(value="/addbuildorder", method={RequestMethod.GET})
+    public ModelAndView setupAddBuildOrderPage (ModelMap model) {
+    	DEBUG.d("add build order page");
+    	OnlineBuildOrder buildorder = new OnlineBuildOrder();
+		model.addAttribute("buildorder", buildorder);
+		return new ModelAndView("addbuildorder", "buildorder", buildorder);
+	}
+	
+    @RequestMapping(value="/addbuildorder", method={RequestMethod.POST})
+	public ModelAndView setupAddBuildOrderReply(@ModelAttribute OnlineBuildOrder buildorder) {
+		DEBUG.d("add build order reply page: "+buildorder);
+		dao.addOnlineBuildOrder(buildorder);
+		//userService.saveUser(user);
+		return new ModelAndView("index");
+	}
     /**
      * sets up the rest
      */

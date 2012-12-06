@@ -1,3 +1,5 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -65,16 +67,30 @@
 
 		<header class="grid col-full">
 			<hr>
-			<p class="fleft">Regsiter</p>
+			<p class="fleft">Register</p>
 		</header>
 		
-		<form name="myWebForm">
-   			<input name="username" value="Username">
-   			<input name="email" value="Email">
-   			<input name="password" value="Password">
-   			<input name="password2" value="Repeat Password">
-   			<input type="button" value="Register" >
-		</form>
+		<form:form modelAttribute="user" method="POST" action="./register.html">
+			<table>
+			    <tr>
+			        <td><form:label path="Username">username</form:label></td>
+			        <td><form:input path="username" /></td>
+			    </tr>
+			    <tr>
+			        <td><form:label path="email">email</form:label></td>
+			        <td><form:input path="email" /></td>
+			    </tr>
+			    <tr>
+			        <td><form:label path="password">password</form:label></td>
+			        <td><form:input path="password" /></td>
+			    </tr>
+			    <tr>
+			        <td colspan="2">
+			            <input type="submit" value="Submit"/>
+			        </td>
+			    </tr>
+			</table>  
+		</form:form>
 
 		
 		

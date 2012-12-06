@@ -27,12 +27,19 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping(value="/register")
+	@RequestMapping(value="/register", method = RequestMethod.GET)
 	public ModelAndView register(ModelMap model) {
 		DEBUG.d("register new user page");
 		User user = new User();
 		model.addAttribute("user", user);
 		return new ModelAndView("register", "user", user);
+	}
+	
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	public ModelAndView registerReply(@ModelAttribute User user) {
+		DEBUG.d("register new reply user page: "+user);
+		userService.saveUser(user);
+		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(value="/login")

@@ -267,6 +267,7 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
     
 	@Override
 	public void saveUser(User user) {
+		DEBUG.d("adding user");
         EntityManager em = null;
 
         try {

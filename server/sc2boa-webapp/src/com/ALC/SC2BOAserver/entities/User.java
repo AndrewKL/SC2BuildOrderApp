@@ -96,6 +96,10 @@ public class User implements Serializable, UserDetails {
 		// TODO Auto-generated method stub
 		return true;//hardwire to true  for now
 	}
+	
+	public String toString(){
+		return "user: "+this.username+"  email: "+this.email+" pw: "+this.password;
+	}
 }
 
 

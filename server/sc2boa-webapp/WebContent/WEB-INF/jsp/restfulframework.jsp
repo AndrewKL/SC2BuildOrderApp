@@ -109,6 +109,7 @@
 		...or<br>
 		<br>
 		<input type="button" id="loaddata" value="Load All Builds Via JQuery" />
+		<br>
 		<div id = "buildlocationdiv"></div>
 		<br>
 		<br>

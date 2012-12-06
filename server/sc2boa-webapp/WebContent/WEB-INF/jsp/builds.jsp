@@ -25,6 +25,9 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.7.2.min.js"></script><!-- for seraching and sorting -->
+	
+	
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -73,13 +76,55 @@
 		
 		
 		<aside class="grid col-one-quarter mq2-col-full">
-			
+			Welcome to SC2:BOA.  Feel free to search through the builds add your own and 
+			edit any builds that you think could be improved!  Besure to try out the Android
+			as well.  The Android app alows you to try out your favorite SC2 build while on 
+			the run!
 		</aside>
 		
 		<section class="grid col-three-quarters mq2-col-full">
 		<input type="button" onclick="window.location='./addbuildorder.html'" value="Add Build"/>
+		<input type="button" id="loaddata" value="Load All Builds" />
+		<br>
+		<div id = "buildtablediv">
+			 
+		</div>
+		<br>
+		<div id = "buildlocationdiv"></div>
+		<script>
+		$(document).ready(function(){
+			$('#loaddata').click(function(){
+				
+				document.getElementById('buildlocationdiv').innerHTML = "<br>";
+				$('#buildlocationdiv').append("...Downloading<br>");
+				$.getJSON("./rest/buildorder/getlist.json",function(result){
+					//console.log("printing table");
+					//document.getElementById('buildtablediv').innerHTML = '<br>';
+					//$('#buildtablediv').append("<table border='1' width='400'>");
+					//$('#buildtablediv').append("<tr><td>"+"row 1, cell 1"+"</td><td>"+"row 1, cell 2"+"</td></tr>"+"<tr><td>"+"row 2, cell 1"+"</td><td>"+"row 2, cell 2"+"</td></tr>");
+					//$('#buildtablediv').append("</table>");
+					//console.log("finished table");
+					
+					document.getElementById('buildlocationdiv').innerHTML = '<br>';
+					$('#buildlocationdiv').append(JSON.stringify(result)+"<br>");
+				});
+			});
+		});
+		</script>
 		
-		<h2>SearchBuilds</h2>
+		<!-- table formating
+			<table border="1">
+			<tr>
+			<td>row 1, cell 1</td>
+			<td>row 1, cell 2</td>
+			</tr>
+			<tr>
+			<td>row 2, cell 1</td>
+			<td>row 2, cell 2</td>
+			</tr>
+			</table> -->
+		
+		
 		</section> 
 		
 	</div> <!--main-->

@@ -40,6 +40,13 @@ public class OnlineBuildOrderController {
 		return array;
 	}
 	
+	@RequestMapping(value="/getlist", method=RequestMethod.GET)
+	public List<OnlineBuildOrder> getAllBuildOrdersList(){
+		DEBUG.d("getAllBuildOrdersList called");
+		return  dao.getAllOnlineBuildOrders();
+		
+	}
+	
     
 	@RequestMapping(value="/get/{buildid}", method=RequestMethod.GET)
 	public OnlineBuildOrder getBuildOrder(@PathVariable String buildid) {

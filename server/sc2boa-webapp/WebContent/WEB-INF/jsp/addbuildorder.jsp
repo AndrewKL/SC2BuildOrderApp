@@ -70,6 +70,10 @@
 		
 		
 		<aside class="grid col-one-quarter mq2-col-full">
+			<h2>Things to consider:</h2>
+			If you're going to add a build, please take the time
+			to completely fill in all information needed to execute the build.
+			Thanks for your participation!
 		
 		</aside>
 		

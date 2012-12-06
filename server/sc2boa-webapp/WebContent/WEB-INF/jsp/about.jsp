@@ -44,18 +44,15 @@
 		<nav class="fright">
 			<ul>
 				<li><a href="./" class="navactive">Home</a></li>
-				<!--<li><a id="go" rel="leanModal" name="signup" href="#signup">register</a></li>-->
-				
+				<li><a href="builds.html">Builds</a></li>
 			</ul>
 			<ul>
 				<li><a href="login.html">Login</a></li>
 				<li><a href="register.html">register</a></li>
-				<!-- <li><a href="controlpanel.html">Control Panel</a></li> -->
 			</ul>
 			<ul>
 				<li><a href="about.html">About</a></li>
 				<li><a href="restfulframework.html">RESTful</a></li>
-				<!-- <li><a href="contact.html">Contact</a></li> -->
 			</ul>
 		</nav>
 	</header>

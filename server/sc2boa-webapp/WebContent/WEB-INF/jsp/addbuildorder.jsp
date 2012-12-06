@@ -45,8 +45,7 @@
 		<nav class="fright">
 			<ul>
 				<li><a href="./" class="navactive">Home</a></li>
-				<!--<li><a id="go" rel="leanModal" name="signup" href="#signup">register</a></li>-->
-				
+				<li><a href="builds.html">Builds</a></li>
 			</ul>
 			<ul>
 				<li><a href="login.html">Login</a></li>
@@ -56,7 +55,6 @@
 			<ul>
 				<li><a href="about.html">About</a></li>
 				<li><a href="restfulframework.html">RESTful</a></li>
-				<!-- <li><a href="contact.html">Contact</a></li> -->
 			</ul>
 		</nav>
 	</header>
@@ -72,68 +70,37 @@
 		
 		
 		<aside class="grid col-one-quarter mq2-col-full">
-			<!-- <p class="mbottom">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis.
-			</p>
-			<menu>
-				<ul>
-					<li><a href="#navteam" class="arrow">Our team</a></li>
-					<li><a href="#navphilo" class="arrow">Our philosophy</a></li>
-					<li><a href="#navplace" class="arrow">Our place</a></li>
-					<li><a href="#navother" class="arrow">Our lorem</a></li>
-				</ul>
-			</menu> -->
+		
 		</aside>
 		
 		<section class="grid col-three-quarters mq2-col-full">
-		
-		Test 1 2 3
 		
 		<form:form modelAttribute="buildorder" method="POST" action="./addbuildorder.html">
 			<table>
 			    <tr>
 			        <td><form:label path="buildName">build name</form:label></td>
-			        <td><form:input path="buildName" /></td>
+			        <td colspan="2"><form:input path="buildName" /></td>
 			    </tr>
 			    <tr>
 			        <td><form:label path="race">race</form:label></td>
-			        <td><form:input path="race" /></td>
+			        <td colspan="2"><form:select path="race">
+						<option value="terran">Terran</option>
+						<option value="protoss">Protoss</option>
+						<option value="zerg">Zerg</option></form:select>
+					</td>
 			    </tr>
 			    <tr>
 			        <td><form:label path="buildOrderInstructions">buildOrderInstructions</form:label></td>
-			        <td><form:input path="buildOrderInstructions" /></td>
+			        <td colspan="2"><form:textarea path="buildOrderInstructions" /></td>
 			    </tr>
 			    <tr>
-			        <td colspan="2">
+			        <td colspan="3">
 			            <input type="submit" value="Submit"/>
 			        </td>
 			    </tr>
 			</table>  
 		</form:form>
-			<!-- <img src="img/team.jpg" alt="" >
 			
-			<article id="navteam">
-			<h2>Our team</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			</article>
-			
-			<article id="navphilo">
-			<h2>Our philosophy</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			</article>
-			
-			<article id="navplace">
-			<h2>Our place</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			</article>
-					
-			<article id="navother">
-			<h2>Our lorem</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit.</p>
-			</article>-->
 		
 		</section> 
 		

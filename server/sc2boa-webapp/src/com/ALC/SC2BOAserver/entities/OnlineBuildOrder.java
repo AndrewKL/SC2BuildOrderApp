@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 
 @Entity
 public class OnlineBuildOrder {
+	public static final String[] races = {"terran","zerg","protoss"};
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;

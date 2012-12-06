@@ -82,7 +82,7 @@ public class SC2BOAserverController {
 	public ModelAndView setupAddBuildOrderReply(@ModelAttribute OnlineBuildOrder buildorder) {
 		DEBUG.d("add build order reply page: "+buildorder);
 		dao.addOnlineBuildOrder(buildorder);
-		return new ModelAndView("index");
+		return new ModelAndView("builds");
 	}
     /**
      * sets up the rest

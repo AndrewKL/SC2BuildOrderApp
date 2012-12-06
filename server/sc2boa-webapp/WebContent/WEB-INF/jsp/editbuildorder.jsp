@@ -25,14 +25,10 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-1.7.2.min.js"></script><!-- for seraching and sorting -->
-	
-	
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	
 </head>
 
 <body>
@@ -50,17 +46,14 @@
 			<ul>
 				<li><a href="./" class="navactive">Home</a></li>
 				<li><a href="builds.html">Builds</a></li>
-				
 			</ul>
 			<ul>
 				<li><a href="login.html">Login</a></li>
 				<li><a href="register.html">register</a></li>
-				
 			</ul>
 			<ul>
 				<li><a href="about.html">About</a></li>
 				<li><a href="restfulframework.html">RESTful</a></li>
-				
 			</ul>
 		</nav>
 	</header>
@@ -70,69 +63,47 @@
 
 		<header class="grid col-full">
 		<hr>
-			<p class="fleft">Builds</p>
+			<p class="fleft">Edit Build Order</p>
 		</header>
 
 		
 		
 		<aside class="grid col-one-quarter mq2-col-full">
-			Welcome to SC2:BOA.  Feel free to search through the builds add your own and 
-			edit any builds that you think could be improved!  Besure to try out the Android
-			as well.  The Android app alows you to try out your favorite SC2 build while on 
-			the run!
+			<h2>Things to consider:</h2>
+			If you're going to edit a build, please take the time
+			to completely fill in all information needed to execute the build.
+			Thanks for your participation!
+		
 		</aside>
 		
 		<section class="grid col-three-quarters mq2-col-full">
-		<input type="button" onclick="window.location='./addbuildorder.html'" value="Add Build"/>
-		<input type="button" id="loaddata" value="Load All Builds" />
-		<br>
-		<div id = "buildtablediv">
-			 
-		</div>
-		<br>
-		<div id = "buildlocationdiv"></div>
-		<script>
-		$(document).ready(function(){
-			$('#loaddata').click(function(){
-				document.getElementById('buildlocationdiv').innerHTML = "<br>";//clear any old data in this div
-				$('#buildlocationdiv').append("...Downloading<br>");//place downloading in the give to give feed back that the button was clicked
-				$.getJSON("./rest/buildorder/getlist.json",function(result){
-					document.getElementById('buildlocationdiv').innerHTML = '<br>';//clear ... downloading
-					$.each(result.onlineBuildOrderList, function(i, build) {//scan through the list and print them.
-						$('#buildlocationdiv').append(addBuildHTML(build));
-					});
-				});
-			});
-		});
-		</script>
-		<script>
-		function addBuildHTML(build){//function that formats the builds
-			console.log("build: "+build.buildName);
-			var newdiv = "<div><hr><h3>"+build.buildName+"</h3>"+createEditLink(build)+"&#149;"+createDeleteLink(build)+"<br>  race: "+build.race+"<br>"+build.buildOrderInstructions+"</div>";
-			return newdiv;
-		}
-		function createEditLink(buildorder){
-			var html = '<a href="./editbuildorder-'+buildorder.id+'.html">Edit</a>';
-			return html;
-		}
-		function createDeleteLink(buildorder){
-			var html = '<a href="./deletebuildorder-'+buildorder.id+'.html">Delete</a>';
-			return html;
-		}
-		</script>
 		
-		<!-- table formating
-			<table border="1">
-			<tr>
-			<td>row 1, cell 1</td>
-			<td>row 1, cell 2</td>
-			</tr>
-			<tr>
-			<td>row 2, cell 1</td>
-			<td>row 2, cell 2</td>
-			</tr>
-			</table> -->
-		
+		<form:form modelAttribute="buildorder" method="POST" action="./editbuildorder.html">
+			<table>
+			    <tr>
+			        <td><form:label path="buildName">build name</form:label></td>
+			        <td colspan="2"><form:input path="buildName" /></td>
+			    </tr>
+			    <tr>
+			        <td><form:label path="race">race</form:label></td>
+			        <td colspan="2"><form:select path="race">
+						<option value="terran">Terran</option>
+						<option value="protoss">Protoss</option>
+						<option value="zerg">Zerg</option></form:select>
+					</td>
+			    </tr>
+			    <tr>
+			        <td><form:label path="buildOrderInstructions">buildOrderInstructions</form:label></td>
+			        <td colspan="2"><form:textarea path="buildOrderInstructions" /></td>
+			    </tr>
+			    <tr>
+			        <td colspan="3">
+			            <input type="submit" value="Submit"/>
+			        </td>
+			    </tr>
+			</table>  
+		</form:form>
+			
 		
 		</section> 
 		

@@ -394,20 +394,9 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 	
 	@Override
 	public void deleteOnlineBuildOrder(String buildorderId) {
-		EntityManager em = null;
-
-        try {
-            em = factory.createEntityManager();
-            Query query = em.createQuery("delete onlinebuildorder from com.ALC.SC2BOAserver.entities.OnlineBuildOrder u where u.id=:id");
-            query.setParameter("id", buildorderId);
-            query.executeUpdate();
-            //TODO check query
-        }
-        finally {
-            if (em!=null) {
-                em.close();
-            }
-        }
+		//TODO fix this so its more efficient
+		OnlineBuildOrder build = this.getOnlineBuildOrder(buildorderId);
+		this.deleteOnlineBuildOrder(build);
 	}
 	@Override
 	public List<OnlineBuildOrder> searchOnlineBuildOrderByName(String name) {
@@ -430,5 +419,12 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
         }
         
         //TODO check this
+	}
+	
+	
+	@Override
+	public void updateOnlineBuildOrder(OnlineBuildOrder buildorder) {
+		if(buildorder.getId()!=null)this.deleteOnlineBuildOrder(buildorder.getId());
+		this.addOnlineBuildOrder(buildorder);
 	}
 }

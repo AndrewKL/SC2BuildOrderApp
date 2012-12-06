@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,7 +69,7 @@ public class SC2BOAserverController {
     }
     
     /**
-     * sets up the about page
+     * sets up the add build page
      */
     @RequestMapping(value="/addbuildorder", method={RequestMethod.GET})
     public ModelAndView setupAddBuildOrderPage (ModelMap model) {
@@ -81,9 +82,41 @@ public class SC2BOAserverController {
     @RequestMapping(value="/addbuildorder", method={RequestMethod.POST})
 	public ModelAndView setupAddBuildOrderReply(@ModelAttribute OnlineBuildOrder buildorder) {
 		DEBUG.d("add build order reply page: "+buildorder);
+		buildorder.setBuildOrderInstructions(buildorder.getBuildOrderInstructions().replace("\n", "<br />\n"));
+		//TODO check the conversion into html
 		dao.addOnlineBuildOrder(buildorder);
 		return new ModelAndView("builds");
 	}
+    
+    /**
+     * sets up the edit build page
+     */
+    @RequestMapping(value="/editbuildorder-{buildid}", method={RequestMethod.GET})
+    public ModelAndView setupEditBuildOrderPage (ModelMap model, @PathVariable String buildid) {
+    	DEBUG.d("edit build order page");
+    	OnlineBuildOrder buildorder = dao.getOnlineBuildOrder(buildid);
+		model.addAttribute("buildorder", buildorder);
+		return new ModelAndView("editbuildorder", "buildorder", buildorder);
+	}
+	
+    @RequestMapping(value="/editbuildorder", method={RequestMethod.POST})
+	public ModelAndView setupEditBuildOrderReply(@ModelAttribute OnlineBuildOrder buildorder) {
+		DEBUG.d("edit build order reply page: "+buildorder);
+		dao.updateOnlineBuildOrder(buildorder);
+		return new ModelAndView("builds");
+	}
+    
+    /**
+     * sets up delete function
+     */
+    @RequestMapping(value="/deletebuildorder-{buildid}", method={RequestMethod.GET})
+    public ModelAndView deleteBuildOrder (ModelMap model, @PathVariable String buildid) {
+    	DEBUG.d("delete build order ");
+    	dao.deleteOnlineBuildOrder(buildid);
+		return new ModelAndView("builds");
+	}
+    
+    
     /**
      * sets up the rest
      */

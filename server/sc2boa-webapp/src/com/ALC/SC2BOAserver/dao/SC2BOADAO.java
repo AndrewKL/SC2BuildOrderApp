@@ -31,6 +31,7 @@ public interface SC2BOADAO {
 	//build order related methods
 	public OnlineBuildOrder getOnlineBuildOrder(String id);
 	public void addOnlineBuildOrder(OnlineBuildOrder buildorder);
+	public void updateOnlineBuildOrder(OnlineBuildOrder buildorder);
 	public void deleteOnlineBuildOrder(OnlineBuildOrder buildorder);
 	public void deleteOnlineBuildOrder(String buildorderId);
 	public void deleteAllOnlineBuildOrders();
@@ -50,6 +51,7 @@ public interface SC2BOADAO {
 	public void setDefaultBuilds(List<OnlineBuildOrder> list);
 	public List<String> getIdsOfDefaultBuilds();
 	public List<OnlineBuildOrder> getDefaultBuilds();
+	
 	
 	
 	

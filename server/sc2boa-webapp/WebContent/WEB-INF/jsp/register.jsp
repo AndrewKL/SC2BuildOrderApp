@@ -39,7 +39,7 @@
 <div class="container">
 
 	<header id="navtop">
-		<a href="../" class="logo fleft">
+		<a href="./" class="logo fleft">
 			<img src="img/logo.png" alt="SC2:BOA">
 		</a>
 		

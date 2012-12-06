@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -17,7 +18,7 @@
 	<meta name="description" content="Designa Studio, a HTML5 / CSS3 template.">
 	<meta name="author" content="Sylvain Lafitte, Web Designer, sylvainlafitte.com">
 	
-	<title>Login // SC2:BOA</title>
+	<title>About // SC2:BOA</title>
 	
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="shortcut icon" type="image/png" href="favicon.png">
@@ -28,6 +29,7 @@
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	
 </head>
 
 <body>
@@ -43,40 +45,42 @@
 		
 		<nav class="fright">
 			<ul>
-				<li><a href="index.html" class="navactive">Home</a></li>
-				<!--<li><a id="go" rel="leanModal" name="signup" href="#signup">register</a></li>-->
+				<li><a href="./" class="navactive">Home</a></li>
+				<li><a href="builds.html">Builds</a></li>
 				
 			</ul>
 			<ul>
 				<li><a href="login.html">Login</a></li>
 				<li><a href="register.html">register</a></li>
-				<!-- <li><a href="controlpanel.html">Control Panel</a></li> -->
+				
 			</ul>
 			<ul>
 				<li><a href="about.html">About</a></li>
 				<li><a href="restfulframework.html">RESTful</a></li>
-				<!-- <li><a href="contact.html">Contact</a></li> -->
+				
 			</ul>
 		</nav>
 	</header>
 
 
-	<div class="contact-page main grid-wrap">
+	<div class="about-page main grid-wrap">
 
 		<header class="grid col-full">
-			<hr>
-			<p class="fleft">Login</p>
+		<hr>
+			<p class="fleft">Builds</p>
 		</header>
-		
-		<h1>Log In</h1>
-		<form name="myWebForm">
-   			<input name="usernameoremail" value="Username or Email">
-   			<input name="password" value="Password">
-   			<input type="button" value="LogIn" >
-		</form>
 
 		
 		
+		<aside class="grid col-one-quarter mq2-col-full">
+			
+		</aside>
+		
+		<section class="grid col-three-quarters mq2-col-full">
+		<input type="button" onclick="window.location='./addbuildorder.html'" value="Add Build"/>
+		
+		<h2>SearchBuilds</h2>
+		</section> 
 		
 	</div> <!--main-->
 

@@ -61,6 +61,15 @@ public class SC2BOAserverController {
     /**
      * sets up the about page
      */
+    @RequestMapping(value="/builds", method={RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView setbuildsPage (ModelMap model) {
+    	DEBUG.d("setupbuildsPage");
+		return new ModelAndView("builds");
+    }
+    
+    /**
+     * sets up the about page
+     */
     @RequestMapping(value="/addbuildorder", method={RequestMethod.GET})
     public ModelAndView setupAddBuildOrderPage (ModelMap model) {
     	DEBUG.d("add build order page");
@@ -73,7 +82,6 @@ public class SC2BOAserverController {
 	public ModelAndView setupAddBuildOrderReply(@ModelAttribute OnlineBuildOrder buildorder) {
 		DEBUG.d("add build order reply page: "+buildorder);
 		dao.addOnlineBuildOrder(buildorder);
-		//userService.saveUser(user);
 		return new ModelAndView("index");
 	}
     /**

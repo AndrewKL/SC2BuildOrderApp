@@ -44,7 +44,7 @@
 		
 		<nav class="fright">
 			<ul>
-				<li><a href="../" class="navactive">Home</a></li>
+				<li><a href="./" class="navactive">Home</a></li>
 				<!--<li><a id="go" rel="leanModal" name="signup" href="#signup">register</a></li>-->
 				
 			</ul>

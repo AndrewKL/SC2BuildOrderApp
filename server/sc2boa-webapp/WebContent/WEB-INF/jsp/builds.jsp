@@ -94,22 +94,23 @@
 		<script>
 		$(document).ready(function(){
 			$('#loaddata').click(function(){
-				
-				document.getElementById('buildlocationdiv').innerHTML = "<br>";
-				$('#buildlocationdiv').append("...Downloading<br>");
+				document.getElementById('buildlocationdiv').innerHTML = "<br>";//clear any old data in this div
+				$('#buildlocationdiv').append("...Downloading<br>");//place downloading in the give to give feed back that the button was clicked
 				$.getJSON("./rest/buildorder/getlist.json",function(result){
-					//console.log("printing table");
-					//document.getElementById('buildtablediv').innerHTML = '<br>';
-					//$('#buildtablediv').append("<table border='1' width='400'>");
-					//$('#buildtablediv').append("<tr><td>"+"row 1, cell 1"+"</td><td>"+"row 1, cell 2"+"</td></tr>"+"<tr><td>"+"row 2, cell 1"+"</td><td>"+"row 2, cell 2"+"</td></tr>");
-					//$('#buildtablediv').append("</table>");
-					//console.log("finished table");
-					
-					document.getElementById('buildlocationdiv').innerHTML = '<br>';
-					$('#buildlocationdiv').append(JSON.stringify(result)+"<br>");
+					document.getElementById('buildlocationdiv').innerHTML = '<br>';//clear ... downloading
+					$.each(result.onlineBuildOrderList, function(i, build) {//scan through the list and print them.
+						$('#buildlocationdiv').append(addBuildHTML(build));
+					});
 				});
 			});
 		});
+		</script>
+		<script>
+		function addBuildHTML(build){//function that formats the builds
+			console.log("build: "+build.buildName);
+			var newdiv = "<div><hr><h3>"+build.buildName+"</h3>  race: "+build.race+"<br>"+build.buildOrderInstructions+"</div>";
+			return newdiv;
+		}
 		</script>
 		
 		<!-- table formating

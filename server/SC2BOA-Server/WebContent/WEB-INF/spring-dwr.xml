@@ -26,10 +26,10 @@
 	 <dwr:annotation-scan base-package="com.ALC.SC2BOAserver.web"/>
 	 
 
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
-	</bean>
+	</bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
 import com.ALC.SC2BOAserver.dao.SC2BOADAOSimpleDBImpl;
@@ -98,6 +99,11 @@ public class SC2BOADAOSimpleDBImplUnitTests {
 			User requesteduser = doa.getUserByID(list.get(i).getId());
 			System.out.println("current user: "+requesteduser.getUsername()+" id: "+requesteduser.getId()+" pw: "+requesteduser.getPassword());
 		}
+		DEBUG.d("test authorities");
+		for(int i=0;i<list.size();i++){
+			User requesteduser = doa.getUserByID(list.get(i).getId());
+			System.out.println("current user: "+requesteduser.getUsername()+" Numb auths: "+requesteduser.getAuthorities().size());
+		}
 		
 		/*DEBUG.d("deleting user");
 		
@@ -120,6 +126,18 @@ public class SC2BOADAOSimpleDBImplUnitTests {
 			user.setPassword("password 12345"+i);
 			user.setUsername("user "+i);
 			user.setEmail("user"+i+"@google.com");
+			user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
+			doa.saveUser(user);
+		}
+	}
+	public void generateAdmins(SC2BOADAO doa,int numberofusers){
+		
+		for(int i = 0;i<numberofusers;i++){
+			User user = new User();
+			user.setPassword("password 12345"+i);
+			user.setUsername("Admin"+i);
+			user.setEmail("admin"+i+"@google.com");
+			user.addAuthority(new GrantedAuthorityImpl("ROLE_ADMIN"));
 			doa.saveUser(user);
 		}
 	}
@@ -241,4 +259,6 @@ public class SC2BOADAOSimpleDBImplUnitTests {
 		}
 		
 	}
+	
+	
 }

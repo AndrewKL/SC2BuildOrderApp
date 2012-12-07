@@ -3,6 +3,7 @@ package com.ALC.SC2BOAserver.tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 
 
 
@@ -35,7 +36,7 @@ public class LiveTests {
 		System.out.println("total users: "+users.size());
 		System.out.println("==============");
 		for(int i =0;i<users.size();i++){
-			System.out.println("username: "+users.get(i).getUsername());		
+			System.out.println("username: "+users.get(i).getUsername()+" pw: "+users.get(i).getPassword());		
 		}
 		
 		
@@ -80,31 +81,37 @@ public class LiveTests {
 		
 		
 	}
-	
-	/*@Test
-	public void populateDBWithXMLData(){
-		//SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
-		File xmlfile = new File("src/META-INF/initialbuildordersfile.xml");
-		System.out.println("xmlfile: "+xmlfile.getAbsolutePath());
-		System.out.println("xmlfile can read"+xmlfile.canRead());
-		
-		List<OnlineBuildOrder> list =new ArrayList<OnlineBuildOrder>();
-		try {
-			list = getBuildsFromFile(xmlfile);
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("list: "+list.size());
-		System.out.println("finished");
-		
-		
+	//@Test
+	public void generateUsers(){
+		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
+		generateUsers(doa,20);
+		generateAdmins(doa,2);
 	}
 	
-	public static List<OnlineBuildOrder> getBuildsFromFile(File file) throws XmlPullParserException, IOException{
+	public void generateUsers(SC2BOADAO doa,int numberofusers){
+		
+		for(int i = 0;i<numberofusers;i++){
+			User user = new User();
+			user.setPassword("password 12345"+i);
+			user.setUsername("user "+i);
+			user.setEmail("user"+i+"@google.com");
+			user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
+			doa.saveUser(user);
+		}
+	}
+	public void generateAdmins(SC2BOADAO doa,int numberofusers){
+		
+		for(int i = 0;i<numberofusers;i++){
+			User user = new User();
+			user.setPassword("password 12345"+i);
+			user.setUsername("Admin"+i);
+			user.setEmail("admin"+i+"@google.com");
+			user.addAuthority(new GrantedAuthorityImpl("ROLE_ADMIN"));
+			doa.saveUser(user);
+		}
+	}
+	
+	/*public static List<OnlineBuildOrder> getBuildsFromFile(File file) throws XmlPullParserException, IOException{
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         XmlPullParser xpp = factory.newPullParser();
@@ -140,6 +147,13 @@ public class LiveTests {
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		
 		doa.deleteAllOnlineBuildOrders();
+		doa.deleteAllUsers();
+		System.out.println("deleted everything");
+	}
+	
+	//@Test
+	public void deleteUsers(){
+		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		doa.deleteAllUsers();
 		System.out.println("deleted everything");
 	}

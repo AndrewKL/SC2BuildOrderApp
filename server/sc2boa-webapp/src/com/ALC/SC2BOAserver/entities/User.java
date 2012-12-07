@@ -4,6 +4,7 @@ package com.ALC.SC2BOAserver.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.ALC.SC2BOAserver.util.DEBUG;
 
 
 @Entity
@@ -33,7 +37,8 @@ public class User implements Serializable, UserDetails {
 	String password;//TODO this needs to get converted to a hashed pw
 	Boolean isAdmin;
 	List<String> builds = new ArrayList<String>();//strings representing the IDs of this users currently selected builds
-	Collection<GrantedAuthority> authorities;
+	//Collection<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+	List<String> authorities= new ArrayList<String>();
 	
 	//get setter functions
 	
@@ -69,13 +74,31 @@ public class User implements Serializable, UserDetails {
 	public List<String> getBuilds(){
 		return this.builds;
 	}
+	public void setAuths(List<String> auths){
+		this.authorities = auths;
+	}
+	
+	public List<String> getAuths(){
+		return this.authorities;
+	}
 	
 	@Override
 	@Transient
 	public Collection<GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<GrantedAuthority> auths = new HashSet<GrantedAuthority>();
+		for(String authority: authorities){
+			auths.add(new GrantedAuthorityImpl(authority) );
+		}
+		return auths;
 	}
+	
+	
+	
+	public void addAuthority(GrantedAuthority auth){
+		this.authorities.add(auth.toString());
+	}
+	
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
@@ -99,6 +122,9 @@ public class User implements Serializable, UserDetails {
 	
 	public String toString(){
 		return "user: "+this.username+"  email: "+this.email+" pw: "+this.password;
+	}
+	public void clearPassword() {
+		this.password=null;
 	}
 }
 

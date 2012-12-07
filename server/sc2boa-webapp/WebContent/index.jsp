@@ -26,12 +26,20 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 	
+	
+	<script language="JavaScript">
+	<!--
+	function breakOut() 
+		{ if (window != top) top.location.href = location.href; }
+	-->
+	</script>
+	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 </head>
 
-<body>
+<body ><!-- onload="breakOut();" -->
 <!-- Prompt IE 7 users to install Chrome Frame -->
 <!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 

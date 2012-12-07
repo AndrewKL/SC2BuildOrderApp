@@ -2,6 +2,7 @@ package com.ALC.SC2BOAserver.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,16 +39,29 @@ public class UserController {
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public ModelAndView registerReply(@ModelAttribute User user) {
 		DEBUG.d("register new reply user page: "+user);
+		user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
 		userService.saveUser(user);
 		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(value="/login")
 	public ModelAndView login(ModelMap model) {
-		DEBUG.d("register login user page");
+		DEBUG.d("login user page");
 		User user = new User();
 		model.addAttribute("user", user);
 		return new ModelAndView("login", "user", user);
+	}
+	
+	
+ 
+	
+ 
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(ModelMap model) {
+		//TODO do i need this?
+ 
+		return "login";
+ 
 	}
 
 	

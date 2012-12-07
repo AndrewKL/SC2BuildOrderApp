@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
+
+	
+	
+ 
+    <!-- <http auto-config="true" access-denied-page="/accessDenied.jsp">
+        <intercept-url pattern="/login*" filters="none"/>  
+        <intercept-url pattern="/admin/*" access="ROLE_ADMIN"  />
+        
+        <intercept-url pattern="/**.do" access="ROLE_USER,ROLE_ADMIN"  />
+    	<form-login authentication-failure-url="/login.jsp?login_error=1" default-target-url="/home.do"/>
+    	<logout logout-success-url="/home.do"/>
+    	<form-login login-page="/login.jsp" />
+    </http> -->
+    
+    <!-- <bean id="userDetailsService"
+		class="com.ALC.SC2BOAserver.web.SC2BOAUserDetailsService">
+	</bean> -->
+	
+	<http auto-config="true">
+		<intercept-url pattern="/welcome*" access="ROLE_USER" />
+		<form-login login-page="/login" default-target-url="/welcome"
+			authentication-failure-url="/loginfailed" />
+		<logout logout-success-url="/logout" />
+	</http>
+ 
+	<authentication-manager>
+	  <authentication-provider>
+		<user-service>
+			<user name="mkyong" password="123456" authorities="ROLE_USER" />
+		</user-service>
+	  </authentication-provider>
+	</authentication-manager>
+ 
+    
+	
+	
+	
+	
+	
+	<!-- SECURITY  //TODO check this -->
+	<!-- 
+	<security:global-method-security secured-annotations="enabled" />
+
+	<security:http auto-config="true" > -->
+		<!-- Restrict URLs based on role --><!-- 
+		<security:intercept-url pattern="/secured.do" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/**"
+			access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+		<security:anonymous granted-authority="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+
+		<!-- Override default login and logout pages --><!-- 
+		<security:form-login login-page="/index"
+			default-target-url="/index" authentication-failure-url="/loginFailure.do" />
+		<security:logout logout-success-url="/logout.do" />
+			
+			
+		<security:remember-me key="rememberMeKey" />
+		
+		
+	</security:http>
+	
+	<bean id="rememberMeFilter" class=
+	 "org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+	  <property name="rememberMeServices" ref="rememberMeServices"/>
+	  <property name="authenticationManager" ref="authManager" />    
+	</bean>
+	
+	<bean id="rememberMeServices" class=
+	 "org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+	  <property name="userDetailsService" ref="userDetailsService"/>
+	  <property name="key" value="rememberMeKey"/>
+	</bean>
+	
+	<security:authentication-manager alias="authManager">
+		<security:authentication-provider user-service-ref="userDetailsService"/>
+	</security:authentication-manager> 
+	
+	
+	<bean id="userDetailsService"
+		class="com.ALC.SC2BOAserver.web.SC2BOAUserDetailsService">
+	</bean>-->
+	
+	
+
+
+	<!-- END SECURITY -->
+
+	
+	
+</beans>

@@ -3,6 +3,7 @@ package com.ALC.SC2BOAserver.tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 
 
@@ -36,11 +37,12 @@ public class LiveTests {
 		System.out.println("total users: "+users.size());
 		System.out.println("==============");
 		for(int i =0;i<users.size();i++){
-			System.out.println("username: "+users.get(i).getUsername()+" pw: "+users.get(i).getPassword());		
+			User user = users.get(i);
+			System.out.println("username: "+user.getUsername()+" pw: "+user.getPassword());	
+			for(GrantedAuthority auth : user.getAuthorities()){
+				System.out.println(auth);
+			}
 		}
-		
-		
-		
 	}
 	
 	@Test
@@ -52,7 +54,8 @@ public class LiveTests {
 		System.out.println("total builds: "+builds.size());
 		System.out.println("==============");
 		for(int i =0;i<builds.size();i++){
-			System.out.println("buildname: "+builds.get(i).getBuildName());		
+			System.out.println("buildname: "+builds.get(i).getBuildName());
+			
 		}
 	}
 	
@@ -82,6 +85,20 @@ public class LiveTests {
 		
 	}
 	//@Test
+	public void generateBuilds(){
+		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
+		
+		for(int i =0;i<10;i++){
+			OnlineBuildOrder buildorder = new OnlineBuildOrder();
+			buildorder.setBuildName("testbuild"+i);
+			buildorder.setBuildOrderInstructions("1 2 3 4 5 622");
+			buildorder.setRace("zerg");
+			
+			doa.addOnlineBuildOrder(buildorder);
+			
+		}
+	}
+	//@Test
 	public void generateUsers(){
 		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
 		generateUsers(doa,20);
@@ -92,8 +109,8 @@ public class LiveTests {
 		
 		for(int i = 0;i<numberofusers;i++){
 			User user = new User();
-			user.setPassword("password 12345"+i);
-			user.setUsername("user "+i);
+			user.setPassword("password12345"+i);
+			user.setUsername("user"+i);
 			user.setEmail("user"+i+"@google.com");
 			user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
 			doa.saveUser(user);
@@ -103,7 +120,7 @@ public class LiveTests {
 		
 		for(int i = 0;i<numberofusers;i++){
 			User user = new User();
-			user.setPassword("password 12345"+i);
+			user.setPassword("password12345"+i);
 			user.setUsername("Admin"+i);
 			user.setEmail("admin"+i+"@google.com");
 			user.addAuthority(new GrantedAuthorityImpl("ROLE_ADMIN"));

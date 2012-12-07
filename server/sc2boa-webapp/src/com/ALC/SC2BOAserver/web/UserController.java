@@ -52,7 +52,17 @@ public class UserController {
 		return new ModelAndView("login", "user", user);
 	}
 	
-	
+	@RequestMapping(value="/loginfailure", method = RequestMethod.GET)
+	public String loginerror(ModelMap model) {
+		DEBUG.d("loging failure: ");
+ 
+		//String errormessage = resources.getMessage("login.error", null, null);
+		model.addAttribute("error", "true");
+		User user = new User();
+		model.addAttribute("user", user);
+		return "login";
+ 
+	}
  
 	
  

@@ -15,8 +15,8 @@
 
 	<meta name="viewport" content="width=device-width">
 	
-	<meta name="description" content="Designa Studio, a HTML5 / CSS3 template.">
-	<meta name="author" content="Sylvain Lafitte, Web Designer, sylvainlafitte.com">
+	
+	<meta name="author" content="Andrew Long of AndrewLongConsulting.com and Sylvain Lafitte of sylvainlafitte.com">
 	
 	<title>HOME // SC2:BOA</title>
 	

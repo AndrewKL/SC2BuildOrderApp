@@ -59,27 +59,36 @@
 			</ul>
 		</nav>
 	</header>
-
-
-	<div class="contact-page main grid-wrap">
+	
+	<div class="about-page main grid-wrap">
 
 		<header class="grid col-full">
-			<hr>
+		<hr>
 			<p class="fleft">Register</p>
 		</header>
+
+		
+		
+		<aside class="grid col-one-quarter mq2-col-full">
+			<h2>Welcome:</h2>
+			By registering an account you gain the ability to edit and manipulate the build orders as well as keep a list of latest and greatest builds
+		
+		</aside>
+		
+		<section class="grid col-three-quarters mq2-col-full">
 		
 		<form:form modelAttribute="user" method="POST" action="./register.html">
 			<table>
 			    <tr>
-			        <td><form:label path="Username">username</form:label></td>
+			        <td><form:label path="Username">Username</form:label></td>
 			        <td><form:input path="username" /></td>
 			    </tr>
 			    <tr>
-			        <td><form:label path="email">email</form:label></td>
+			        <td><form:label path="email">Email</form:label></td>
 			        <td><form:input path="email" /></td>
 			    </tr>
 			    <tr>
-			        <td><form:label path="password">password</form:label></td>
+			        <td><form:label path="password">Password</form:label></td>
 			        <td><form:input path="password" /></td>
 			    </tr>
 			    <tr>
@@ -89,9 +98,9 @@
 			    </tr>
 			</table>  
 		</form:form>
-
+			
 		
-		
+		</section> 
 		
 	</div> <!--main-->
 

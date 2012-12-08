@@ -49,6 +49,15 @@ public class SC2BOAserverController {
         response.setContentLength(0);
         response.setStatus(HttpServletResponse.SC_OK);
     }
+    
+    /**
+     * sets up the index page
+     */
+    @RequestMapping(value="/index", method={RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView setupIndexPage (ModelMap model) {
+    	DEBUG.d("setupIndexPage");
+		return new ModelAndView("index");
+    }
 
     /**
      * sets up the about page

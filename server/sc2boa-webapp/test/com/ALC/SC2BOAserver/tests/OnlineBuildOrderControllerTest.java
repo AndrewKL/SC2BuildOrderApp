@@ -26,6 +26,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 public class OnlineBuildOrderControllerTest {
 	//the server may need to be started for these to run
+	//this has a tendency to not work I haven't spent time to figure out why
 
 	@Autowired
 	@Qualifier("restTemplate")

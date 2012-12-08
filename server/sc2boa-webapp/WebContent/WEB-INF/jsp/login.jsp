@@ -59,14 +59,23 @@
 			</ul>
 		</nav>
 	</header>
-
-
-	<div class="contact-page main grid-wrap">
+	
+	<div class="about-page main grid-wrap">
 
 		<header class="grid col-full">
-			<hr>
-			<p class="fleft">Login</p>
+		<hr>
+			<p class="fleft">Log In</p>
 		</header>
+
+		
+		
+		<aside class="grid col-one-quarter mq2-col-full">
+			<h2>Welcome Back:</h2>
+			Feel free to peruse the build orders as well as add as many more as you would like!
+		
+		</aside>
+		
+		<section class="grid col-three-quarters mq2-col-full">
 		
 		<h1>Log In</h1>
 		
@@ -105,12 +114,12 @@
 			</table>
 	 
 		</form>
-		<!-- <form name="myWebForm">
-   			<input name="usernameoremail" value="Username or Email">
-   			<input name="password" value="Password">
-   			<input type="button" value="LogIn" >
-		</form> -->
-
+			
+		
+		</section> 
+		
+	
+	
 		
 		
 		

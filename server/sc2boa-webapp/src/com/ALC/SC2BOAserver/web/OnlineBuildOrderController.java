@@ -1,9 +1,12 @@
 package com.ALC.SC2BOAserver.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ALC.SC2BOAserver.dao.SC2BOADAO;
 import com.ALC.SC2BOAserver.entities.OnlineBuildOrder;
 import com.ALC.SC2BOAserver.entities.BuildOrderCollection;
+import com.ALC.SC2BOAserver.entities.User;
 import com.ALC.SC2BOAserver.util.DEBUG;
 
 
@@ -102,6 +106,20 @@ public class OnlineBuildOrderController {
     public void setSC2BOADAO (SC2BOADAO dao) {
         this.dao = dao;
     }
+	
+	@RequestMapping(value="/addbuildordertouserlist/{buildid}", method=RequestMethod.GET)
+    public void addBuildOrderToUserList(@PathVariable String buildId){
+		UserDetails userDetails =
+				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = userDetails.getUsername();
+		User user = dao.getUserByUsername(username);
+		if(user.getBuilds()==null)user.setBuilds(new ArrayList<String>(1));
+		user.getBuilds().add(buildId);
+		dao.updateUser(user);
+    	OnlineBuildOrder buildorder = dao.getOnlineBuildOrder(buildId);
+    	
+    	
+	}
 	
 	
 

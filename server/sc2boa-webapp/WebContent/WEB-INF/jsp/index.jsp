@@ -91,8 +91,8 @@
 			Having a solid build order is one of the essential keys for 
 			advancing your skill and competing with tougher opponents. 
 			SC2:BOA allows you to download the latest and best builds right 
-			to your android phone.
-			<br><a href="./about">Read more about how the web site works.</a>
+			to your android phone.<br>
+			<br><a href="./about.html">Read more about how the web site works.</a>
 			</p>
 			<br>
 			<input type="button" value="View The Builds" onclick="window.location='./builds.html'">

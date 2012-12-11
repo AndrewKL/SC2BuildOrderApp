@@ -107,6 +107,17 @@ public class OnlineBuildOrderController {
         this.dao = dao;
     }
 	
+	@RequestMapping(value="/getuserbuilds", method=RequestMethod.GET)
+    public List<String> getUserList(){
+		DEBUG.d("getuserlist");
+		UserDetails userDetails =
+				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = userDetails.getUsername();
+		List<String> list = dao.getUserByUsername(username).getBuilds();
+		return list;
+    	
+	}
+	
 	@RequestMapping(value="/addbuildordertouserlist/{buildid}", method=RequestMethod.GET)
     public void addBuildOrderToUserList(@PathVariable String buildId){
 		UserDetails userDetails =

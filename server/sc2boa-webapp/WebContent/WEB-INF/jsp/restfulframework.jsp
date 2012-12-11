@@ -51,6 +51,18 @@
 	});
 	</script>
 	
+	<script>
+	$(document).ready(function(){
+		$('#downloadUserBuildsButton').click(function(){
+			$('#getUserBuildsdiv').append("...download User Builds button clicked<br>");
+			$.getJSON("./rest/buildorder/getuserbuilds.json",function(result){
+				$('#getUserBuildsdiv').append("...json retrieved<br>");
+				$('#getUserBuildsdiv').append(JSON.stringify(result)+"<br>");
+			});
+		});
+	});
+	</script>
+	
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -115,20 +127,26 @@
 		<br>
 		
 		
-		<h2>Get Build By ID</h2>
+		<h2>Get Build By ID</h2><br>
+		Individual builds can be down loaded by id(which can be found from the download all builds button above).<br>
 		<form name="getBuildByIDForm">
-   			<input id='idstring' name="idstring" value="024d8367-679d-42aa-95f4-593055f69100">
+   			<input id='idstring' name="idstring" value="e1b428bd-c213-4a2f-bcb2-36cd992c2423">
    			<input id="downloadBuildByIDButton" name="downloadBuildByIDButton" type="button" value="Download Build Via Jquery" >
 		</form>
 		<div id = "getBuildByIDdiv"></div>
+		<br><br>
 		
 		
-		<!-- <script type="text/javascript">
-		function getBuildByID(id)
-		{
-		    window.open("./rest/buildorder/get/"+id+".json");    
-		}
-		</script> -->
+		<h2>Get User Build List</h2><br>
+		The website also alows users to store a list of their favorite builds.<br>
+		<form name="getUserBuilds">
+   			
+   			<input id="downloadUserBuildsButton" name="downloadUserBuildsButton" type="button" value="Download User's Bookmarked Builds" >
+		</form>
+		<div id = "getUserBuildsdiv"></div>
+		<br><br>
+		
+		
 		<br>
 		<h2>Search Build By ID</h2>
 		<form name="getBuildByName">
@@ -141,6 +159,7 @@
 		    window.open("./rest/buildorder/searchbyname/"+name+".json");    
 		}
 		</script>
+		
 		
 		More Coming Soon!<br>
 		

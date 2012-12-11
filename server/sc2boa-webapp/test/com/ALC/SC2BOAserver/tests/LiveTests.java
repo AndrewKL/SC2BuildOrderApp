@@ -124,8 +124,22 @@ public class LiveTests {
 			user.setUsername("Admin"+i);
 			user.setEmail("admin"+i+"@google.com");
 			user.addAuthority(new GrantedAuthorityImpl("ROLE_ADMIN"));
+			user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
 			doa.saveUser(user);
 		}
+	}
+	
+	@Test
+	public void addUser(){
+		SC2BOADAO doa = new SC2BOADAOSimpleDBImpl();
+		User user = new User();
+		user.setPassword("12345");
+		user.setUsername("Andrew");
+		user.setEmail("test@google.com");
+		user.addAuthority(new GrantedAuthorityImpl("ROLE_ADMIN"));
+		user.addAuthority(new GrantedAuthorityImpl("ROLE_USER"));
+		doa.saveUser(user);
+		System.out.println("added user");
 	}
 	
 	/*public static List<OnlineBuildOrder> getBuildsFromFile(File file) throws XmlPullParserException, IOException{

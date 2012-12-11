@@ -109,27 +109,21 @@ public class OnlineBuildOrderController {
 	
 	@RequestMapping(value="/getuserbuilds", method=RequestMethod.GET)
     public List<String> getUserList(){
-		DEBUG.d("getuserlist");
-		UserDetails userDetails =
-				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = userDetails.getUsername();
-		List<String> list = dao.getUserByUsername(username).getBuilds();
-		return list;
-    	
+		DEBUG.d("getuserlist opt");
+		return ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getBuilds();//this is a giant monstrosity
+    	//TODO check this plus optimize.  see if it is possible to cast the userdetails into a sc2boa user
 	}
 	
 	@RequestMapping(value="/addbuildordertouserlist/{buildid}", method=RequestMethod.GET)
-    public void addBuildOrderToUserList(@PathVariable String buildId){
-		UserDetails userDetails =
-				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = userDetails.getUsername();
-		User user = dao.getUserByUsername(username);
+    public void addBuildOrderToUserList(@PathVariable String buildid){
+		DEBUG.d("addbuildordertouserlist");
+		User user = ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		if(user.getBuilds()==null)user.setBuilds(new ArrayList<String>(1));
-		user.getBuilds().add(buildId);
+		user.getBuilds().add(buildid);
 		dao.updateUser(user);
-    	OnlineBuildOrder buildorder = dao.getOnlineBuildOrder(buildId);
     	
     	
+    	//TODO check this and optimize
 	}
 	
 	

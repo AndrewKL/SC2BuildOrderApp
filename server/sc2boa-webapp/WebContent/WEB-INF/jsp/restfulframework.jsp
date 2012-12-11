@@ -51,7 +51,7 @@
 	});
 	</script>
 	
-	<script>
+	<!-- <script>
 	$(document).ready(function(){
 		$('#downloadUserBuildsButton').click(function(){
 			$('#getUserBuildsdiv').append("...download User Builds button clicked<br>");
@@ -61,7 +61,7 @@
 			});
 		});
 	});
-	</script>
+	</script> -->
 	
 	
 	<!--[if lt IE 9]>
@@ -136,12 +136,25 @@
 		<div id = "getBuildByIDdiv"></div>
 		<br><br>
 		
+		<h2>Bookmark Build By ID</h2><br>
+		Individual builds can be down loaded by id(which can be found from the download all builds button above).<br>
+		<form name="bookmarkBuildByIDForm">
+   			<input id='bookmarkidstring' name="bookmarkidstring" value="e1b428bd-c213-4a2f-bcb2-36cd992c2423">
+   			<input id="bookmarkBuildByIDButton" name="bookmarkBuildByIDButton" type="button" value="Bookmark Build by Id" OnClick="bookmarkBuildById(bookmarkidstring.value)" >
+		</form>
+		<script type="text/javascript">
+		function bookmarkBuildById(id)
+		{
+		    window.open("./rest/buildorder/addbuildordertouserlist/"+id);    
+		}
+		</script>
 		
-		<h2>Get User Build List</h2><br>
+		
+		<h2>Get User's Bookmarked Builds</h2><br>
 		The website also alows users to store a list of their favorite builds.<br>
 		<form name="getUserBuilds">
    			
-   			<input id="downloadUserBuildsButton" name="downloadUserBuildsButton" type="button" value="Download User's Bookmarked Builds" >
+   			<input id="downloadUserBuildsButton" name="downloadUserBuildsButton" type="button" value="Download User's Bookmarked Builds" onClick='window.open("./rest/buildorder/getuserbuilds.json")'>
 		</form>
 		<div id = "getUserBuildsdiv"></div>
 		<br><br>

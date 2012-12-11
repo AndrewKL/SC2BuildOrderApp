@@ -6,11 +6,11 @@ import java.util.List;
 
 //import com.appspot.api.services.buildorderendpoint.*;
 
-import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
+/*import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.Builder;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.InsertOnlineBuildOrder;
 import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
-import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrderCollection;
+import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrderCollection;*/
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -50,7 +50,7 @@ public class downloadAllBuildOrdersFromGAE extends AsyncTask<Object, Object, Obj
 		
 		//connection to GAE and downloading builds
 		Log.d("downloadAllBuildsFromGAE","doinbackground");
-		Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
+		/*Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
 				AndroidHttp.newCompatibleTransport(),
 				new JacksonFactory(),
 				new HttpRequestInitializer() {
@@ -74,7 +74,7 @@ public class downloadAllBuildOrdersFromGAE extends AsyncTask<Object, Object, Obj
 			Log.d("downloadAllBuildsFromGAE","adding BO: "+buildorder);
 			localBOs.addBuildOrder(buildorder);
 		}		
-		Log.d("uploading BO ","do in background finished");
+		Log.d("uploading BO ","do in background finished");*/
 		
 		//close spinning wheel of doom
 		dialog.dismiss();

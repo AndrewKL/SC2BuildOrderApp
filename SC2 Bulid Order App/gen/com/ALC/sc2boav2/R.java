@@ -42,20 +42,17 @@ public final class R {
         public static final int DatabaseInformationButton=0x7f09001e;
         public static final int DatabaseInformationTextAreaTextView=0x7f090007;
         public static final int DeleteDBButton=0x7f09001f;
-        public static final int DownloadAllBuildsFromGAEButton=0x7f090021;
         public static final int EditBuildOrderInstructionsTextArea=0x7f09000e;
         public static final int EditBuildOrderNameTextField=0x7f09000a;
         public static final int EditRaceSpinner=0x7f09000b;
         public static final int EditRatingBar=0x7f09000d;
         public static final int FinishedEditBuildOrderButton=0x7f09000f;
         public static final int LoadDataFromWebButton=0x7f09001d;
-        public static final int LoginButton=0x7f090022;
         public static final int RaceLabel=0x7f090002;
         public static final int RowIcon=0x7f090019;
         public static final int RowRatingBar=0x7f09001b;
         public static final int RowText=0x7f09001a;
         public static final int SearchBox=0x7f090017;
-        public static final int UploadAllBuildsToGAE=0x7f090020;
         public static final int btn_add_build=0x7f090015;
         public static final int btn_all_builds=0x7f090014;
         public static final int btn_donate=0x7f090016;
@@ -64,9 +61,9 @@ public final class R {
         public static final int btn_zerg_builds=0x7f090013;
         public static final int donationrelativelayout=0x7f090008;
         public static final int mainbox=0x7f090010;
-        public static final int menu_editBuildorder=0x7f090024;
-        public static final int menu_finished_edit=0x7f090025;
-        public static final int menu_settings=0x7f090023;
+        public static final int menu_editBuildorder=0x7f090021;
+        public static final int menu_finished_edit=0x7f090022;
+        public static final int menu_settings=0x7f090020;
         public static final int racespinner=0x7f090003;
         public static final int textView1=0x7f09000c;
     }

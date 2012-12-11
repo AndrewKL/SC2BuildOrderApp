@@ -427,4 +427,12 @@ public class SC2BOADAOSimpleDBImpl implements SC2BOADAO {
 		if(buildorder.getId()!=null)this.deleteOnlineBuildOrder(buildorder.getId());
 		this.addOnlineBuildOrder(buildorder);
 	}
+	@Override
+	public void updateUser(User user) {
+
+		User olduser = this.getUserByID(user.getId());
+		this.deleteUser(olduser);
+		this.saveUser(user);
+		//TODO check this
+	}
 }

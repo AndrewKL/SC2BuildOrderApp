@@ -39,7 +39,7 @@
         android:onClick="deleteDatabase"
         android:text="@string/DeleteDBString" />
 
-    <Button
+    <!-- <Button
         android:id="@+id/UploadAllBuildsToGAE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,6 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="logIn"
-        android:text="@string/LoginString" />
+        android:text="@string/LoginString" /> -->
 
 </LinearLayout>

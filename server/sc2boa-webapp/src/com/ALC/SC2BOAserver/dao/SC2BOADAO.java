@@ -42,6 +42,7 @@ public interface SC2BOADAO {
 	public User getUserByID(String id);
 	public User getUserByUsername (String username);
 	public User getUserByEmail(String email);
+	public void updateUser(User user);
 	public List<User> getUsers ();
 	public void saveUser (User user);
 	public void deleteUser (User user);
@@ -51,6 +52,7 @@ public interface SC2BOADAO {
 	public void setDefaultBuilds(List<OnlineBuildOrder> list);
 	public List<String> getIdsOfDefaultBuilds();
 	public List<OnlineBuildOrder> getDefaultBuilds();
+	
 	
 	
 	

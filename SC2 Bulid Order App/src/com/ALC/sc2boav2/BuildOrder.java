@@ -1,11 +1,5 @@
 package com.ALC.sc2boav2;
-import java.io.IOException;
-
-import android.util.Log;
-
 import com.ALC.sc2boav2.R;
-//import com.appspot.api.services.buildorderendpoint.model.BuildOrderJSON;
-import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
 
 
 public class BuildOrder {
@@ -20,7 +14,8 @@ public class BuildOrder {
 	public final static String zerg = "zerg";
 	public final static String protoss = "protoss";
 	public final static String terran = "terran";
-	public final String[] races = {"zerg","protoss","terran"};
+	public final static String[] races = {"zerg","protoss","terran"};
+	
 	public BuildOrder()
 	{
 		race=null;
@@ -131,7 +126,7 @@ public class BuildOrder {
 		return rating;
 	}
 	
-	public OnlineBuildOrder getOnlineBuildOrder(){
+	/*public OnlineBuildOrder getOnlineBuildOrder(){
 		OnlineBuildOrder buildorder = new OnlineBuildOrder();
 		buildorder.setBuildName(buildName);
 		buildorder.setBuildOrderInstructionsString(buildOrderInstructions);
@@ -156,7 +151,7 @@ public class BuildOrder {
 			buildorder.setRace(onlineBuildOrder.getRace());
 		}
 		return buildorder;
-	}
+	}*/
 	
 	
 

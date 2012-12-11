@@ -3,10 +3,10 @@ package com.ALC.sc2boav2;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
+/*import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.Builder;
 import com.appspot.api.services.onlinebuildorderendpoint.Onlinebuildorderendpoint.InsertOnlineBuildOrder;
-import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;
+import com.appspot.api.services.onlinebuildorderendpoint.model.OnlineBuildOrder;*/
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -45,7 +45,7 @@ public class UploadAllBuildsToGAE extends AsyncTask<Object, Object, Object> {
 	@Override
 	protected Object doInBackground(Object... arg0) {
 		Log.d("UploadAllBuildsToGAE","doinbackground");
-		Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
+		/*Builder endpointBuilder = new Onlinebuildorderendpoint.Builder(
 				AndroidHttp.newCompatibleTransport(),
 				new JacksonFactory(),
 				new HttpRequestInitializer() {
@@ -69,7 +69,7 @@ public class UploadAllBuildsToGAE extends AsyncTask<Object, Object, Object> {
 				e.printStackTrace();
 			}
 		}
-		Log.d("uploading BO ","do in background finished");
+		Log.d("uploading BO ","do in background finished");*/
 		dialog.dismiss();
 		return null;
 	}

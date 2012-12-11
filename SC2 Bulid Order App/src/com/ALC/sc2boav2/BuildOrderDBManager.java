@@ -27,13 +27,6 @@ public class BuildOrderDBManager {
 	{
 		dbHelper = new BuildOrderDBHelper(context);
 	}
-	/*  old test function
-	public void addDefaultData()
-	{
-		this.addBuildOrder(BuildOrderResources.terranbuild);
-		this.addBuildOrder(BuildOrderResources.zergbuild);
-		this.addBuildOrder(BuildOrderResources.protossbuild);
-	}*/
 	
 	public SQLiteDatabase GetDB()
 	{

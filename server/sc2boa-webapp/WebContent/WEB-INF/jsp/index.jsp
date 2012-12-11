@@ -33,6 +33,12 @@
 		{ if (window != top) top.location.href = location.href; }
 	-->
 	</script>
+	<script>
+	$(document).ready(function(){
+	    $('#favicon').remove();
+	    $('head').append('<link href="favicon.ico" id="favicon" rel="shortcut icon">');
+	});
+	</script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -86,7 +92,10 @@
 			advancing your skill and competing with tougher opponents. 
 			SC2:BOA allows you to download the latest and best builds right 
 			to your android phone.
+			<br><a href="./about">Read more about how the web site works.</a>
 			</p>
+			<br>
+			<input type="button" value="View The Builds" onclick="window.location='./builds.html'">
 			
 			
 		</div>

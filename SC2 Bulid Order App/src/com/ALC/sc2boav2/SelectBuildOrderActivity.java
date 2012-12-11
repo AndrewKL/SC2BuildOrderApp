@@ -38,12 +38,12 @@ public class SelectBuildOrderActivity extends Activity {
         String race = intent.getStringExtra(MainActivity.EXTRA_RACE);
 
         //access db and get builds
-        BuildOrderDBManager BOC= new BuildOrderDBManager(this);;
+        BuildOrderDBManager buildOrderDB= new BuildOrderDBManager(this);
         ArrayList<BuildOrder> builds;
         if(race.matches("all")){
-        	builds = BOC.GetAllBuildOrders();
+        	builds = buildOrderDB.GetAllBuildOrders();
         }else{
-        	builds = BOC.GetBuildOrdersByRace(race);
+        	builds = buildOrderDB.GetBuildOrdersByRace(race);
         }
         //Log.d("SelectBuildOrderActivity: ", "onCreate: creating list of buildnames");
         

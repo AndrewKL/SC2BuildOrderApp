@@ -107,7 +107,7 @@
 		</script>
 		<script>
 		function addBuildHTML(build){//function that formats the builds
-			console.log("build: "+build.buildName);
+			
 			var newdiv = "<div><hr><h3>"+build.buildName+"</h3>"+createEditLink(build)+"&#149;"+createDeleteLink(build)+"<br>  race: "+build.race+"<br>"+build.buildOrderInstructions+"</div>";
 			return newdiv;
 		}

@@ -26,7 +26,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 	
-	
+	<script src="js/jquery-1.7.2.min.js"></script>
 	<script language="JavaScript">
 	<!--
 	function breakOut() 
